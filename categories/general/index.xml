@@ -1,31 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>General on Charles Tang's Personal Portfolio</title><link>https://tang9ian.github.io/categories/general/</link><description>Recent content in General on Charles Tang's Personal Portfolio</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sat, 21 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://tang9ian.github.io/categories/general/index.xml" rel="self" type="application/rss+xml"/><item><title>Welcome to My Blog</title><link>https://tang9ian.github.io/posts/welcome/</link><pubDate>Sat, 21 Dec 2024 00:00:00 +0000</pubDate><guid>https://tang9ian.github.io/posts/welcome/</guid><description>&lt;h1 id="welcome-to-my-blog"&gt;
- Welcome to My Blog!
- &lt;a class="heading-link" href="#welcome-to-my-blog"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h1&gt;
-&lt;p&gt;Hello and welcome to my personal blog! I&amp;rsquo;m excited to share my journey as a full-stack developer with you.&lt;/p&gt;
-&lt;h2 id="what-youll-find-here"&gt;
- What You&amp;rsquo;ll Find Here
- &lt;a class="heading-link" href="#what-youll-find-here"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;In this blog, I&amp;rsquo;ll be sharing:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Technical tutorials&lt;/strong&gt; and how-to guides&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Project insights&lt;/strong&gt; from my development work&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Industry trends&lt;/strong&gt; and new technologies&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Personal experiences&lt;/strong&gt; in software development&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Tips and tricks&lt;/strong&gt; I&amp;rsquo;ve learned along the way&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="my-writing-philosophy"&gt;
- My Writing Philosophy
- &lt;a class="heading-link" href="#my-writing-philosophy"&gt;
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
- &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
- &lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;I believe in making complex technical concepts accessible to everyone. Whether you&amp;rsquo;re a beginner just starting out or an experienced developer looking for new perspectives, I hope you&amp;rsquo;ll find something valuable here.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>General on Charles Tang&#39;s Personal Portfolio</title>
+    <link>https://tang9ian.github.io/categories/general/</link>
+    <description>Recent content in General on Charles Tang&#39;s Personal Portfolio</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 21 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://tang9ian.github.io/categories/general/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Welcome to My Blog</title>
+      <link>https://tang9ian.github.io/posts/welcome/</link>
+      <pubDate>Sat, 21 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://tang9ian.github.io/posts/welcome/</guid>
+      <description>&lt;h1 id=&#34;welcome-to-my-blog&#34;&gt;&#xA;  Welcome to My Blog!&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#welcome-to-my-blog&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Hello and welcome to my personal blog! I&amp;rsquo;m excited to share my journey as a full-stack developer with you.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-youll-find-here&#34;&gt;&#xA;  What You&amp;rsquo;ll Find Here&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#what-youll-find-here&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;In this blog, I&amp;rsquo;ll be sharing:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Technical tutorials&lt;/strong&gt; and how-to guides&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Project insights&lt;/strong&gt; from my development work&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Industry trends&lt;/strong&gt; and new technologies&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Personal experiences&lt;/strong&gt; in software development&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Tips and tricks&lt;/strong&gt; I&amp;rsquo;ve learned along the way&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;my-writing-philosophy&#34;&gt;&#xA;  My Writing Philosophy&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#my-writing-philosophy&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;I believe in making complex technical concepts accessible to everyone. Whether you&amp;rsquo;re a beginner just starting out or an experienced developer looking for new perspectives, I hope you&amp;rsquo;ll find something valuable here.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

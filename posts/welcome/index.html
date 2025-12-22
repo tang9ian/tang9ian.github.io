@@ -1,22 +1,255 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=Content-Language content="en"><title>Welcome to My Blog · Charles Tang's Personal Portfolio</title><meta name=description content="Introduction to my personal blog"><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css><link rel=stylesheet href=/css/terminal-style.css><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32></head><body><div class=terminal-window><div class=terminal-header><div class=terminal-buttons><div class="terminal-button close"></div><div class="terminal-button minimize"></div><div class="terminal-button maximize"></div></div><div class=terminal-title>charles@portfolio: Welcome to My Blog</div></div><div class=terminal-content><nav class=navigation><div class=prompt>ls -la /home/charles/portfolio/</div><ul class=navigation-list><li class=navigation-item><a href=/about/>About</a></li><li class=navigation-item><a href=/posts/>Blog</a></li><li class=navigation-item><a href=/projects/>Projects</a></li><li class=navigation-item><a href=/contact/>Contact me</a></li><li class=navigation-item><a href=/zh-cn/ hreflang=zh-cn>中文</a></li></ul></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title><a class=title-link href=https://tang9ian.github.io/posts/welcome/>Welcome to My Blog</a></h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fa-solid fa-calendar" aria-hidden=true></i>
-<time datetime=2024-12-21T00:00:00Z>December 21, 2024
-</time></span><span class=reading-time><i class="fa-solid fa-clock" aria-hidden=true></i>
-One-minute read</span></div><div class=categories><i class="fa-solid fa-folder" aria-hidden=true></i>
-<a href=/categories/general/>General</a></div><div class=tags><i class="fa-solid fa-tag" aria-hidden=true></i>
-<span class=tag><a href=/tags/welcome/>Welcome</a>
-</span><span class=separator>•</span>
-<span class=tag><a href=/tags/introduction/>Introduction</a>
-</span><span class=separator>•</span>
-<span class=tag><a href=/tags/blog/>Blog</a></span></div></div></header><div class=post-content><h1 id=welcome-to-my-blog>Welcome to My Blog!
-<a class=heading-link href=#welcome-to-my-blog><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h1><p>Hello and welcome to my personal blog! I&rsquo;m excited to share my journey as a full-stack developer with you.</p><h2 id=what-youll-find-here>What You&rsquo;ll Find Here
-<a class=heading-link href=#what-youll-find-here><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>In this blog, I&rsquo;ll be sharing:</p><ul><li><strong>Technical tutorials</strong> and how-to guides</li><li><strong>Project insights</strong> from my development work</li><li><strong>Industry trends</strong> and new technologies</li><li><strong>Personal experiences</strong> in software development</li><li><strong>Tips and tricks</strong> I&rsquo;ve learned along the way</li></ul><h2 id=my-writing-philosophy>My Writing Philosophy
-<a class=heading-link href=#my-writing-philosophy><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>I believe in making complex technical concepts accessible to everyone. Whether you&rsquo;re a beginner just starting out or an experienced developer looking for new perspectives, I hope you&rsquo;ll find something valuable here.</p><h2 id=stay-connected>Stay Connected
-<a class=heading-link href=#stay-connected><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>I&rsquo;d love to hear your thoughts on my posts! Feel free to reach out through my <a href=/contact>contact page</a> or connect with me on social media.</p><p>Happy coding! 🚀</p></div><footer></footer></article></section></div></div><div class=status-bar><span>Charles Tang | Charles Tang's Personal Portfolio</span>
-<span>17:41:57</span></div></div><button class=floating-theme-toggle onclick=toggleTheme() title="Toggle Theme">
-<span id=theme-icon>🌙</span>
-</button>
-<script>function toggleTheme(){const e=document.body,t=document.getElementById("theme-icon"),n=e.getAttribute("data-theme")||"dark";n==="dark"?(e.setAttribute("data-theme","light"),t.textContent="☀️",localStorage.setItem("theme","light")):(e.setAttribute("data-theme","dark"),t.textContent="🌙",localStorage.setItem("theme","dark"))}document.addEventListener("DOMContentLoaded",function(){const e=localStorage.getItem("theme")||"dark",t=document.getElementById("theme-icon");document.body.setAttribute("data-theme",e),t.textContent=e==="light"?"☀️":"🌙"});function updateTime(){const t=new Date,n=t.toLocaleTimeString("en-US",{hour12:!1}),e=document.querySelector(".status-bar span:last-child");e&&(e.textContent=n)}setInterval(updateTime,1e3),document.addEventListener("DOMContentLoaded",function(){const e=document.querySelector(".content");e&&(e.style.opacity="0",setTimeout(()=>{e.style.transition="opacity 0.5s ease",e.style.opacity="1"},100))})</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+    
+    
+        <title>Welcome to My Blog · Charles Tang&#39;s Personal Portfolio</title>
+    
+    
+    <meta name="description" content="Introduction to my personal blog">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    
+    <link rel="stylesheet" href="/css/terminal-style.css">
+    
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+</head>
+
+<body>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <div class="terminal-button close"></div>
+                <div class="terminal-button minimize"></div>
+                <div class="terminal-button maximize"></div>
+            </div>
+            <div class="terminal-title">charles@portfolio: Welcome to My Blog</div>
+        </div>
+        
+        <div class="terminal-content">
+            <nav class="navigation">
+    <div class="prompt">ls -la /home/charles/portfolio/</div>
+    <ul class="navigation-list">
+        
+            <li class="navigation-item">
+                <a href="/about/">About</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/posts/">Blog</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/projects/">Projects</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/contact/">Contact me</a>
+            </li>
+        
+        
+        
+            
+                
+            
+                
+                    <li class="navigation-item">
+                        
+                            <a href="/zh-cn/" hreflang="zh-cn">中文</a>
+                        
+                    </li>
+                
+            
+        
+    </ul>
+</nav>
+
+            
+            <div class="content">
+                
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://tang9ian.github.io/posts/welcome/">
+              Welcome to My Blog
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2024-12-21T00:00:00Z">
+                December 21, 2024
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              One-minute read
+            </span>
+          </div>
+          
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+  <a href="/categories/general/">General</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+  <span class="tag">
+    <a href="/tags/welcome/">Welcome</a>
+  </span>
+  <span class="separator">•</span>
+  <span class="tag">
+    <a href="/tags/introduction/">Introduction</a>
+  </span>
+  <span class="separator">•</span>
+  <span class="tag">
+    <a href="/tags/blog/">Blog</a>
+  </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h1 id="welcome-to-my-blog">
+  Welcome to My Blog!
+  <a class="heading-link" href="#welcome-to-my-blog">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>Hello and welcome to my personal blog! I&rsquo;m excited to share my journey as a full-stack developer with you.</p>
+<h2 id="what-youll-find-here">
+  What You&rsquo;ll Find Here
+  <a class="heading-link" href="#what-youll-find-here">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>In this blog, I&rsquo;ll be sharing:</p>
+<ul>
+<li><strong>Technical tutorials</strong> and how-to guides</li>
+<li><strong>Project insights</strong> from my development work</li>
+<li><strong>Industry trends</strong> and new technologies</li>
+<li><strong>Personal experiences</strong> in software development</li>
+<li><strong>Tips and tricks</strong> I&rsquo;ve learned along the way</li>
+</ul>
+<h2 id="my-writing-philosophy">
+  My Writing Philosophy
+  <a class="heading-link" href="#my-writing-philosophy">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>I believe in making complex technical concepts accessible to everyone. Whether you&rsquo;re a beginner just starting out or an experienced developer looking for new perspectives, I hope you&rsquo;ll find something valuable here.</p>
+<h2 id="stay-connected">
+  Stay Connected
+  <a class="heading-link" href="#stay-connected">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>I&rsquo;d love to hear your thoughts on my posts! Feel free to reach out through my <a href="/contact" >contact page</a> or connect with me on social media.</p>
+<p>Happy coding! 🚀</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+            </div>
+        </div>
+        
+        <div class="status-bar">
+            <span>Charles Tang | Charles Tang&#39;s Personal Portfolio</span>
+            <span>10:18:50</span>
+        </div>
+    </div>
+    
+    
+    <button class="floating-theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+        <span id="theme-icon">🌙</span>
+    </button>
+    
+    <script>
+        
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = body.getAttribute('data-theme') || 'dark';
+            
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            const themeIcon = document.getElementById('theme-icon');
+            
+            document.body.setAttribute('data-theme', savedTheme);
+            themeIcon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+        });
+        
+        
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-US', { hour12: false });
+            const statusTime = document.querySelector('.status-bar span:last-child');
+            if (statusTime) {
+                statusTime.textContent = timeStr;
+            }
+        }
+        
+        setInterval(updateTime, 1000);
+        
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const content = document.querySelector('.content');
+            if (content) {
+                content.style.opacity = '0';
+                setTimeout(() => {
+                    content.style.transition = 'opacity 0.5s ease';
+                    content.style.opacity = '1';
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>

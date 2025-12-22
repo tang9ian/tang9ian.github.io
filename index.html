@@ -1,5 +1,299 @@
-<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.152.2"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=Content-Language content="en"><title>Charles Tang's Personal Portfolio</title><meta name=description content="Charles Tang's personal website"><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css><link rel=stylesheet href=/css/terminal-style.css><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32></head><body><div class=terminal-window><div class=terminal-header><div class=terminal-buttons><div class="terminal-button close"></div><div class="terminal-button minimize"></div><div class="terminal-button maximize"></div></div><div class=terminal-title>charles@portfolio: Charles Tang's Personal Portfolio</div></div><div class=terminal-content><nav class=navigation><div class=prompt>ls -la /home/charles/portfolio/</div><ul class=navigation-list><li class=navigation-item><a href=/about/>About</a></li><li class=navigation-item><a href=/posts/>Blog</a></li><li class=navigation-item><a href=/projects/>Projects</a></li><li class=navigation-item><a href=/contact/>Contact me</a></li><li class=navigation-item><a href=/zh-cn/ hreflang=zh-cn>中文</a></li></ul></nav><div class=content><div class=command-output><div class=prompt>whoami</div><div>Charles Tang</div></div><div class=command-output><div class=prompt>cat /home/charles/.profile</div><div class=avatar><img src=/images/avatar.jpg alt="Charles Tang" width=100 height=100></div></div><div class=command-output><div class=prompt>cat /home/charles/about.txt</div><div>A full-stack developer codes in backend development with ColdFusion, Java, and Golang, and codes in frontend technologies including Node.js, ReactJS, Vue.js, and Svelte.</div><div>Who enjoys hiking and watching movies.</div></div><div class=command-output><div class=prompt>ls -la /home/charles/social/</div><div class=file-list><div class=file-item><a href=https://github.com/tang9ian/ target=_blank rel=noopener><i class="fa-brands fa-github fa-2x"></i> Github</a></div><div class=file-item><a href=https://twitter.com/tang9ian/ target=_blank rel=noopener><i class="fa-brands fa-x-twitter fa-2x"></i> Twitter</a></div></div></div><div class=command-output><div class=prompt>find /home/charles/blog -name "*.md" | head -3</div><div class=file-list><div class=file-item><a href=/posts/welcome/>2024-12-21 - Welcome to My Blog</a></div></div><div style=margin-top:16px><a href=/posts class=button>cd /home/charles/blog/</a></div></div><div class=command-output><div class=prompt>ls /home/charles/projects/</div><div class=file-list><div class=file-item><a href=/about>about.md</a></div><div class=file-item><a href=/projects>projects/</a></div><div class=file-item><a href=/contact>contact.txt</a></div></div></div><div class="prompt cursor">help</div><style>.command-output{margin:20px 0;padding:12px;background:#1a1a1a;border-left:3px solid var(--terminal-fg);border-radius:4px}.prompt{color:var(--terminal-accent);margin-bottom:8px;font-weight:700}.prompt::before{content:"charles@portfolio:~$ ";color:var(--terminal-fg)}.file-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px;margin:12px 0}.file-item{padding:6px 12px;background:0 0;border:1px solid transparent;border-radius:4px;transition:all .2s}.file-item:hover{background:var(--terminal-selection);border-color:var(--terminal-blue)}.file-item a{color:var(--terminal-blue);text-decoration:none;display:flex;align-items:center;gap:8px}.file-item a:hover{color:var(--terminal-cyan)}.avatar{margin:12px 0}.avatar img{border:2px solid var(--terminal-fg);border-radius:8px;filter:brightness(.9)contrast(1.1)}@media(max-width:768px){.file-list{grid-template-columns:1fr}}</style></div></div><div class=status-bar><span>Charles Tang | Charles Tang's Personal Portfolio</span>
-<span>17:41:57</span></div></div><button class=floating-theme-toggle onclick=toggleTheme() title="Toggle Theme">
-<span id=theme-icon>🌙</span>
-</button>
-<script>function toggleTheme(){const e=document.body,t=document.getElementById("theme-icon"),n=e.getAttribute("data-theme")||"dark";n==="dark"?(e.setAttribute("data-theme","light"),t.textContent="☀️",localStorage.setItem("theme","light")):(e.setAttribute("data-theme","dark"),t.textContent="🌙",localStorage.setItem("theme","dark"))}document.addEventListener("DOMContentLoaded",function(){const e=localStorage.getItem("theme")||"dark",t=document.getElementById("theme-icon");document.body.setAttribute("data-theme",e),t.textContent=e==="light"?"☀️":"🌙"});function updateTime(){const t=new Date,n=t.toLocaleTimeString("en-US",{hour12:!1}),e=document.querySelector(".status-bar span:last-child");e&&(e.textContent=n)}setInterval(updateTime,1e3),document.addEventListener("DOMContentLoaded",function(){const e=document.querySelector(".content");e&&(e.style.opacity="0",setTimeout(()=>{e.style.transition="opacity 0.5s ease",e.style.opacity="1"},100))})</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="generator" content="Hugo 0.152.2">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+    
+    
+        <title>Charles Tang&#39;s Personal Portfolio</title>
+    
+    
+    <meta name="description" content="Charles Tang&#39;s personal website">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    
+    <link rel="stylesheet" href="/css/terminal-style.css">
+    
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+</head>
+
+<body>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <div class="terminal-button close"></div>
+                <div class="terminal-button minimize"></div>
+                <div class="terminal-button maximize"></div>
+            </div>
+            <div class="terminal-title">charles@portfolio: Charles Tang&#39;s Personal Portfolio</div>
+        </div>
+        
+        <div class="terminal-content">
+            <nav class="navigation">
+    <div class="prompt">ls -la /home/charles/portfolio/</div>
+    <ul class="navigation-list">
+        
+            <li class="navigation-item">
+                <a href="/about/">About</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/posts/">Blog</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/projects/">Projects</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/contact/">Contact me</a>
+            </li>
+        
+        
+        
+            
+                
+            
+                
+                    <li class="navigation-item">
+                        
+                            <a href="/zh-cn/" hreflang="zh-cn">中文</a>
+                        
+                    </li>
+                
+            
+        
+    </ul>
+</nav>
+
+            
+            <div class="content">
+                
+<div class="command-output">
+<div class="prompt">whoami</div>
+<div>Charles Tang</div>
+</div>
+
+
+<div class="command-output">
+<div class="prompt">cat /home/charles/.profile</div>
+<div class="avatar">
+    <img src="/images/avatar.jpg" alt="Charles Tang" width="100" height="100">
+</div>
+</div>
+
+
+<div class="command-output">
+<div class="prompt">cat /home/charles/about.txt</div>
+
+    
+        
+            <div>A full-stack developer codes in backend development with ColdFusion, Java, and Golang, and codes in frontend technologies including Node.js, ReactJS, Vue.js, and Svelte.</div>
+        
+            <div>Who enjoys hiking and watching movies.</div>
+        
+    
+
+</div>
+
+
+<div class="command-output">
+<div class="prompt">ls -la /home/charles/social/</div>
+<div class="file-list">
+    
+        <div class="file-item">
+            <a href="https://github.com/tang9ian/" target="_blank" rel="noopener">
+                <i class="fa-brands fa-github fa-2x"></i> Github
+            </a>
+        </div>
+    
+        <div class="file-item">
+            <a href="https://twitter.com/tang9ian/" target="_blank" rel="noopener">
+                <i class="fa-brands fa-x-twitter fa-2x"></i> Twitter
+            </a>
+        </div>
+    
+</div>
+</div>
+
+
+<div class="command-output">
+<div class="prompt">find /home/charles/blog -name "*.md" | head -3</div>
+
+
+
+    <div class="file-list">
+        
+            <div class="file-item">
+                <a href="/posts/welcome/">2024-12-21 - Welcome to My Blog</a>
+            </div>
+        
+    </div>
+    <div style="margin-top: 16px;">
+        <a href="/posts" class="button">cd /home/charles/blog/</a>
+    </div>
+
+</div>
+
+<div class="command-output">
+<div class="prompt">ls /home/charles/projects/</div>
+<div class="file-list">
+    <div class="file-item">
+        <a href="/about">about.md</a>
+    </div>
+    <div class="file-item">
+        <a href="/projects">projects/</a>
+    </div>
+    <div class="file-item">
+        <a href="/contact">contact.txt</a>
+    </div>
+</div>
+</div>
+
+<div class="prompt cursor">help</div>
+
+<style>
+.command-output {
+    margin: 20px 0;
+    padding: 12px;
+    background: #1a1a1a;
+    border-left: 3px solid var(--terminal-fg);
+    border-radius: 4px;
+}
+
+.prompt {
+    color: var(--terminal-accent);
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.prompt::before {
+    content: "charles@portfolio:~$ ";
+    color: var(--terminal-fg);
+}
+
+.file-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.file-item {
+    padding: 6px 12px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.file-item:hover {
+    background: var(--terminal-selection);
+    border-color: var(--terminal-blue);
+}
+
+.file-item a {
+    color: var(--terminal-blue);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.file-item a:hover {
+    color: var(--terminal-cyan);
+}
+
+.avatar {
+    margin: 12px 0;
+}
+
+.avatar img {
+    border: 2px solid var(--terminal-fg);
+    border-radius: 8px;
+    filter: brightness(0.9) contrast(1.1);
+}
+
+@media (max-width: 768px) {
+    .file-list {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+            </div>
+        </div>
+        
+        <div class="status-bar">
+            <span>Charles Tang | Charles Tang&#39;s Personal Portfolio</span>
+            <span>10:18:50</span>
+        </div>
+    </div>
+    
+    
+    <button class="floating-theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+        <span id="theme-icon">🌙</span>
+    </button>
+    
+    <script>
+        
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = body.getAttribute('data-theme') || 'dark';
+            
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            const themeIcon = document.getElementById('theme-icon');
+            
+            document.body.setAttribute('data-theme', savedTheme);
+            themeIcon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+        });
+        
+        
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-US', { hour12: false });
+            const statusTime = document.querySelector('.status-bar span:last-child');
+            if (statusTime) {
+                statusTime.textContent = timeStr;
+            }
+        }
+        
+        setInterval(updateTime, 1000);
+        
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const content = document.querySelector('.content');
+            if (content) {
+                content.style.opacity = '0';
+                setTimeout(() => {
+                    content.style.transition = 'opacity 0.5s ease';
+                    content.style.opacity = '1';
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>
