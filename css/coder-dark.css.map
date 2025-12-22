@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "coder-dark.css",
-	"sourceRoot": "/Users/charles/workspace/GO_OPENSOURCE/tang9ian.github.io",
+	"sourceRoot": "/Users/charles/Workspace/GO_OPENSOURCE/tang9ian.github.io",
 	"sources": [
 		"themes/hugo-coder/assets/scss/coder-dark.scss",
 		"themes/hugo-coder/assets/scss/_variables.scss",
