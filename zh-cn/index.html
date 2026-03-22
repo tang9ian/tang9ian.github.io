@@ -1,44 +1,77 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-	<meta name="generator" content="Hugo 0.152.2">
+	<meta name="generator" content="Hugo 0.154.5">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Language" content="zh-cn">
-    
+
     
         <title>Charles Tang的个人页面</title>
     
-    
+
     <meta name="description" content="">
+    <meta name="keywords" content="blog,Web开发人员,个人项目">
+    <meta name="author" content="Charles Tang">
+    <link rel="canonical" href="https://tang9ian.github.io/zh-cn/">
+
     
+    <meta property="og:title" content="Charles Tang的个人页面">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tang9ian.github.io/zh-cn/">
+    
+    <meta property="og:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+    <meta property="og:site_name" content="Charles Tang的个人页面">
+    
+
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Charles Tang的个人页面">
+    <meta name="twitter:description" content="">
+    
+    <meta name="twitter:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+
+    
+    
+    
+    <link rel="alternate" hreflang="en" href="https://tang9ian.github.io/en/">
+    
+    <link rel="alternate" hreflang="zh-cn" href="https://tang9ian.github.io/zh-cn/">
+    
+    
+
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
     
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl0HPNiecjHem/PY0MiImBUDicklBhRPNsUklPYe2LiY6U68hiUy+CT1r9Hmyow0bPBnFGEISN9GhQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
     
     <link rel="stylesheet" href="/css/terminal-style.css">
+
     
-    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
 </head>
 
 <body>
+    
+    
     <div class="terminal-window">
         <div class="terminal-header">
-            <div class="terminal-buttons">
+            <div class="terminal-buttons" aria-hidden="true">
                 <div class="terminal-button close"></div>
                 <div class="terminal-button minimize"></div>
                 <div class="terminal-button maximize"></div>
             </div>
             <div class="terminal-title">charles@portfolio: Charles Tang的个人页面</div>
         </div>
-        
+
         <div class="terminal-content">
-            <nav class="navigation">
+            <nav class="navigation" aria-label="Main navigation">
     <div class="prompt">ls -la /home/charles/portfolio/</div>
     <ul class="navigation-list">
         
@@ -58,14 +91,12 @@
                 <a href="/zh-cn/contact/">联系方式</a>
             </li>
         
-        
+
         
             
                 
                     <li class="navigation-item">
-                        
-                            <a href="/" hreflang="en">English</a>
-                        
+                        <a href="/en/" hreflang="en">English</a>
                     </li>
                 
             
@@ -75,8 +106,8 @@
     </ul>
 </nav>
 
-            
-            <div class="content">
+
+            <main id="main-content" class="content">
                 
 <div class="command-output">
 <div class="prompt">whoami</div>
@@ -96,7 +127,11 @@
 <div class="prompt">cat /home/charles/about.txt</div>
 
     
-        <div>一枚全栈开发人员喜欢使用Coldfusion, Java, 和Golang作为日常后台开发语言，同时也会使用前端框架和库(ReactJS, Vue.js, 和Svelte)实现一些前端的需求和站点应用程序，喜欢学习和尝试行业中新的事物。</div>
+        
+            <div>一枚全栈开发人员喜欢使用Coldfusion, Java, 和Golang作为日常后台开发语言，同时也会使用前端框架和库(ReactJS, Vue.js, 和Svelte)实现一些前端的需求和站点应用程序。</div>
+        
+            <div>喜欢学习和尝试行业中新的事物。</div>
+        
     
 
 </div>
@@ -107,14 +142,14 @@
 <div class="file-list">
     
         <div class="file-item">
-            <a href="https://github.com/tang9ian/" target="_blank" rel="noopener">
-                <i class="fa-brands fa-github fa-2x"></i> Github
+            <a href="https://github.com/tang9ian/" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-github fa-2x" aria-hidden="true"></i> Github
             </a>
         </div>
     
         <div class="file-item">
-            <a href="https://twitter.com/tang9ian/" target="_blank" rel="noopener">
-                <i class="fa-brands fa-x-twitter fa-2x"></i> Twitter
+            <a href="https://twitter.com/tang9ian/" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-x-twitter fa-2x" aria-hidden="true"></i> Twitter
             </a>
         </div>
     
@@ -124,7 +159,6 @@
 
 <div class="command-output">
 <div class="prompt">find /home/charles/blog -name "*.md" | head -3</div>
-
 
 
     <div>find: '/home/charles/blog': No such file or directory</div>
@@ -148,96 +182,26 @@
 
 <div class="prompt cursor">help</div>
 
-<style>
-.command-output {
-    margin: 20px 0;
-    padding: 12px;
-    background: #1a1a1a;
-    border-left: 3px solid var(--terminal-fg);
-    border-radius: 4px;
-}
-
-.prompt {
-    color: var(--terminal-accent);
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-.prompt::before {
-    content: "charles@portfolio:~$ ";
-    color: var(--terminal-fg);
-}
-
-.file-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 8px;
-    margin: 12px 0;
-}
-
-.file-item {
-    padding: 6px 12px;
-    background: transparent;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    transition: all 0.2s;
-}
-
-.file-item:hover {
-    background: var(--terminal-selection);
-    border-color: var(--terminal-blue);
-}
-
-.file-item a {
-    color: var(--terminal-blue);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.file-item a:hover {
-    color: var(--terminal-cyan);
-}
-
-.avatar {
-    margin: 12px 0;
-}
-
-.avatar img {
-    border: 2px solid var(--terminal-fg);
-    border-radius: 8px;
-    filter: brightness(0.9) contrast(1.1);
-}
-
-@media (max-width: 768px) {
-    .file-list {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
-
-            </div>
+            </main>
         </div>
-        
+
         <div class="status-bar">
             <span>Charles Tang | Charles Tang的个人页面</span>
-            <span>10:26:03</span>
+            <span class="status-time"></span>
         </div>
     </div>
+
     
-    
-    <button class="floating-theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+    <button class="floating-theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
         <span id="theme-icon">🌙</span>
     </button>
-    
+
     <script>
-        
         function toggleTheme() {
             const body = document.body;
             const themeIcon = document.getElementById('theme-icon');
             const currentTheme = body.getAttribute('data-theme') || 'dark';
-            
+
             if (currentTheme === 'dark') {
                 body.setAttribute('data-theme', 'light');
                 themeIcon.textContent = '☀️';
@@ -248,37 +212,32 @@
                 localStorage.setItem('theme', 'dark');
             }
         }
-        
-        
+
         document.addEventListener('DOMContentLoaded', function() {
             const savedTheme = localStorage.getItem('theme') || 'dark';
             const themeIcon = document.getElementById('theme-icon');
-            
+
             document.body.setAttribute('data-theme', savedTheme);
             themeIcon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
-        });
-        
-        
-        function updateTime() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('en-US', { hour12: false });
-            const statusTime = document.querySelector('.status-bar span:last-child');
-            if (statusTime) {
-                statusTime.textContent = timeStr;
-            }
-        }
-        
-        setInterval(updateTime, 1000);
-        
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const content = document.querySelector('.content');
+
+            
+            var content = document.querySelector('.content');
             if (content) {
                 content.style.opacity = '0';
-                setTimeout(() => {
+                setTimeout(function() {
                     content.style.transition = 'opacity 0.5s ease';
                     content.style.opacity = '1';
                 }, 100);
+            }
+
+            
+            var statusTime = document.querySelector('.status-time');
+            if (statusTime) {
+                function updateTime() {
+                    statusTime.textContent = new Date().toLocaleTimeString('en-US', { hour12: false });
+                }
+                updateTime();
+                setInterval(updateTime, 1000);
             }
         });
     </script>

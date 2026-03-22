@@ -4,40 +4,73 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Language" content="zh-cn">
-    
+
     
         <title>Authors · Charles Tang的个人页面</title>
     
-    
+
     <meta name="description" content="">
+    <meta name="keywords" content="blog,Web开发人员,个人项目">
+    <meta name="author" content="Charles Tang">
+    <link rel="canonical" href="https://tang9ian.github.io/zh-cn/authors/">
+
     
+    <meta property="og:title" content="Authors">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tang9ian.github.io/zh-cn/authors/">
+    
+    <meta property="og:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+    <meta property="og:site_name" content="Charles Tang的个人页面">
+    
+
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Authors">
+    <meta name="twitter:description" content="">
+    
+    <meta name="twitter:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+
+    
+    
+    
+    <link rel="alternate" hreflang="en" href="https://tang9ian.github.io/en/authors/">
+    
+    <link rel="alternate" hreflang="zh-cn" href="https://tang9ian.github.io/zh-cn/authors/">
+    
+    
+
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
     
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl0HPNiecjHem/PY0MiImBUDicklBhRPNsUklPYe2LiY6U68hiUy+CT1r9Hmyow0bPBnFGEISN9GhQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
     
     <link rel="stylesheet" href="/css/terminal-style.css">
+
     
-    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
 </head>
 
 <body>
+    
+    
     <div class="terminal-window">
         <div class="terminal-header">
-            <div class="terminal-buttons">
+            <div class="terminal-buttons" aria-hidden="true">
                 <div class="terminal-button close"></div>
                 <div class="terminal-button minimize"></div>
                 <div class="terminal-button maximize"></div>
             </div>
             <div class="terminal-title">charles@portfolio: Authors</div>
         </div>
-        
+
         <div class="terminal-content">
-            <nav class="navigation">
+            <nav class="navigation" aria-label="Main navigation">
     <div class="prompt">ls -la /home/charles/portfolio/</div>
     <ul class="navigation-list">
         
@@ -57,14 +90,12 @@
                 <a href="/zh-cn/contact/">联系方式</a>
             </li>
         
-        
+
         
             
                 
                     <li class="navigation-item">
-                        
-                            <a href="/" hreflang="en">English</a>
-                        
+                        <a href="/en/" hreflang="en">English</a>
                     </li>
                 
             
@@ -74,8 +105,8 @@
     </ul>
 </nav>
 
-            
-            <div class="content">
+
+            <main id="main-content" class="content">
                 
   <section class="container taxonomy">
   <header>
@@ -91,27 +122,26 @@
 </section>
 
 
-            </div>
+            </main>
         </div>
-        
+
         <div class="status-bar">
             <span>Charles Tang | Charles Tang的个人页面</span>
-            <span>10:26:03</span>
+            <span class="status-time"></span>
         </div>
     </div>
+
     
-    
-    <button class="floating-theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+    <button class="floating-theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
         <span id="theme-icon">🌙</span>
     </button>
-    
+
     <script>
-        
         function toggleTheme() {
             const body = document.body;
             const themeIcon = document.getElementById('theme-icon');
             const currentTheme = body.getAttribute('data-theme') || 'dark';
-            
+
             if (currentTheme === 'dark') {
                 body.setAttribute('data-theme', 'light');
                 themeIcon.textContent = '☀️';
@@ -122,37 +152,32 @@
                 localStorage.setItem('theme', 'dark');
             }
         }
-        
-        
+
         document.addEventListener('DOMContentLoaded', function() {
             const savedTheme = localStorage.getItem('theme') || 'dark';
             const themeIcon = document.getElementById('theme-icon');
-            
+
             document.body.setAttribute('data-theme', savedTheme);
             themeIcon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
-        });
-        
-        
-        function updateTime() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('en-US', { hour12: false });
-            const statusTime = document.querySelector('.status-bar span:last-child');
-            if (statusTime) {
-                statusTime.textContent = timeStr;
-            }
-        }
-        
-        setInterval(updateTime, 1000);
-        
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const content = document.querySelector('.content');
+
+            
+            var content = document.querySelector('.content');
             if (content) {
                 content.style.opacity = '0';
-                setTimeout(() => {
+                setTimeout(function() {
                     content.style.transition = 'opacity 0.5s ease';
                     content.style.opacity = '1';
                 }, 100);
+            }
+
+            
+            var statusTime = document.querySelector('.status-time');
+            if (statusTime) {
+                function updateTime() {
+                    statusTime.textContent = new Date().toLocaleTimeString('en-US', { hour12: false });
+                }
+                updateTime();
+                setInterval(updateTime, 1000);
             }
         });
     </script>

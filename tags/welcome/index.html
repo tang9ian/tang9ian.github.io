@@ -4,40 +4,73 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Language" content="en">
-    
+
     
         <title>Welcome · Charles Tang&#39;s Personal Portfolio</title>
     
-    
+
     <meta name="description" content="Charles Tang&#39;s personal website">
+    <meta name="keywords" content="blog,developer,personal">
+    <meta name="author" content="Charles Tang">
+    <link rel="canonical" href="https://tang9ian.github.io/tags/welcome/">
+
     
+    <meta property="og:title" content="Welcome">
+    <meta property="og:description" content="Charles Tang&#39;s personal website">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tang9ian.github.io/tags/welcome/">
+    
+    <meta property="og:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+    <meta property="og:site_name" content="Charles Tang&#39;s Personal Portfolio">
+    
+
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Welcome">
+    <meta name="twitter:description" content="Charles Tang&#39;s personal website">
+    
+    <meta name="twitter:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+
+    
+    
+    
+    <link rel="alternate" hreflang="en" href="https://tang9ian.github.io/tags/welcome/">
+    
+    <link rel="alternate" hreflang="zh-cn" href="https://tang9ian.github.io/tags/welcome/">
+    
+    
+
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
     
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl0HPNiecjHem/PY0MiImBUDicklBhRPNsUklPYe2LiY6U68hiUy+CT1r9Hmyow0bPBnFGEISN9GhQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
     
     <link rel="stylesheet" href="/css/terminal-style.css">
+
     
-    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
 </head>
 
 <body>
+    
+    
     <div class="terminal-window">
         <div class="terminal-header">
-            <div class="terminal-buttons">
+            <div class="terminal-buttons" aria-hidden="true">
                 <div class="terminal-button close"></div>
                 <div class="terminal-button minimize"></div>
                 <div class="terminal-button maximize"></div>
             </div>
             <div class="terminal-title">charles@portfolio: Welcome</div>
         </div>
-        
+
         <div class="terminal-content">
-            <nav class="navigation">
+            <nav class="navigation" aria-label="Main navigation">
     <div class="prompt">ls -la /home/charles/portfolio/</div>
     <ul class="navigation-list">
         
@@ -57,16 +90,14 @@
                 <a href="/contact/">Contact me</a>
             </li>
         
-        
+
         
             
                 
             
                 
                     <li class="navigation-item">
-                        
-                            <a href="/zh-cn/" hreflang="zh-cn">中文</a>
-                        
+                        <a href="/zh-cn/" hreflang="zh-cn">中文</a>
                     </li>
                 
             
@@ -74,55 +105,49 @@
     </ul>
 </nav>
 
-            
-            <div class="content">
+
+            <main id="main-content" class="content">
                 
-  <section class="container list">
-  <header>
-    <h1 class="title">
-      <a class="title-link" href="https://tang9ian.github.io/tags/welcome/">Tag: Welcome</a>
-    </h1>
-  </header>
-  
-  <ul>
+<div class="command-output">
+<div class="prompt">ls -la /home/charles/welcome/</div>
+<h1>Welcome</h1>
+
+</div>
+
+
+
+<div class="command-output">
+<div class="prompt">find . -name "*.md" -type f</div>
+<div class="file-list">
     
-    <li>
-      <span class="date">December 21, 2024</span>
-      <a class="title" href="/posts/welcome/">Welcome to My Blog</a>
-    </li>
-    
-  </ul>
-  
-
-
-
-
-
-
-</section>
-
-
-            </div>
+        <div class="file-item">
+            <a href="/posts/welcome/">2024-12-21 - Welcome to My Blog</a>
         </div>
-        
+    
+</div>
+</div>
+
+
+            </main>
+        </div>
+
         <div class="status-bar">
             <span>Charles Tang | Charles Tang&#39;s Personal Portfolio</span>
-            <span>10:26:03</span>
+            <span class="status-time"></span>
         </div>
     </div>
+
     
-    
-    <button class="floating-theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+    <button class="floating-theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
         <span id="theme-icon">🌙</span>
     </button>
-    
+
     <script>
-        
         function toggleTheme() {
             const body = document.body;
             const themeIcon = document.getElementById('theme-icon');
             const currentTheme = body.getAttribute('data-theme') || 'dark';
-            
+
             if (currentTheme === 'dark') {
                 body.setAttribute('data-theme', 'light');
                 themeIcon.textContent = '☀️';
@@ -133,37 +158,32 @@
                 localStorage.setItem('theme', 'dark');
             }
         }
-        
-        
+
         document.addEventListener('DOMContentLoaded', function() {
             const savedTheme = localStorage.getItem('theme') || 'dark';
             const themeIcon = document.getElementById('theme-icon');
-            
+
             document.body.setAttribute('data-theme', savedTheme);
             themeIcon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
-        });
-        
-        
-        function updateTime() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('en-US', { hour12: false });
-            const statusTime = document.querySelector('.status-bar span:last-child');
-            if (statusTime) {
-                statusTime.textContent = timeStr;
-            }
-        }
-        
-        setInterval(updateTime, 1000);
-        
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const content = document.querySelector('.content');
+
+            
+            var content = document.querySelector('.content');
             if (content) {
                 content.style.opacity = '0';
-                setTimeout(() => {
+                setTimeout(function() {
                     content.style.transition = 'opacity 0.5s ease';
                     content.style.opacity = '1';
                 }, 100);
+            }
+
+            
+            var statusTime = document.querySelector('.status-time');
+            if (statusTime) {
+                function updateTime() {
+                    statusTime.textContent = new Date().toLocaleTimeString('en-US', { hour12: false });
+                }
+                updateTime();
+                setInterval(updateTime, 1000);
             }
         });
     </script>

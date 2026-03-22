@@ -1,0 +1,60 @@
+topics:
+  - title: "Understanding Go Concurrency Patterns"
+    slug: "go-concurrency-patterns"
+    tags: ["golang", "concurrency", "goroutines"]
+    category: "Backend"
+    status: used
+
+  - title: "Building a REST API with Go and Chi Router"
+    slug: "go-chi-rest-api"
+    tags: ["golang", "api", "chi"]
+    category: "Backend"
+    status: pending
+
+  - title: "Java Stream API Practical Guide"
+    slug: "java-stream-api-guide"
+    tags: ["java", "streams", "functional"]
+    category: "Backend"
+    status: pending
+
+  - title: "Getting Started with Svelte 5 Runes"
+    slug: "svelte-5-runes"
+    tags: ["svelte", "frontend", "javascript"]
+    category: "Frontend"
+    status: pending
+
+  - title: "React Server Components Explained"
+    slug: "react-server-components"
+    tags: ["react", "rsc", "nextjs"]
+    category: "Frontend"
+    status: pending
+
+  - title: "Vue 3 Composables for Clean Code"
+    slug: "vue3-composables"
+    tags: ["vue", "composables", "typescript"]
+    category: "Frontend"
+    status: pending
+
+  - title: "Microservices Communication Patterns"
+    slug: "microservices-communication"
+    tags: ["microservices", "architecture", "api"]
+    category: "Architecture"
+    status: pending
+
+  - title: "Docker Multi-Stage Builds for Go Applications"
+    slug: "docker-multistage-go"
+    tags: ["docker", "golang", "devops"]
+    category: "DevOps"
+    status: pending
+
+  - title: "ColdFusion to Modern Java Migration Strategies"
+    slug: "coldfusion-java-migration"
+    tags: ["coldfusion", "java", "migration"]
+    category: "Backend"
+    status: pending
+
+  - title: "Building Real-Time Features with Server-Sent Events"
+    slug: "server-sent-events"
+    tags: ["sse", "realtime", "javascript"]
+    category: "Full-Stack"
+    status: pending

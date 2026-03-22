@@ -21,8 +21,8 @@
   --terminal-secondary: #383830;
   --terminal-accent: #f92672;
   --terminal-error: #f92672;
-  --terminal-blue: #66d9ef;
-  --terminal-cyan: #a6e22e;
+  --terminal-blue: #1a6fb5;
+  --terminal-cyan: #6a8b22;
   --terminal-magenta: #ae81ff;
   --terminal-border: #e6db74;
   --terminal-selection: #49483e;
@@ -34,14 +34,32 @@
 }
 
 body {
-  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
   background: var(--terminal-bg);
   color: var(--terminal-fg);
   margin: 0;
   padding: 20px;
   line-height: 1.4;
   font-size: 14px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Skip navigation link */
+.skip-nav {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--terminal-bg);
+  color: var(--terminal-fg);
+  padding: 8px;
+  z-index: 1001;
+  text-decoration: none;
+}
+
+.skip-nav:focus {
+  top: 0;
 }
 
 /* Terminal Window */
@@ -83,9 +101,15 @@ body {
   border-radius: 50%;
 }
 
-.close { background: #ff5f56; }
-.minimize { background: #ffbd2e; }
-.maximize { background: #27ca3f; }
+.close {
+  background: #ff5f56;
+}
+.minimize {
+  background: #ffbd2e;
+}
+.maximize {
+  background: #27ca3f;
+}
 
 .terminal-title {
   color: #ffffff;
@@ -163,6 +187,8 @@ body {
 /* Command Prompt */
 .prompt {
   color: var(--terminal-fg);
+  margin-bottom: 8px;
+  font-weight: bold;
 }
 
 .prompt::before {
@@ -209,7 +235,6 @@ h1 {
   color: var(--terminal-fg);
   font-size: 24px;
   margin: 20px 0;
-  text-shadow: 0 0 10px var(--terminal-fg);
 }
 
 h1::before {
@@ -256,7 +281,8 @@ a:hover {
 }
 
 /* Code blocks */
-pre, code {
+pre,
+code {
   background: #1a1a1a;
   border: 1px solid var(--terminal-border);
   border-radius: 4px;
@@ -275,7 +301,10 @@ pre {
   position: relative;
 }
 
-pre::before {
+/* Only add $ prefix to shell/bash code blocks */
+pre.language-bash::before,
+pre.language-shell::before,
+pre.language-sh::before {
   content: "$ ";
   color: var(--terminal-accent);
 }
@@ -286,7 +315,8 @@ code {
 }
 
 /* Lists */
-ul, ol {
+ul,
+ol {
   color: var(--terminal-secondary);
   padding-left: 20px;
 }
@@ -300,7 +330,8 @@ li::marker {
 }
 
 /* Buttons */
-.button, .btn {
+.button,
+.btn {
   background: transparent;
   color: var(--terminal-fg);
   border: 1px solid var(--terminal-fg);
@@ -313,17 +344,22 @@ li::marker {
   transition: all 0.2s;
 }
 
-.button:hover, .btn:hover {
+.button:hover,
+.btn:hover {
   background: var(--terminal-fg);
   color: var(--terminal-bg);
   box-shadow: 0 0 10px var(--terminal-fg);
 }
 
 /* Avatar */
+.avatar {
+  margin: 12px 0;
+}
+
 .avatar img {
   border: 2px solid var(--terminal-fg);
-  border-radius: 4px;
-  filter: brightness(0.8) contrast(1.2);
+  border-radius: 8px;
+  filter: brightness(0.9) contrast(1.1);
 }
 
 /* Social Links */
@@ -354,6 +390,7 @@ li::marker {
   border-left: 3px solid var(--terminal-fg);
   padding: 12px;
   margin: 12px 0;
+  border-radius: 4px;
   font-family: inherit;
 }
 
@@ -364,20 +401,35 @@ li::marker {
 /* File listing style */
 .file-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 8px;
-  margin: 16px 0;
+  margin: 12px 0;
 }
 
 .file-item {
-  color: var(--terminal-blue);
-  padding: 4px;
+  padding: 6px 12px;
+  background: transparent;
   border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--terminal-blue);
+  transition: all 0.2s;
 }
 
 .file-item:hover {
   background: var(--terminal-selection);
   border-color: var(--terminal-blue);
+}
+
+.file-item a {
+  color: var(--terminal-blue);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.file-item a:hover {
+  color: var(--terminal-cyan);
 }
 
 /* Status bar */
@@ -404,8 +456,92 @@ li::marker {
 }
 
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Post styles */
+.post-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--terminal-border);
+}
+
+.post-meta {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  color: var(--terminal-secondary);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.post-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.post-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.tag {
+  background: var(--terminal-border);
+  color: var(--terminal-fg);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  border: 1px solid var(--terminal-fg);
+}
+
+.post-content {
+  line-height: 1.6;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.post-content p {
+  margin-bottom: 1rem;
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--terminal-border);
+  margin: 1rem 0;
+}
+
+.post-content blockquote {
+  border-left: 3px solid var(--terminal-fg);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: var(--terminal-secondary);
+}
+
+.post-content ul,
+.post-content ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.post-content li {
+  margin: 0.5rem 0;
 }
 
 /* Scrollbar */
@@ -432,31 +568,39 @@ li::marker {
   color: var(--terminal-secondary);
 }
 
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   body {
     padding: 10px;
     font-size: 12px;
   }
-  
+
   .terminal-content {
     padding: 15px;
   }
-  
+
   .navigation-list {
     flex-direction: column;
     gap: 8px;
   }
-  
+
   h1 {
     font-size: 20px;
   }
-  
+
   .terminal-header {
     flex-direction: row;
     gap: 8px;
   }
-  
+
   .floating-theme-toggle {
     width: 45px;
     height: 45px;
@@ -464,4 +608,37 @@ li::marker {
     top: 15px;
     right: 15px;
   }
+
+  .file-list {
+    grid-template-columns: 1fr;
+  }
+
+  .post-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Heading anchor links */
+.heading-link {
+  margin-left: 0.4em;
+  opacity: 0;
+  font-size: 0.7em;
+  color: var(--terminal-fg);
+  text-decoration: none;
+  transition: opacity 0.2s;
+  vertical-align: middle;
+}
+
+h1:hover .heading-link,
+h2:hover .heading-link,
+h3:hover .heading-link,
+h4:hover .heading-link,
+h5:hover .heading-link,
+h6:hover .heading-link {
+  opacity: 0.6;
+}
+
+.heading-link:hover {
+  opacity: 1 !important;
 }
