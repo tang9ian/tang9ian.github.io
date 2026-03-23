@@ -2,10 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Charles Tang的个人页面</title>
-    <link>http://localhost:1313/zh-cn/categories/</link>
+    <link>https://tang9ian.github.io/zh-cn/categories/</link>
     <description>Recent content in Categories on Charles Tang的个人页面</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <atom:link href="http://localhost:1313/zh-cn/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://tang9ian.github.io/zh-cn/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>安全</title>
+      <link>https://tang9ian.github.io/zh-cn/categories/%E5%AE%89%E5%85%A8/</link>
+      <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://tang9ian.github.io/zh-cn/categories/%E5%AE%89%E5%85%A8/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>后端开发</title>
+      <link>https://tang9ian.github.io/zh-cn/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Fri, 20 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://tang9ian.github.io/zh-cn/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>综合</title>
+      <link>https://tang9ian.github.io/zh-cn/categories/%E7%BB%BC%E5%90%88/</link>
+      <pubDate>Sat, 21 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://tang9ian.github.io/zh-cn/categories/%E7%BB%BC%E5%90%88/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

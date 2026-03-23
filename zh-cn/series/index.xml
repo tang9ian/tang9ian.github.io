@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Series on Charles Tang的个人页面</title>
-    <link>http://localhost:1313/zh-cn/series/</link>
+    <link>https://tang9ian.github.io/zh-cn/series/</link>
     <description>Recent content in Series on Charles Tang的个人页面</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <atom:link href="http://localhost:1313/zh-cn/series/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://tang9ian.github.io/zh-cn/series/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

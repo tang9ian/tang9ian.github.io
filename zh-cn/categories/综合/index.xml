@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>欢迎 on Charles Tang&#39;s Personal Portfolio</title>
-    <link>https://tang9ian.github.io/tags/%E6%AC%A2%E8%BF%8E/</link>
-    <description>Recent content in 欢迎 on Charles Tang&#39;s Personal Portfolio</description>
+    <title>综合 on Charles Tang的个人页面</title>
+    <link>https://tang9ian.github.io/zh-cn/categories/%E7%BB%BC%E5%90%88/</link>
+    <description>Recent content in 综合 on Charles Tang的个人页面</description>
     <generator>Hugo</generator>
-    <language>en</language>
+    <language>zh-cn</language>
     <lastBuildDate>Sat, 21 Dec 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://tang9ian.github.io/tags/%E6%AC%A2%E8%BF%8E/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://tang9ian.github.io/zh-cn/categories/%E7%BB%BC%E5%90%88/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>欢迎来到我的博客</title>
       <link>https://tang9ian.github.io/zh-cn/posts/welcome/</link>

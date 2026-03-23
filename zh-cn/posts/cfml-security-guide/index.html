@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<html lang="zh-cn">
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Language" content="zh-cn">
 
     
-        <title>CFML 安全指南：常见漏洞与防御修复方案 · Charles Tang&#39;s Personal Portfolio</title>
+        <title>CFML 安全指南：常见漏洞与防御修复方案 · Charles Tang的个人页面</title>
     
 
     <meta name="description" content="全面解析 ColdFusion/CFML 应用中的安全漏洞，提供具体的防御策略和代码修复方案">
-    <meta name="keywords" content="blog,developer,personal">
+    <meta name="keywords" content="blog,Web开发人员,个人项目">
     <meta name="author" content="Charles Tang">
-    <link rel="canonical" href="http://localhost:1313/zh-cn/posts/cfml-security-guide/">
+    <link rel="canonical" href="https://tang9ian.github.io/zh-cn/posts/cfml-security-guide/">
 
     
     <meta property="og:title" content="CFML 安全指南：常见漏洞与防御修复方案">
     <meta property="og:description" content="全面解析 ColdFusion/CFML 应用中的安全漏洞，提供具体的防御策略和代码修复方案">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="http://localhost:1313/zh-cn/posts/cfml-security-guide/">
+    <meta property="og:url" content="https://tang9ian.github.io/zh-cn/posts/cfml-security-guide/">
     
-    <meta property="og:image" content="http://localhost:1313/images/avatar.jpg">
+    <meta property="og:image" content="https://tang9ian.github.io/images/avatar.jpg">
     
-    <meta property="og:site_name" content="Charles Tang&#39;s Personal Portfolio">
+    <meta property="og:site_name" content="Charles Tang的个人页面">
     
     <meta property="article:published_time" content="2026-03-22T00:00:00Z">
     <meta property="article:author" content="Charles Tang">
@@ -33,15 +33,15 @@
     <meta name="twitter:title" content="CFML 安全指南：常见漏洞与防御修复方案">
     <meta name="twitter:description" content="全面解析 ColdFusion/CFML 应用中的安全漏洞，提供具体的防御策略和代码修复方案">
     
-    <meta name="twitter:image" content="http://localhost:1313/images/avatar.jpg">
+    <meta name="twitter:image" content="https://tang9ian.github.io/images/avatar.jpg">
     
 
     
     
     
-    <link rel="alternate" hreflang="en" href="http://localhost:1313/zh-cn/posts/cfml-security-guide/">
+    <link rel="alternate" hreflang="en" href="https://tang9ian.github.io/en/posts/cfml-security-guide/">
     
-    <link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/posts/cfml-security-guide/">
+    <link rel="alternate" hreflang="zh-cn" href="https://tang9ian.github.io/zh-cn/posts/cfml-security-guide/">
     
     
 
@@ -78,29 +78,27 @@
     <ul class="navigation-list">
         
             <li class="navigation-item">
-                <a href="/about/">About</a>
+                <a href="/zh-cn/about/">关于我</a>
             </li>
         
             <li class="navigation-item">
-                <a href="/posts/">Blog</a>
+                <a href="/zh-cn/posts/">博客</a>
             </li>
         
             <li class="navigation-item">
-                <a href="/projects/">Projects</a>
+                <a href="/zh-cn/projects/">项目</a>
             </li>
         
             <li class="navigation-item">
-                <a href="/contact/">Contact me</a>
+                <a href="/zh-cn/contact/">联系方式</a>
             </li>
         
 
         
             
                 
-            
-                
                     <li class="navigation-item">
-                        <a href="/zh-cn/" hreflang="zh-cn">中文</a>
+                        <a href="/posts/cfml-security-guide/" hreflang="en">English</a>
                     </li>
                 
             
@@ -112,7 +110,7 @@
             <main id="main-content" class="content">
                 
 <div class="command-output">
-<div class="prompt">cat zh-cn/posts/cfml-security-guide.md</div>
+<div class="prompt">cat posts/cfml-security-guide.md</div>
 <article class="post">
     <header class="post-header">
         <h1>CFML 安全指南：常见漏洞与防御修复方案</h1>
@@ -121,7 +119,7 @@
             <div class="post-meta">
                 <span>
                     <i class="fas fa-calendar" aria-hidden="true"></i>
-                    March 22, 2026
+                    2026年3月22日
                 </span>
 
                 
@@ -134,7 +132,7 @@
                 
                     <span>
                         <i class="fas fa-clock" aria-hidden="true"></i>
-                        4 min read
+                        4 分钟阅读
                     </span>
                 
             </div>
@@ -549,7 +547,7 @@ this.showDebugOutput = false;
 <div class="prompt">ls -la ../</div>
 <div class="file-list">
     <div class="file-item">
-        <a href="/">← Back to home</a>
+        <a href="/zh-cn/">← 返回首页</a>
     </div>
     
         
@@ -569,7 +567,7 @@ this.showDebugOutput = false;
         </div>
 
         <div class="status-bar">
-            <span>Charles Tang | Charles Tang&#39;s Personal Portfolio</span>
+            <span>Charles Tang | Charles Tang的个人页面</span>
             <span class="status-time"></span>
         </div>
     </div>

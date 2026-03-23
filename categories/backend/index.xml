@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Backend on Charles Tang&#39;s Personal Portfolio</title>
-    <link>http://localhost:1313/categories/backend/</link>
+    <link>https://tang9ian.github.io/categories/backend/</link>
     <description>Recent content in Backend on Charles Tang&#39;s Personal Portfolio</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 20 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/backend/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://tang9ian.github.io/categories/backend/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Understanding Go Concurrency Patterns</title>
-      <link>http://localhost:1313/posts/go-concurrency-patterns/</link>
+      <link>https://tang9ian.github.io/posts/go-concurrency-patterns/</link>
       <pubDate>Fri, 20 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/go-concurrency-patterns/</guid>
+      <guid>https://tang9ian.github.io/posts/go-concurrency-patterns/</guid>
       <description>&lt;h1 id=&#34;understanding-go-concurrency-patterns&#34;&gt;&#xA;  Understanding Go Concurrency Patterns&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#understanding-go-concurrency-patterns&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Concurrency is one of Go&amp;rsquo;s strongest features. Unlike many languages where concurrent programming feels bolted on, Go was designed from the ground up with concurrency in mind. In this post, I&amp;rsquo;ll walk through the most useful concurrency patterns I use daily.&lt;/p&gt;&#xA;&lt;h2 id=&#34;goroutines-and-channels-the-basics&#34;&gt;&#xA;  Goroutines and Channels: The Basics&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#goroutines-and-channels-the-basics&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;A goroutine is a lightweight thread managed by the Go runtime. Channels are the pipes that connect them. Here&amp;rsquo;s the simplest example:&lt;/p&gt;</description>
     </item>
   </channel>
