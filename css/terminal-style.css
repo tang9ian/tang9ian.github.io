@@ -495,13 +495,37 @@ li::marker {
   margin: 1rem 0;
 }
 
+/* Tags container (theme taxonomy partial) */
+.tags {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tags .separator {
+  color: var(--terminal-border);
+  font-size: 0.7rem;
+}
+
 .tag {
+  display: inline-block;
   background: var(--terminal-border);
   color: var(--terminal-fg);
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   font-size: 0.8rem;
   border: 1px solid var(--terminal-fg);
+}
+
+.tag a {
+  color: var(--terminal-fg);
+  text-decoration: none;
+}
+
+.tag a:hover {
+  color: var(--terminal-accent);
+  text-shadow: none;
 }
 
 .post-content {

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    
+        <title>CFML Security: Common Vulnerabilities and How to Fix Them · Charles Tang&#39;s Personal Portfolio</title>
+    
+
+    <meta name="description" content="A comprehensive guide to identifying, defending against, and fixing security vulnerabilities in ColdFusion/CFML applications">
+    <meta name="keywords" content="blog,developer,personal">
+    <meta name="author" content="Charles Tang">
+    <link rel="canonical" href="http://localhost:1313/posts/cfml-security-guide/">
+
+    
+    <meta property="og:title" content="CFML Security: Common Vulnerabilities and How to Fix Them">
+    <meta property="og:description" content="A comprehensive guide to identifying, defending against, and fixing security vulnerabilities in ColdFusion/CFML applications">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://localhost:1313/posts/cfml-security-guide/">
+    
+    <meta property="og:image" content="http://localhost:1313/images/avatar.jpg">
+    
+    <meta property="og:site_name" content="Charles Tang&#39;s Personal Portfolio">
+    
+    <meta property="article:published_time" content="2026-03-22T00:00:00Z">
+    <meta property="article:author" content="Charles Tang">
+    
+
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="CFML Security: Common Vulnerabilities and How to Fix Them">
+    <meta name="twitter:description" content="A comprehensive guide to identifying, defending against, and fixing security vulnerabilities in ColdFusion/CFML applications">
+    
+    <meta name="twitter:image" content="http://localhost:1313/images/avatar.jpg">
+    
+
+    
+    
+    
+    <link rel="alternate" hreflang="en" href="http://localhost:1313/posts/cfml-security-guide/">
+    
+    <link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/posts/cfml-security-guide/">
+    
+    
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl0HPNiecjHem/PY0MiImBUDicklBhRPNsUklPYe2LiY6U68hiUy+CT1r9Hmyow0bPBnFGEISN9GhQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    
+    <link rel="stylesheet" href="/css/terminal-style.css">
+
+    
+</head>
+
+<body>
+    
+    
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons" aria-hidden="true">
+                <div class="terminal-button close"></div>
+                <div class="terminal-button minimize"></div>
+                <div class="terminal-button maximize"></div>
+            </div>
+            <div class="terminal-title">charles@portfolio: CFML Security: Common Vulnerabilities and How to Fix Them</div>
+        </div>
+
+        <div class="terminal-content">
+            <nav class="navigation" aria-label="Main navigation">
+    <div class="prompt">ls -la /home/charles/portfolio/</div>
+    <ul class="navigation-list">
+        
+            <li class="navigation-item">
+                <a href="/about/">About</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/posts/">Blog</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/projects/">Projects</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/contact/">Contact me</a>
+            </li>
+        
+
+        
+            
+                
+            
+                
+                    <li class="navigation-item">
+                        <a href="/zh-cn/" hreflang="zh-cn">中文</a>
+                    </li>
+                
+            
+        
+    </ul>
+</nav>
+
+
+            <main id="main-content" class="content">
+                
+<div class="command-output">
+<div class="prompt">cat posts/cfml-security-guide.md</div>
+<article class="post">
+    <header class="post-header">
+        <h1>CFML Security: Common Vulnerabilities and How to Fix Them</h1>
+
+        
+            <div class="post-meta">
+                <span>
+                    <i class="fas fa-calendar" aria-hidden="true"></i>
+                    March 22, 2026
+                </span>
+
+                
+                    <span>
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        Charles Tang
+                    </span>
+                
+
+                
+                    <span>
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        7 min read
+                    </span>
+                
+            </div>
+        
+
+        
+            <div class="post-tags">
+                
+                    <span class="tag">CFML</span>
+                
+                    <span class="tag">ColdFusion</span>
+                
+                    <span class="tag">security</span>
+                
+                    <span class="tag">OWASP</span>
+                
+            </div>
+        
+    </header>
+
+    <div class="post-content">
+        <h1 id="cfml-security-common-vulnerabilities-and-how-to-fix-them">
+  CFML Security: Common Vulnerabilities and How to Fix Them
+  <a class="heading-link" href="#cfml-security-common-vulnerabilities-and-how-to-fix-them">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h1>
+<p>ColdFusion (CFML) has been powering enterprise web applications for decades. Many legacy systems still run on it, and new CFML applications continue to be built with engines like Adobe ColdFusion and Lucee. However, CFML applications are frequently targeted by attackers — partly because many codebases were written before modern security practices became standard.</p>
+<p>This post covers the most critical CFML security vulnerabilities I&rsquo;ve encountered, along with concrete defensive measures and code fixes.</p>
+<h2 id="1-sql-injection">
+  1. SQL Injection
+  <a class="heading-link" href="#1-sql-injection">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>SQL injection remains the #1 threat to CFML applications. The classic vulnerable pattern looks like this:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE: Never do this ---&gt;
+&lt;cfquery name=&#34;getUser&#34; datasource=&#34;myDB&#34;&gt;
+    SELECT * FROM users
+    WHERE username = &#39;#form.username#&#39;
+    AND password = &#39;#form.password#&#39;
+&lt;/cfquery&gt;
+</code></pre><p>An attacker can submit <code>' OR 1=1 --</code> as the username to bypass authentication entirely.</p>
+<h3 id="fix-use-cfqueryparam">
+  Fix: Use <code>cfqueryparam</code>
+  <a class="heading-link" href="#fix-use-cfqueryparam">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- SECURE: Always use cfqueryparam ---&gt;
+&lt;cfquery name=&#34;getUser&#34; datasource=&#34;myDB&#34;&gt;
+    SELECT * FROM users
+    WHERE username = &lt;cfqueryparam value=&#34;#form.username#&#34; cfsqltype=&#34;cf_sql_varchar&#34;&gt;
+    AND password = &lt;cfqueryparam value=&#34;#form.password#&#34; cfsqltype=&#34;cf_sql_varchar&#34;&gt;
+&lt;/cfquery&gt;
+</code></pre><p><code>cfqueryparam</code> uses prepared statements under the hood, making SQL injection impossible. <strong>Every single query variable must use <code>cfqueryparam</code> — no exceptions.</strong></p>
+<p>For dynamic table or column names (which can&rsquo;t be parameterized), use a whitelist:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;cfset allowedColumns = &#34;username,email,created_date&#34;&gt;
+&lt;cfif NOT listFindNoCase(allowedColumns, url.sortColumn)&gt;
+    &lt;cfset url.sortColumn = &#34;username&#34;&gt;
+&lt;/cfif&gt;
+</code></pre><h2 id="2-cross-site-scripting-xss">
+  2. Cross-Site Scripting (XSS)
+  <a class="heading-link" href="#2-cross-site-scripting-xss">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>CFML does not auto-escape output by default, making XSS extremely common:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE ---&gt;
+&lt;cfoutput&gt;
+    Welcome, #url.name#!
+&lt;/cfoutput&gt;
+</code></pre><h3 id="fix-encode-all-output">
+  Fix: Encode All Output
+  <a class="heading-link" href="#fix-encode-all-output">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- SECURE: Context-aware encoding ---&gt;
+&lt;cfoutput&gt;
+    &lt;!--- HTML context ---&gt;
+    Welcome, #encodeForHTML(url.name)#!
+
+    &lt;!--- JavaScript context ---&gt;
+    &lt;script&gt;var name = &#34;#encodeForJavaScript(url.name)#&#34;;&lt;/script&gt;
+
+    &lt;!--- URL parameter context ---&gt;
+    &lt;a href=&#34;/profile?name=#encodeForURL(url.name)#&#34;&gt;Profile&lt;/a&gt;
+
+    &lt;!--- HTML attribute context ---&gt;
+    &lt;input type=&#34;text&#34; value=&#34;#encodeForHTMLAttribute(url.name)#&#34;&gt;
+
+    &lt;!--- CSS context ---&gt;
+    &lt;div style=&#34;background: #encodeForCSS(url.color)#;&#34;&gt;&lt;/div&gt;
+&lt;/cfoutput&gt;
+</code></pre><p>Use the right encoding function for each context:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Context</th>
+          <th>Function</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>HTML body</td>
+          <td><code>encodeForHTML()</code></td>
+      </tr>
+      <tr>
+          <td>HTML attribute</td>
+          <td><code>encodeForHTMLAttribute()</code></td>
+      </tr>
+      <tr>
+          <td>JavaScript</td>
+          <td><code>encodeForJavaScript()</code></td>
+      </tr>
+      <tr>
+          <td>URL parameter</td>
+          <td><code>encodeForURL()</code></td>
+      </tr>
+      <tr>
+          <td>CSS value</td>
+          <td><code>encodeForCSS()</code></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="enable-global-script-protection">
+  Enable Global Script Protection
+  <a class="heading-link" href="#enable-global-script-protection">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<p>In <code>Application.cfc</code>:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">this.scriptProtect = &#34;all&#34;;
+</code></pre><p>This provides a basic layer of defense but <strong>should not be your only protection</strong> — it can be bypassed. Always encode output explicitly.</p>
+<h2 id="3-path-traversal--file-inclusion">
+  3. Path Traversal &amp; File Inclusion
+  <a class="heading-link" href="#3-path-traversal--file-inclusion">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>CFML&rsquo;s powerful file operations make path traversal a serious risk:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE ---&gt;
+&lt;cffile action=&#34;read&#34; file=&#34;/uploads/#url.filename#&#34; variable=&#34;content&#34;&gt;
+
+&lt;!--- An attacker submits: ../../../etc/passwd ---&gt;
+</code></pre><h3 id="fix-validate-and-canonicalize-paths">
+  Fix: Validate and Canonicalize Paths
+  <a class="heading-link" href="#fix-validate-and-canonicalize-paths">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;cfset uploadDir = expandPath(&#34;/uploads/&#34;)&gt;
+&lt;cfset requestedFile = getCanonicalPath(uploadDir &amp; url.filename)&gt;
+
+&lt;!--- Ensure the resolved path is still within the upload directory ---&gt;
+&lt;cfif NOT requestedFile.startsWith(uploadDir)&gt;
+    &lt;cfthrow message=&#34;Access denied: invalid file path&#34;&gt;
+&lt;/cfif&gt;
+
+&lt;!--- Also validate file extension ---&gt;
+&lt;cfset allowedExtensions = &#34;jpg,png,gif,pdf&#34;&gt;
+&lt;cfif NOT listFindNoCase(allowedExtensions, listLast(url.filename, &#34;.&#34;))&gt;
+    &lt;cfthrow message=&#34;Access denied: invalid file type&#34;&gt;
+&lt;/cfif&gt;
+
+&lt;cffile action=&#34;read&#34; file=&#34;#requestedFile#&#34; variable=&#34;content&#34;&gt;
+</code></pre><p>Also restrict <code>cfinclude</code> to known templates:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE ---&gt;
+&lt;cfinclude template=&#34;#url.page#.cfm&#34;&gt;
+
+&lt;!--- SECURE: Whitelist approach ---&gt;
+&lt;cfset allowedPages = &#34;home,about,contact,faq&#34;&gt;
+&lt;cfif listFindNoCase(allowedPages, url.page)&gt;
+    &lt;cfinclude template=&#34;#url.page#.cfm&#34;&gt;
+&lt;cfelse&gt;
+    &lt;cfinclude template=&#34;404.cfm&#34;&gt;
+&lt;/cfif&gt;
+</code></pre><h2 id="4-remote-code-execution-via-cfexecute-and-evaluate">
+  4. Remote Code Execution via <code>cfexecute</code> and <code>evaluate()</code>
+  <a class="heading-link" href="#4-remote-code-execution-via-cfexecute-and-evaluate">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>These are the most dangerous CFML functions when misused:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- CRITICAL VULNERABILITY ---&gt;
+&lt;cfexecute name=&#34;#form.command#&#34; arguments=&#34;#form.args#&#34; timeout=&#34;10&#34; /&gt;
+
+&lt;!--- CRITICAL VULNERABILITY ---&gt;
+&lt;cfset result = evaluate(url.expression)&gt;
+</code></pre><h3 id="fix-eliminate-dynamic-execution">
+  Fix: Eliminate Dynamic Execution
+  <a class="heading-link" href="#fix-eliminate-dynamic-execution">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<ul>
+<li><strong>Never</strong> pass user input to <code>cfexecute</code>. If you must call system commands, hardcode the command and strictly validate arguments.</li>
+<li><strong>Never</strong> use <code>evaluate()</code> with user input. In modern CFML, <code>evaluate()</code> is almost never needed — use bracket notation instead:</li>
+</ul>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Instead of evaluate(&#34;form.#fieldName#&#34;) ---&gt;
+&lt;cfset value = form[fieldName]&gt;
+
+&lt;!--- Instead of evaluate(&#34;variables.config.#settingName#&#34;) ---&gt;
+&lt;cfset value = variables.config[settingName]&gt;
+</code></pre><p>In the ColdFusion Administrator or Lucee Admin, disable <code>cfexecute</code> entirely if it&rsquo;s not needed:</p>
+<pre tabindex="0"><code>&lt;!--- In Application.cfc for Lucee ---&gt;
+this.blockedExtTags = &#34;cfexecute&#34;;
+</code></pre><h2 id="5-insecure-deserialization">
+  5. Insecure Deserialization
+  <a class="heading-link" href="#5-insecure-deserialization">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>CFML&rsquo;s <code>deserializeJSON()</code> and WDDX deserialization can be exploited:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE if input is attacker-controlled ---&gt;
+&lt;cfset data = deserializeJSON(form.payload)&gt;
+
+&lt;!--- WDDX deserialization ---&gt;
+&lt;cfwddx action=&#34;wddx2cfml&#34; input=&#34;#form.data#&#34; output=&#34;result&#34;&gt;
+</code></pre><h3 id="fix-validate-before-deserializing">
+  Fix: Validate Before Deserializing
+  <a class="heading-link" href="#fix-validate-before-deserializing">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Validate JSON structure against expected schema ---&gt;
+&lt;cfset rawPayload = form.payload&gt;
+
+&lt;!--- Limit payload size ---&gt;
+&lt;cfif len(rawPayload) GT 10000&gt;
+    &lt;cfthrow message=&#34;Payload too large&#34;&gt;
+&lt;/cfif&gt;
+
+&lt;!--- Parse and validate structure ---&gt;
+&lt;cfset data = deserializeJSON(rawPayload)&gt;
+
+&lt;!--- Verify expected keys exist and types are correct ---&gt;
+&lt;cfif NOT isStruct(data)
+    OR NOT structKeyExists(data, &#34;name&#34;)
+    OR NOT isSimpleValue(data.name)&gt;
+    &lt;cfthrow message=&#34;Invalid payload structure&#34;&gt;
+&lt;/cfif&gt;
+</code></pre><p><strong>Avoid WDDX deserialization of user input entirely.</strong> If you need data exchange, use JSON with strict validation.</p>
+<h2 id="6-authentication--session-security">
+  6. Authentication &amp; Session Security
+  <a class="heading-link" href="#6-authentication--session-security">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<h3 id="weak-session-configuration">
+  Weak Session Configuration
+  <a class="heading-link" href="#weak-session-configuration">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Application.cfc: SECURE session settings ---&gt;
+component {
+    this.name = &#34;MySecureApp&#34;;
+    this.sessionManagement = true;
+    this.sessionTimeout = createTimeSpan(0, 0, 30, 0); // 30 minutes
+    this.setClientCookies = true;
+
+    // Use J2EE sessions — more secure than CF native sessions
+    this.sessionType = &#34;j2ee&#34;;
+
+    function onSessionStart() {
+        // Rotate session ID on login to prevent session fixation
+    }
+
+    function onRequestStart(targetPage) {
+        // Set secure cookie flags
+        var pc = getPageContext().getResponse();
+        pc.setHeader(&#34;Set-Cookie&#34;,
+            &#34;JSESSIONID=#session.sessionid#; Path=/; HttpOnly; Secure; SameSite=Strict&#34;);
+    }
+}
+</code></pre><h3 id="session-fixation-prevention">
+  Session Fixation Prevention
+  <a class="heading-link" href="#session-fixation-prevention">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;cffunction name=&#34;onSuccessfulLogin&#34;&gt;
+    &lt;!--- Invalidate old session and create new one ---&gt;
+    &lt;cfset sessionInvalidate()&gt;
+    &lt;cfset sessionRotate()&gt;
+
+    &lt;!--- Store user data in new session ---&gt;
+    &lt;cfset session.isLoggedIn = true&gt;
+    &lt;cfset session.userId = authenticatedUserId&gt;
+    &lt;cfset session.loginTime = now()&gt;
+&lt;/cffunction&gt;
+</code></pre><h3 id="password-storage">
+  Password Storage
+  <a class="heading-link" href="#password-storage">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE: Plain text or simple hash ---&gt;
+&lt;cfset storedPassword = hash(form.password, &#34;MD5&#34;)&gt;
+
+&lt;!--- SECURE: Use bcrypt via Java integration ---&gt;
+&lt;cfset bcrypt = createObject(&#34;java&#34;, &#34;org.mindrot.jbcrypt.BCrypt&#34;)&gt;
+&lt;cfset hashedPassword = bcrypt.hashpw(form.password, bcrypt.gensalt(12))&gt;
+
+&lt;!--- Verify password ---&gt;
+&lt;cfif bcrypt.checkpw(form.password, storedHash)&gt;
+    &lt;!--- Password matches ---&gt;
+&lt;/cfif&gt;
+</code></pre><h2 id="7-csrf-protection">
+  7. CSRF Protection
+  <a class="heading-link" href="#7-csrf-protection">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Generate CSRF token ---&gt;
+&lt;cfset csrfToken = CSRFGenerateToken()&gt;
+
+&lt;form method=&#34;POST&#34; action=&#34;/update-profile&#34;&gt;
+    &lt;input type=&#34;hidden&#34; name=&#34;csrf_token&#34; value=&#34;#csrfToken#&#34;&gt;
+    &lt;!--- form fields ---&gt;
+    &lt;button type=&#34;submit&#34;&gt;Update&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!--- Verify on submission ---&gt;
+&lt;cfif NOT CSRFVerifyToken(form.csrf_token)&gt;
+    &lt;cfthrow message=&#34;CSRF validation failed&#34;&gt;
+&lt;/cfif&gt;
+</code></pre><h2 id="8-coldfusion-administrator-hardening">
+  8. ColdFusion Administrator Hardening
+  <a class="heading-link" href="#8-coldfusion-administrator-hardening">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>Beyond code-level fixes, harden the server itself:</p>
+<ol>
+<li><strong>Restrict Admin Access</strong> — Bind the CF Admin to localhost only or put it behind VPN/IP whitelist</li>
+<li><strong>Disable RDS</strong> — Remote Development Service is a frequent attack vector</li>
+<li><strong>Disable debugging output</strong> — Never expose debug info in production</li>
+<li><strong>Update regularly</strong> — Adobe releases critical security patches frequently; Lucee likewise</li>
+<li><strong>Remove default files</strong> — Delete <code>/CFIDE/</code>, <code>/cfform/</code>, sample apps, and documentation from production</li>
+<li><strong>Sandbox security</strong> — Enable sandbox security to restrict file system access, tag usage, and data source access per application</li>
+<li><strong>Disable unused services</strong> — Turn off WebSocket, Flash Remoting, and other unused features</li>
+</ol>
+<pre tabindex="0"><code>&lt;!--- In Application.cfc: disable debugging in production ---&gt;
+this.debuggingEnabled = false;
+this.showDebugOutput = false;
+</code></pre><h2 id="9-security-headers">
+  9. Security Headers
+  <a class="heading-link" href="#9-security-headers">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>Add security headers in <code>Application.cfc</code>:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">function onRequestStart(targetPage) {
+    var response = getPageContext().getResponse();
+
+    response.setHeader(&#34;X-Content-Type-Options&#34;, &#34;nosniff&#34;);
+    response.setHeader(&#34;X-Frame-Options&#34;, &#34;DENY&#34;);
+    response.setHeader(&#34;X-XSS-Protection&#34;, &#34;1; mode=block&#34;);
+    response.setHeader(&#34;Strict-Transport-Security&#34;, &#34;max-age=31536000; includeSubDomains&#34;);
+    response.setHeader(&#34;Content-Security-Policy&#34;,
+        &#34;default-src &#39;self&#39;; script-src &#39;self&#39;; style-src &#39;self&#39; &#39;unsafe-inline&#39;&#34;);
+    response.setHeader(&#34;Referrer-Policy&#34;, &#34;strict-origin-when-cross-origin&#34;);
+    response.setHeader(&#34;Permissions-Policy&#34;, &#34;camera=(), microphone=(), geolocation=()&#34;);
+}
+</code></pre><h2 id="10-security-audit-checklist">
+  10. Security Audit Checklist
+  <a class="heading-link" href="#10-security-audit-checklist">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>Use this checklist when auditing a CFML application:</p>
+<ul>
+<li><input disabled="" type="checkbox"> All <code>&lt;cfquery&gt;</code> use <code>&lt;cfqueryparam&gt;</code> for every variable</li>
+<li><input disabled="" type="checkbox"> All output is context-encoded (<code>encodeForHTML</code>, etc.)</li>
+<li><input disabled="" type="checkbox"> No <code>evaluate()</code> with user input</li>
+<li><input disabled="" type="checkbox"> No <code>cfexecute</code> with user input</li>
+<li><input disabled="" type="checkbox"> File operations validate paths against directory traversal</li>
+<li><input disabled="" type="checkbox"> <code>cfinclude</code> / <code>cfmodule</code> don&rsquo;t accept user-controlled paths</li>
+<li><input disabled="" type="checkbox"> Sessions use J2EE sessions with <code>HttpOnly</code> and <code>Secure</code> flags</li>
+<li><input disabled="" type="checkbox"> CSRF tokens on all state-changing forms</li>
+<li><input disabled="" type="checkbox"> Passwords hashed with bcrypt (not MD5/SHA)</li>
+<li><input disabled="" type="checkbox"> CF Admin restricted and RDS disabled</li>
+<li><input disabled="" type="checkbox"> Security headers set on all responses</li>
+<li><input disabled="" type="checkbox"> Error handling doesn&rsquo;t leak stack traces to users</li>
+<li><input disabled="" type="checkbox"> WDDX deserialization of user input eliminated</li>
+<li><input disabled="" type="checkbox"> ColdFusion/Lucee patched to latest version</li>
+</ul>
+<h2 id="conclusion">
+  Conclusion
+  <a class="heading-link" href="#conclusion">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>CFML security isn&rsquo;t fundamentally different from securing any web application — the OWASP Top 10 applies equally. The key challenges are:</p>
+<ol>
+<li><strong>Legacy codebases</strong> — Many CFML apps predate modern security awareness</li>
+<li><strong>No auto-escaping</strong> — Unlike modern frameworks, CFML requires explicit output encoding</li>
+<li><strong>Powerful built-in functions</strong> — Features like <code>cfexecute</code> and <code>evaluate()</code> are dangerous when exposed to user input</li>
+<li><strong>Admin interfaces</strong> — The ColdFusion Administrator is a high-value target</li>
+</ol>
+<p>Start with the audit checklist above, fix SQL injection first (highest impact), then work through XSS and the remaining items. Automated tools like <a href="https://github.com/cflint/CFLint"  class="external-link" target="_blank" rel="noopener">CFLint</a> can help identify many of these issues in your codebase.</p>
+<p>Security is not a one-time fix — it&rsquo;s an ongoing process. Keep your CFML engine updated, review code regularly, and consider engaging a penetration testing team for critical applications.</p>
+
+    </div>
+</article>
+</div>
+
+<div class="command-output">
+<div class="prompt">ls -la ../</div>
+<div class="file-list">
+    <div class="file-item">
+        <a href="/">← Back to home</a>
+    </div>
+    
+        
+            <div class="file-item">
+                <a href="https://github.com/tang9ian/" target="_blank" rel="noopener noreferrer">Github</a>
+            </div>
+        
+            <div class="file-item">
+                <a href="https://twitter.com/tang9ian/" target="_blank" rel="noopener noreferrer">Twitter</a>
+            </div>
+        
+    
+</div>
+</div>
+
+            </main>
+        </div>
+
+        <div class="status-bar">
+            <span>Charles Tang | Charles Tang&#39;s Personal Portfolio</span>
+            <span class="status-time"></span>
+        </div>
+    </div>
+
+    
+    <button class="floating-theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = body.getAttribute('data-theme') || 'dark';
+
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            const themeIcon = document.getElementById('theme-icon');
+
+            document.body.setAttribute('data-theme', savedTheme);
+            themeIcon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+
+            
+            var content = document.querySelector('.content');
+            if (content) {
+                content.style.opacity = '0';
+                setTimeout(function() {
+                    content.style.transition = 'opacity 0.5s ease';
+                    content.style.opacity = '1';
+                }, 100);
+            }
+
+            
+            var statusTime = document.querySelector('.status-time');
+            if (statusTime) {
+                function updateTime() {
+                    statusTime.textContent = new Date().toLocaleTimeString('en-US', { hour12: false });
+                }
+                updateTime();
+                setInterval(updateTime, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

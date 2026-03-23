@@ -2,78 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://tang9ian.github.io/zh-cn/</loc>
+    <loc>http://localhost:1313/zh-cn/</loc>
     <lastmod>2019-02-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tang9ian.github.io/"
+                href="http://localhost:1313/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://tang9ian.github.io/zh-cn/"
+                href="http://localhost:1313/zh-cn/"
                 />
   </url><url>
-    <loc>https://tang9ian.github.io/zh-cn/about/</loc>
+    <loc>http://localhost:1313/zh-cn/about/</loc>
     <lastmod>2019-02-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tang9ian.github.io/about/"
+                href="http://localhost:1313/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://tang9ian.github.io/zh-cn/about/"
+                href="http://localhost:1313/zh-cn/about/"
                 />
   </url><url>
-    <loc>https://tang9ian.github.io/zh-cn/authors/</loc>
+    <loc>http://localhost:1313/zh-cn/authors/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tang9ian.github.io/authors/"
+                href="http://localhost:1313/authors/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://tang9ian.github.io/zh-cn/authors/"
+                href="http://localhost:1313/zh-cn/authors/"
                 />
   </url><url>
-    <loc>https://tang9ian.github.io/zh-cn/categories/</loc>
+    <loc>http://localhost:1313/zh-cn/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tang9ian.github.io/categories/"
+                href="http://localhost:1313/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://tang9ian.github.io/zh-cn/categories/"
+                href="http://localhost:1313/zh-cn/categories/"
                 />
   </url><url>
-    <loc>https://tang9ian.github.io/zh-cn/series/</loc>
+    <loc>http://localhost:1313/zh-cn/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tang9ian.github.io/series/"
+                href="http://localhost:1313/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://tang9ian.github.io/zh-cn/series/"
+                href="http://localhost:1313/zh-cn/series/"
                 />
   </url><url>
-    <loc>https://tang9ian.github.io/zh-cn/tags/</loc>
+    <loc>http://localhost:1313/zh-cn/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tang9ian.github.io/tags/"
+                href="http://localhost:1313/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://tang9ian.github.io/zh-cn/tags/"
+                href="http://localhost:1313/zh-cn/tags/"
                 />
   </url>
 </urlset>
