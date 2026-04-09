@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Language" content="en">
@@ -12,15 +12,15 @@
     <meta name="description" content="Charles Tang&#39;s personal website">
     <meta name="keywords" content="blog,developer,personal">
     <meta name="author" content="Charles Tang">
-    <link rel="canonical" href="https://tang9ian.github.io/tags/blog/">
+    <link rel="canonical" href="http://localhost:1313/tags/blog/">
 
     
     <meta property="og:title" content="Blog">
     <meta property="og:description" content="Charles Tang&#39;s personal website">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tang9ian.github.io/tags/blog/">
+    <meta property="og:url" content="http://localhost:1313/tags/blog/">
     
-    <meta property="og:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    <meta property="og:image" content="http://localhost:1313/images/avatar.jpg">
     
     <meta property="og:site_name" content="Charles Tang&#39;s Personal Portfolio">
     
@@ -30,15 +30,15 @@
     <meta name="twitter:title" content="Blog">
     <meta name="twitter:description" content="Charles Tang&#39;s personal website">
     
-    <meta name="twitter:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    <meta name="twitter:image" content="http://localhost:1313/images/avatar.jpg">
     
 
     
     
     
-    <link rel="alternate" hreflang="en" href="https://tang9ian.github.io/tags/blog/">
+    <link rel="alternate" hreflang="en" href="http://localhost:1313/tags/blog/">
     
-    <link rel="alternate" hreflang="zh-cn" href="https://tang9ian.github.io/tags/blog/">
+    <link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/tags/blog/">
     
     
 
@@ -57,6 +57,11 @@
 </head>
 
 <body>
+    <script>
+        if (sessionStorage.getItem('terminal-fullscreen') === 'true') {
+            document.body.classList.add('fullscreen');
+        }
+    </script>
     
     
     <div class="terminal-window">
@@ -64,7 +69,7 @@
             <div class="terminal-buttons" aria-hidden="true">
                 <div class="terminal-button close"></div>
                 <div class="terminal-button minimize"></div>
-                <div class="terminal-button maximize"></div>
+                <div class="terminal-button maximize" onclick="toggleFullscreen()" role="button" tabindex="0" aria-label="Toggle fullscreen" title="Fullscreen"></div>
             </div>
             <div class="terminal-title">charles@portfolio: Blog</div>
         </div>
@@ -135,7 +140,14 @@
 
         <div class="status-bar">
             <span>Charles Tang | Charles Tang&#39;s Personal Portfolio</span>
-            <span class="status-time"></span>
+            <div class="status-right">
+                <span class="zoom-controls">
+                    <button class="zoom-btn" onclick="zoomOut()" aria-label="Zoom out">A-</button>
+                    <span class="zoom-level" onclick="zoomReset()" title="Click to reset">100%</span>
+                    <button class="zoom-btn" onclick="zoomIn()" aria-label="Zoom in">A+</button>
+                </span>
+                <span class="status-time"></span>
+            </div>
         </div>
     </div>
 
@@ -145,6 +157,7 @@
     </button>
 
     <script>
+        
         function toggleTheme() {
             const body = document.body;
             const themeIcon = document.getElementById('theme-icon');
@@ -161,12 +174,54 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            const themeIcon = document.getElementById('theme-icon');
+        
+        function toggleFullscreen() {
+            var isFullscreen = document.body.classList.toggle('fullscreen');
+            sessionStorage.setItem('terminal-fullscreen', isFullscreen);
+        }
 
+        
+        var ZOOM_MIN = 80, ZOOM_MAX = 150, ZOOM_STEP = 10, ZOOM_DEFAULT = 100;
+
+        function getZoom() {
+            return parseInt(localStorage.getItem('content-zoom') || ZOOM_DEFAULT);
+        }
+
+        function setZoom(level) {
+            level = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, level));
+            var tc = document.querySelector('.terminal-content');
+            var zl = document.querySelector('.zoom-level');
+            var btns = document.querySelectorAll('.zoom-btn');
+            if (tc) tc.style.fontSize = level + '%';
+            if (zl) zl.textContent = level + '%';
+            if (btns.length === 2) {
+                btns[0].disabled = (level <= ZOOM_MIN);
+                btns[1].disabled = (level >= ZOOM_MAX);
+            }
+            if (level === ZOOM_DEFAULT) localStorage.removeItem('content-zoom');
+            else localStorage.setItem('content-zoom', level);
+        }
+
+        function zoomIn() { setZoom(getZoom() + ZOOM_STEP); }
+        function zoomOut() { setZoom(getZoom() - ZOOM_STEP); }
+        function zoomReset() { setZoom(ZOOM_DEFAULT); }
+
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.body.classList.contains('fullscreen')) {
+                toggleFullscreen();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var savedTheme = localStorage.getItem('theme') || 'dark';
+            var themeIcon = document.getElementById('theme-icon');
             document.body.setAttribute('data-theme', savedTheme);
             themeIcon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+
+            
+            setZoom(getZoom());
 
             
             var content = document.querySelector('.content');
