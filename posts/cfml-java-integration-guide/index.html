@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    
+        <title>CFML and Java Integration: A Practical Guide to Interoperability · Charles Tang&#39;s Personal Portfolio</title>
+    
+
+    <meta name="description" content="A hands-on guide to integrating Java classes, libraries, and design patterns into ColdFusion/CFML applications for enterprise-grade solutions">
+    <meta name="keywords" content="blog,developer,personal">
+    <meta name="author" content="Charles Tang">
+    <link rel="canonical" href="https://tang9ian.github.io/posts/cfml-java-integration-guide/">
+
+    
+    <meta property="og:title" content="CFML and Java Integration: A Practical Guide to Interoperability">
+    <meta property="og:description" content="A hands-on guide to integrating Java classes, libraries, and design patterns into ColdFusion/CFML applications for enterprise-grade solutions">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tang9ian.github.io/posts/cfml-java-integration-guide/">
+    
+    <meta property="og:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+    <meta property="og:site_name" content="Charles Tang&#39;s Personal Portfolio">
+    
+    <meta property="article:published_time" content="2026-04-18T00:00:00Z">
+    <meta property="article:author" content="Charles Tang">
+    
+
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="CFML and Java Integration: A Practical Guide to Interoperability">
+    <meta name="twitter:description" content="A hands-on guide to integrating Java classes, libraries, and design patterns into ColdFusion/CFML applications for enterprise-grade solutions">
+    
+    <meta name="twitter:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+
+    
+    
+    
+    <link rel="alternate" hreflang="en" href="https://tang9ian.github.io/posts/cfml-java-integration-guide/">
+    
+    <link rel="alternate" hreflang="zh-cn" href="https://tang9ian.github.io/posts/cfml-java-integration-guide/">
+    
+    
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl0HPNiecjHem/PY0MiImBUDicklBhRPNsUklPYe2LiY6U68hiUy+CT1r9Hmyow0bPBnFGEISN9GhQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    
+    <link rel="stylesheet" href="/css/terminal-style.css">
+
+    
+    <script src="/js/interactions.js" defer></script>
+    <script src="/js/terminal-cli.js" defer></script>
+
+    
+</head>
+
+<body>
+    
+    <div class="boot-screen" id="boot-screen"><pre class="boot-log" id="boot-log"></pre></div>
+    <script>
+        if (sessionStorage.getItem('booted') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.getElementById('boot-screen').classList.add('hidden');
+        }
+        if (sessionStorage.getItem('terminal-fullscreen') === 'true') {
+            document.body.classList.add('fullscreen');
+        }
+    </script>
+
+    
+    <div class="crt-overlay" aria-hidden="true"></div>
+
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons" aria-hidden="true">
+                <div class="terminal-button close"></div>
+                <div class="terminal-button minimize"></div>
+                <div class="terminal-button maximize" onclick="toggleFullscreen()" role="button" tabindex="0" aria-label="Toggle fullscreen" title="Fullscreen"></div>
+            </div>
+            <div class="terminal-title">charles@portfolio: CFML and Java Integration: A Practical Guide to Interoperability</div>
+        </div>
+
+        <div class="terminal-content">
+            <nav class="navigation" aria-label="Main navigation">
+    <div class="prompt">ls -la /home/charles/portfolio/</div>
+    <ul class="navigation-list">
+        
+            <li class="navigation-item">
+                <a href="/about/">About</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/posts/">Blog</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/projects/">Projects</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/contact/">Contact me</a>
+            </li>
+        
+
+        
+            
+                
+                    <li class="navigation-item">
+                        <a href="/zh-cn/posts/cfml-java-integration-guide/" hreflang="zh-cn">中文</a>
+                    </li>
+                
+            
+        
+    </ul>
+</nav>
+
+
+            <main id="main-content" class="content">
+                
+<div class="command-output">
+<div class="prompt">cat posts/cfml-java-integration-guide.md</div>
+<article class="post">
+    <header class="post-header">
+        <h1>CFML and Java Integration: A Practical Guide to Interoperability</h1>
+
+        
+            <div class="post-meta">
+                <span>
+                    <i class="fas fa-calendar" aria-hidden="true"></i>
+                    April 18, 2026
+                </span>
+
+                
+                    <span>
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        Charles Tang
+                    </span>
+                
+
+                
+                    <span>
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        8 min read
+                    </span>
+                
+            </div>
+        
+
+        
+            <div class="post-tags">
+                
+                    <span class="tag">CFML</span>
+                
+                    <span class="tag">ColdFusion</span>
+                
+                    <span class="tag">Java</span>
+                
+                    <span class="tag">integration</span>
+                
+                    <span class="tag">enterprise</span>
+                
+                    <span class="tag">Lucee</span>
+                
+            </div>
+        
+    </header>
+
+    <div class="post-content">
+        <p>ColdFusion runs on the JVM. This single fact is the most powerful and underutilized feature of the CFML ecosystem. Every Java class available to your JVM is directly callable from CFML code &mdash; no REST calls, no message queues, no serialization overhead. Just direct, in-process method invocation.</p>
+<p>This guide covers practical patterns for integrating Java into CFML applications, from basic object creation to advanced patterns like implementing Java interfaces, working with third-party libraries, and building hybrid architectures.</p>
+<h2 id="why-integrate-java-with-cfml">
+  Why Integrate Java with CFML
+  <a class="heading-link" href="#why-integrate-java-with-cfml">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>CFML excels at rapid web application development. Java excels at performance-critical logic, mature library ecosystem, and type safety. Combining them gives you:</p>
+<ul>
+<li>Access to thousands of production-tested Java libraries (Apache Commons, Guava, Jackson, etc.)</li>
+<li>CPU-intensive operations running at native JVM speed</li>
+<li>Shared memory space with zero serialization cost</li>
+<li>Gradual migration path from legacy CFML to modern Java</li>
+</ul>
+<p>The integration is not a hack or workaround. Adobe ColdFusion and Lucee both run as Java applications on a servlet container. Your CFML code and Java code share the same JVM heap, the same classloader hierarchy, and the same garbage collector.</p>
+<h2 id="basic-java-object-creation">
+  Basic Java Object Creation
+  <a class="heading-link" href="#basic-java-object-creation">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>The <code>createObject</code> function is the primary bridge between CFML and Java:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Create a Java object ---&gt;
+&lt;cfset arrayList = createObject(&#34;java&#34;, &#34;java.util.ArrayList&#34;)&gt;
+&lt;cfset arrayList.init()&gt;
+&lt;cfset arrayList.add(&#34;ColdFusion&#34;)&gt;
+&lt;cfset arrayList.add(&#34;Lucee&#34;)&gt;
+&lt;cfset arrayList.add(&#34;BoxLang&#34;)&gt;
+
+&lt;cfoutput&gt;Size: #arrayList.size()#&lt;/cfoutput&gt;
+&lt;!--- Output: Size: 3 ---&gt;
+</code></pre><p>In cfscript syntax, which is cleaner for Java-heavy code:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// cfscript style
+hashMap = createObject(&#34;java&#34;, &#34;java.util.LinkedHashMap&#34;).init();
+hashMap.put(&#34;engine&#34;, &#34;Lucee&#34;);
+hashMap.put(&#34;version&#34;, &#34;5.4&#34;);
+hashMap.put(&#34;javaVersion&#34;, server.java.version);
+
+for (key in hashMap.keySet()) {
+    writeOutput(&#34;#key#: #hashMap.get(key)#&lt;br&gt;&#34;);
+}
+</code></pre><h3 id="constructor-overloading">
+  Constructor Overloading
+  <a class="heading-link" href="#constructor-overloading">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<p>Java classes often have multiple constructors. CFML resolves them by argument type:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// java.io.File has File(String) and File(String, String)
+file = createObject(&#34;java&#34;, &#34;java.io.File&#34;).init(&#34;/var/log&#34;);
+
+// Two-argument constructor
+file = createObject(&#34;java&#34;, &#34;java.io.File&#34;).init(&#34;/var/log&#34;, &#34;app.log&#34;);
+
+// BigDecimal for precise financial calculations
+price = createObject(&#34;java&#34;, &#34;java.math.BigDecimal&#34;).init(&#34;19.99&#34;);
+tax = createObject(&#34;java&#34;, &#34;java.math.BigDecimal&#34;).init(&#34;0.08&#34;);
+total = price.add(price.multiply(tax));
+writeOutput(total.setScale(2, createObject(&#34;java&#34;, &#34;java.math.RoundingMode&#34;).HALF_UP));
+</code></pre><h2 id="working-with-static-methods-and-fields">
+  Working with Static Methods and Fields
+  <a class="heading-link" href="#working-with-static-methods-and-fields">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>Access static members directly on the class object without calling <code>init()</code>:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Static method call
+uuid = createObject(&#34;java&#34;, &#34;java.util.UUID&#34;).randomUUID().toString();
+
+// Static field access
+maxInt = createObject(&#34;java&#34;, &#34;java.lang.Integer&#34;).MAX_VALUE;
+pi = createObject(&#34;java&#34;, &#34;java.lang.Math&#34;).PI;
+
+// System properties
+javaHome = createObject(&#34;java&#34;, &#34;java.lang.System&#34;).getProperty(&#34;java.home&#34;);
+
+// Collections utility
+emptyList = createObject(&#34;java&#34;, &#34;java.util.Collections&#34;).emptyList();
+singletonMap = createObject(&#34;java&#34;, &#34;java.util.Collections&#34;)
+    .singletonMap(&#34;status&#34;, &#34;active&#34;);
+</code></pre><h2 id="type-mapping-between-cfml-and-java">
+  Type Mapping Between CFML and Java
+  <a class="heading-link" href="#type-mapping-between-cfml-and-java">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>Understanding how types convert across the boundary is critical. Mismatched types cause the most common integration bugs.</p>
+<table>
+  <thead>
+      <tr>
+          <th>CFML Type</th>
+          <th>Java Type Received</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>String</td>
+          <td><code>java.lang.String</code></td>
+          <td>Direct mapping</td>
+      </tr>
+      <tr>
+          <td>Numeric</td>
+          <td><code>java.lang.Double</code></td>
+          <td>CFML numbers are always Double</td>
+      </tr>
+      <tr>
+          <td>Boolean</td>
+          <td><code>java.lang.Boolean</code></td>
+          <td>Direct mapping</td>
+      </tr>
+      <tr>
+          <td>Date</td>
+          <td><code>java.util.Date</code></td>
+          <td>Lucee may use different internal types</td>
+      </tr>
+      <tr>
+          <td>Array</td>
+          <td><code>java.util.List</code> (Lucee) or <code>Object[]</code> (ACF)</td>
+          <td>Engine-dependent</td>
+      </tr>
+      <tr>
+          <td>Struct</td>
+          <td><code>java.util.Map</code></td>
+          <td>Maintains insertion order in modern engines</td>
+      </tr>
+      <tr>
+          <td>Query</td>
+          <td><code>coldfusion.sql.QueryTable</code></td>
+          <td>Engine-specific class</td>
+      </tr>
+      <tr>
+          <td>Binary</td>
+          <td><code>byte[]</code></td>
+          <td>Direct mapping</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="handling-type-conversion-issues">
+  Handling Type Conversion Issues
+  <a class="heading-link" href="#handling-type-conversion-issues">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<p>When a Java method has overloaded signatures, CFML might pick the wrong one. Use <code>javaCast()</code> to force the correct type:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Without javaCast --- CFML passes Double, but method expects int
+arrayList = createObject(&#34;java&#34;, &#34;java.util.ArrayList&#34;).init();
+arrayList.add(&#34;A&#34;);
+arrayList.add(&#34;B&#34;);
+arrayList.add(&#34;C&#34;);
+
+// This fails or calls the wrong overload:
+// arrayList.remove(1);
+
+// Correct: force int type for remove(int index) not remove(Object)
+arrayList.remove(javaCast(&#34;int&#34;, 1));
+writeOutput(arrayList.toString()); // [A, C]
+</code></pre><p>Common <code>javaCast</code> targets:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">javaCast(&#34;int&#34;, 42)           // java.lang.Integer
+javaCast(&#34;long&#34;, 42)          // java.lang.Long
+javaCast(&#34;float&#34;, 3.14)       // java.lang.Float
+javaCast(&#34;double&#34;, 3.14)      // java.lang.Double
+javaCast(&#34;boolean&#34;, true)     // java.lang.Boolean
+javaCast(&#34;string&#34;, value)     // java.lang.String
+javaCast(&#34;byte[]&#34;, binaryVal) // byte array
+javaCast(&#34;null&#34;, &#34;&#34;)          // null reference
+</code></pre><h2 id="loading-third-party-java-libraries">
+  Loading Third-Party Java Libraries
+  <a class="heading-link" href="#loading-third-party-java-libraries">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>This is where Java integration becomes truly powerful. You can use any <code>.jar</code> file from Maven Central, GitHub, or custom builds.</p>
+<h3 id="method-1-drop-jars-in-the-classpath">
+  Method 1: Drop JARs in the Classpath
+  <a class="heading-link" href="#method-1-drop-jars-in-the-classpath">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<p>Place <code>.jar</code> files in the engine&rsquo;s lib directory:</p>
+<pre tabindex="0"><code># Adobe ColdFusion
+{cf-install}/cfusion/lib/
+
+# Lucee
+{lucee-install}/lib/ext/
+
+# Then restart the CFML engine
+</code></pre><h3 id="method-2-dynamic-class-loading-lucee">
+  Method 2: Dynamic Class Loading (Lucee)
+  <a class="heading-link" href="#method-2-dynamic-class-loading-lucee">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<p>Lucee supports loading JARs at runtime without a restart:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Load a specific JAR at runtime
+jars = [
+    expandPath(&#34;/lib/gson-2.10.jar&#34;),
+    expandPath(&#34;/lib/commons-csv-1.10.jar&#34;)
+];
+
+// Create object from dynamically loaded JAR
+gson = createObject(&#34;java&#34;, &#34;com.google.gson.Gson&#34;, jars).init();
+
+// Serialize CFML struct to JSON via Gson
+data = { name: &#34;Charles&#34;, role: &#34;Developer&#34;, active: true };
+jsonString = gson.toJson(data);
+writeOutput(jsonString);
+</code></pre><h3 id="method-3-applicationcfc-javasettings-acf">
+  Method 3: Application.cfc JavaSettings (ACF)
+  <a class="heading-link" href="#method-3-applicationcfc-javasettings-acf">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// In Application.cfc
+this.javaSettings = {
+    loadPaths: [&#34;/opt/app/lib/&#34;],
+    loadColdFusionClassPath: true,
+    reloadOnChange: false,    // set true in development only
+    watchInterval: 60
+};
+</code></pre><h2 id="practical-integration-patterns">
+  Practical Integration Patterns
+  <a class="heading-link" href="#practical-integration-patterns">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<h3 id="pattern-1-high-performance-hashing-with-java">
+  Pattern 1: High-Performance Hashing with Java
+  <a class="heading-link" href="#pattern-1-high-performance-hashing-with-java">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<p>CFML&rsquo;s built-in <code>hash()</code> function is limited. Java provides the full cryptographic toolkit:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">function hashWithSHA256(required string input) {
+    var digest = createObject(&#34;java&#34;, &#34;java.security.MessageDigest&#34;)
+        .getInstance(&#34;SHA-256&#34;);
+    var bytes = digest.digest(input.getBytes(&#34;UTF-8&#34;));
+
+    // Convert byte array to hex string
+    var formatter = createObject(&#34;java&#34;, &#34;java.util.HexFormat&#34;).of();
+    return formatter.formatHex(bytes);
+}
+
+writeOutput(hashWithSHA256(&#34;sensitive-data&#34;));
+</code></pre><h3 id="pattern-2-concurrent-processing-with-executorservice">
+  Pattern 2: Concurrent Processing with ExecutorService
+  <a class="heading-link" href="#pattern-2-concurrent-processing-with-executorservice">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<p>Process multiple tasks in parallel using Java&rsquo;s thread pool:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">function processInParallel(required array tasks) {
+    var executorClass = createObject(&#34;java&#34;, &#34;java.util.concurrent.Executors&#34;);
+    var executor = executorClass.newFixedThreadPool(javaCast(&#34;int&#34;, 4));
+    var futures = [];
+    var TimeUnit = createObject(&#34;java&#34;, &#34;java.util.concurrent.TimeUnit&#34;);
+
+    try {
+        for (var task in arguments.tasks) {
+            // Submit callable tasks
+            var callable = createObject(&#34;java&#34;, &#34;java.util.concurrent.Callable&#34;);
+            // In practice, use a custom Java Callable implementation
+            arrayAppend(futures, executor.submit(task));
+        }
+
+        // Collect results
+        var results = [];
+        for (var future in futures) {
+            arrayAppend(results, future.get(30, TimeUnit.SECONDS));
+        }
+        return results;
+    } finally {
+        executor.shutdown();
+    }
+}
+</code></pre><h3 id="pattern-3-reading-excel-files-with-apache-poi">
+  Pattern 3: Reading Excel Files with Apache POI
+  <a class="heading-link" href="#pattern-3-reading-excel-files-with-apache-poi">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">function readExcel(required string filePath) {
+    var FileInputStream = createObject(&#34;java&#34;, &#34;java.io.FileInputStream&#34;);
+    var WorkbookFactory = createObject(&#34;java&#34;, &#34;org.apache.poi.ss.usermodel.WorkbookFactory&#34;);
+    var fis = FileInputStream.init(arguments.filePath);
+
+    try {
+        var workbook = WorkbookFactory.create(fis);
+        var sheet = workbook.getSheetAt(javaCast(&#34;int&#34;, 0));
+        var data = [];
+
+        var iterator = sheet.iterator();
+        while (iterator.hasNext()) {
+            var row = iterator.next();
+            var rowData = [];
+            var cellIterator = row.cellIterator();
+            while (cellIterator.hasNext()) {
+                var cell = cellIterator.next();
+                arrayAppend(rowData, cell.toString());
+            }
+            arrayAppend(data, rowData);
+        }
+        return data;
+    } finally {
+        workbook.close();
+        fis.close();
+    }
+}
+</code></pre><h3 id="pattern-4-custom-java-classes-in-cfml">
+  Pattern 4: Custom Java Classes in CFML
+  <a class="heading-link" href="#pattern-4-custom-java-classes-in-cfml">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<p>Write performance-critical logic in Java and call it from CFML:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// src/com/myapp/TextAnalyzer.java</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.myapp</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.*</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.regex.*</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TextAnalyzer</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">wordFrequency</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">freq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TreeMap</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Matcher</span><span class="w"> </span><span class="n">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&#34;\\b\\w+\\b&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="na">toLowerCase</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">matcher</span><span class="p">.</span><span class="na">find</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">matcher</span><span class="p">.</span><span class="na">group</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">freq</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="p">::</span><span class="n">sum</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">freq</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">readabilityScore</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">sentences</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&#34;[.!?]+&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&#34;\\s+&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">syllables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">word</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">words</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">syllables</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">countSyllables</span><span class="p">(</span><span class="n">word</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Flesch-Kincaid Grade Level</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">0</span><span class="p">.</span><span class="na">39</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">words</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sentences</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">             </span><span class="o">+</span><span class="w"> </span><span class="n">11</span><span class="p">.</span><span class="na">8</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">syllables</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">words</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">             </span><span class="o">-</span><span class="w"> </span><span class="n">15</span><span class="p">.</span><span class="na">59</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">countSyllables</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">word</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">word</span><span class="p">.</span><span class="na">toLowerCase</span><span class="p">().</span><span class="na">replaceAll</span><span class="p">(</span><span class="s">&#34;[^a-z]&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">word</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">3</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">word</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="s">&#34;[^aeiouy]+&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34; &#34;</span><span class="p">).</span><span class="na">trim</span><span class="p">().</span><span class="na">split</span><span class="p">(</span><span class="s">&#34; &#34;</span><span class="p">).</span><span class="na">length</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Compile and use from CFML:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// After compiling and placing the JAR in the classpath
+analyzer = createObject(&#34;java&#34;, &#34;com.myapp.TextAnalyzer&#34;).init();
+
+article = fileRead(expandPath(&#34;/content/sample-post.txt&#34;));
+frequencies = analyzer.wordFrequency(article);
+readability = analyzer.readabilityScore(article);
+
+writeOutput(&#34;Readability Grade Level: #numberFormat(readability, &#39;0.0&#39;)#&lt;br&gt;&#34;);
+writeOutput(&#34;Unique words: #frequencies.size()#&lt;br&gt;&#34;);
+
+// Iterate the TreeMap (sorted by key)
+for (entry in frequencies.entrySet()) {
+    if (entry.getValue() &gt; 3) {
+        writeOutput(&#34;#entry.getKey()#: #entry.getValue()#&lt;br&gt;&#34;);
+    }
+}
+</code></pre><h2 id="implementing-java-interfaces-in-cfml">
+  Implementing Java Interfaces in CFML
+  <a class="heading-link" href="#implementing-java-interfaces-in-cfml">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>Lucee and modern ACF support implementing Java interfaces using CFML components:</p>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Comparator.cfc --- implements java.util.Comparator
+component implements=&#34;java:java.util.Comparator&#34; {
+
+    function compare(obj1, obj2) {
+        // Sort by string length, then alphabetically
+        if (len(obj1) != len(obj2)) {
+            return len(obj1) - len(obj2);
+        }
+        return compareNoCase(obj1, obj2);
+    }
+
+    function equals(obj) {
+        return false;
+    }
+}
+</code></pre><pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Usage
+words = createObject(&#34;java&#34;, &#34;java.util.ArrayList&#34;).init();
+words.add(&#34;ColdFusion&#34;);
+words.add(&#34;Go&#34;);
+words.add(&#34;Java&#34;);
+words.add(&#34;Rust&#34;);
+words.add(&#34;C&#34;);
+
+comparator = new Comparator();
+createObject(&#34;java&#34;, &#34;java.util.Collections&#34;).sort(words, comparator);
+writeOutput(words.toString()); // [C, Go, Java, Rust, ColdFusion]
+</code></pre><h2 id="performance-considerations">
+  Performance Considerations
+  <a class="heading-link" href="#performance-considerations">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<h3 id="when-java-integration-helps">
+  When Java Integration Helps
+  <a class="heading-link" href="#when-java-integration-helps">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<ul>
+<li><strong>CPU-bound operations</strong>: Parsing, compression, encryption, image processing</li>
+<li><strong>Memory-efficient data structures</strong>: Java collections with known size allocation</li>
+<li><strong>Existing Java infrastructure</strong>: Reusing enterprise Java libraries already deployed</li>
+</ul>
+<h3 id="when-it-does-not-help">
+  When It Does Not Help
+  <a class="heading-link" href="#when-it-does-not-help">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<ul>
+<li><strong>Simple CRUD operations</strong>: CFML&rsquo;s <code>cfquery</code> is already optimized</li>
+<li><strong>I/O-bound operations</strong>: Network or disk latency dominates regardless of language</li>
+<li><strong>Small data sets</strong>: Object creation overhead negates any speed gain</li>
+</ul>
+<h3 id="benchmarking-example">
+  Benchmarking Example
+  <a class="heading-link" href="#benchmarking-example">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<pre tabindex="0"><code class="language-cfml" data-lang="cfml">function benchmark(required string label, required function fn, numeric iterations = 10000) {
+    var nanoTime = createObject(&#34;java&#34;, &#34;java.lang.System&#34;);
+    var start = nanoTime.nanoTime();
+
+    for (var i = 1; i &lt;= arguments.iterations; i++) {
+        arguments.fn();
+    }
+
+    var elapsed = (nanoTime.nanoTime() - start) / 1000000;
+    writeOutput(&#34;#arguments.label#: #numberFormat(elapsed, &#39;0.00&#39;)#ms for #arguments.iterations# iterations&lt;br&gt;&#34;);
+}
+
+// Compare CFML hash vs Java MessageDigest
+benchmark(&#34;CFML hash()&#34;, function() {
+    hash(&#34;benchmark-input-string&#34;, &#34;SHA-256&#34;);
+});
+
+benchmark(&#34;Java MessageDigest&#34;, function() {
+    var digest = createObject(&#34;java&#34;, &#34;java.security.MessageDigest&#34;).getInstance(&#34;SHA-256&#34;);
+    digest.digest(charsetDecode(&#34;benchmark-input-string&#34;, &#34;UTF-8&#34;));
+});
+</code></pre><h2 id="common-mistakes">
+  Common Mistakes
+  <a class="heading-link" href="#common-mistakes">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<ol>
+<li>
+<p><strong>Forgetting <code>javaCast()</code></strong> &mdash; When methods have overloaded signatures, CFML&rsquo;s default type mapping picks the wrong overload. Always use <code>javaCast()</code> for numeric arguments.</p>
+</li>
+<li>
+<p><strong>Not closing resources</strong> &mdash; Java streams, connections, and file handles must be explicitly closed. Always use <code>try/finally</code> blocks.</p>
+</li>
+<li>
+<p><strong>Ignoring thread safety</strong> &mdash; CFML request threads share the JVM. If you store Java objects in <code>application</code> or <code>server</code> scope, ensure they are thread-safe or properly synchronized.</p>
+</li>
+<li>
+<p><strong>Classpath conflicts</strong> &mdash; Your JAR might bundle a different version of a library already in the CFML engine&rsquo;s classpath (e.g., Apache Commons). This causes <code>NoSuchMethodError</code> at runtime. Check for version conflicts before deployment.</p>
+</li>
+<li>
+<p><strong>Calling <code>init()</code> on static-only classes</strong> &mdash; Utility classes like <code>java.lang.Math</code> or <code>java.util.Collections</code> do not need instantiation. Call static methods directly on the class object.</p>
+</li>
+</ol>
+<h2 id="when-not-to-use-java-integration">
+  When NOT to Use Java Integration
+  <a class="heading-link" href="#when-not-to-use-java-integration">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<ul>
+<li>When CFML has a built-in function that does the same thing (e.g., <code>arraySort</code>, <code>structFilter</code>, <code>hash</code>)</li>
+<li>When the complexity of Java code outweighs the performance benefit</li>
+<li>When your team lacks Java experience and maintenance becomes a burden</li>
+<li>When you need portability across CFML engines with different Java version requirements</li>
+</ul>
+<h2 id="conclusion">
+  Conclusion
+  <a class="heading-link" href="#conclusion">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>CFML&rsquo;s JVM foundation is not a legacy artifact &mdash; it is a strategic advantage. Direct Java integration gives you access to the largest library ecosystem in enterprise software, with zero network overhead and full type interoperability.</p>
+<p>Start small: replace one performance bottleneck with a Java call. Use <code>javaCast()</code> religiously. Close your resources. As your confidence grows, build custom Java classes for CPU-intensive operations and load third-party JARs for capabilities CFML does not offer natively.</p>
+<p>The goal is not to replace CFML with Java. It is to use each language where it excels: CFML for rapid web development and Java for the heavy lifting underneath.</p>
+
+    </div>
+</article>
+</div>
+
+<div class="command-output">
+<div class="prompt">ls -la ../</div>
+<div class="file-list">
+    <div class="file-item">
+        <a href="/">← Back to home</a>
+    </div>
+    
+        
+            <div class="file-item">
+                <a href="https://github.com/tang9ian/" target="_blank" rel="noopener noreferrer">Github</a>
+            </div>
+        
+            <div class="file-item">
+                <a href="https://twitter.com/tang9ian/" target="_blank" rel="noopener noreferrer">Twitter</a>
+            </div>
+        
+    
+</div>
+</div>
+
+            </main>
+
+            <div class="terminal-input-area">
+                <div class="cmd-output" id="cmd-output"></div>
+                <div class="terminal-input-line">
+                    <label for="cmd-input" class="input-prompt-label">charles@portfolio:~$</label>
+                    <input type="text" id="cmd-input" class="terminal-input" autocomplete="off" spellcheck="false" placeholder="Type 'help' for commands...">
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <span class="status-left">
+                <span class="status-session">[charles@portfolio]</span>
+                <span class="status-path">~/posts/cfml-java-integration-guide/</span>
+            </span>
+            <div class="status-right">
+                <span class="zoom-controls">
+                    <button class="zoom-btn" onclick="zoomOut()" aria-label="Zoom out">A-</button>
+                    <span class="zoom-level" onclick="zoomReset()" title="Click to reset">100%</span>
+                    <button class="zoom-btn" onclick="zoomIn()" aria-label="Zoom in">A+</button>
+                </span>
+                <span class="status-sep">|</span>
+                <span class="status-encoding">utf-8</span>
+                <span class="status-sep">|</span>
+                <span class="status-line" id="status-line">ln 1</span>
+                <span class="status-sep">|</span>
+                <span class="status-time"></span>
+            </div>
+        </div>
+    </div>
+
+    
+    <button class="floating-theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <script>
+        
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = body.getAttribute('data-theme') || 'dark';
+
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        
+        function toggleFullscreen() {
+            var isFullscreen = document.body.classList.toggle('fullscreen');
+            sessionStorage.setItem('terminal-fullscreen', isFullscreen);
+        }
+
+        
+        var ZOOM_MIN = 80, ZOOM_MAX = 150, ZOOM_STEP = 10, ZOOM_DEFAULT = 100;
+
+        function getZoom() {
+            return parseInt(localStorage.getItem('content-zoom') || ZOOM_DEFAULT);
+        }
+
+        function setZoom(level) {
+            level = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, level));
+            var tc = document.querySelector('.terminal-content');
+            var zl = document.querySelector('.zoom-level');
+            var btns = document.querySelectorAll('.zoom-btn');
+            if (tc) tc.style.fontSize = level + '%';
+            if (zl) zl.textContent = level + '%';
+            if (btns.length === 2) {
+                btns[0].disabled = (level <= ZOOM_MIN);
+                btns[1].disabled = (level >= ZOOM_MAX);
+            }
+            if (level === ZOOM_DEFAULT) localStorage.removeItem('content-zoom');
+            else localStorage.setItem('content-zoom', level);
+        }
+
+        function zoomIn() { setZoom(getZoom() + ZOOM_STEP); }
+        function zoomOut() { setZoom(getZoom() - ZOOM_STEP); }
+        function zoomReset() { setZoom(ZOOM_DEFAULT); }
+
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.body.classList.contains('fullscreen')) {
+                toggleFullscreen();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var savedTheme = localStorage.getItem('theme') || 'dark';
+            var themeIcon = document.getElementById('theme-icon');
+            document.body.setAttribute('data-theme', savedTheme);
+            themeIcon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+
+            
+            setZoom(getZoom());
+
+            
+            var statusTime = document.querySelector('.status-time');
+            if (statusTime) {
+                function updateTime() {
+                    statusTime.textContent = new Date().toLocaleTimeString('en-US', { hour12: false });
+                }
+                updateTime();
+                setInterval(updateTime, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

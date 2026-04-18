@@ -6,8 +6,15 @@
     <description>Recent content in 后端开发 on Charles Tang&#39;s Personal Portfolio</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 18 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tang9ian.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CFML 与 Java 集成交互：企业级应用实战指南</title>
+      <link>https://tang9ian.github.io/zh-cn/posts/cfml-java-integration-guide/</link>
+      <pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://tang9ian.github.io/zh-cn/posts/cfml-java-integration-guide/</guid>
+      <description>&lt;p&gt;ColdFusion 运行在 JVM 之上。这一事实是 CFML 生态系统中最强大、也最被低估的特性。JVM 上所有可用的 Java 类都可以从 CFML 代码中直接调用，无需 REST 接口、无需消息队列、无需序列化开销。这是真正的进程内直接方法调用。&lt;/p&gt;&#xA;&lt;p&gt;本指南涵盖将 Java 集成到 CFML 应用中的实用模式，从基础对象创建到高级模式，包括实现 Java 接口、引入第三方库，以及构建混合架构。&lt;/p&gt;&#xA;&lt;h2 id=&#34;为什么要将-java-与-cfml-集成&#34;&gt;&#xA;  为什么要将 Java 与 CFML 集成&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e5%b0%86-java-%e4%b8%8e-cfml-%e9%9b%86%e6%88%90&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;CFML 擅长快速 Web 应用开发。Java 擅长性能关键型逻辑、拥有成熟的类库生态和类型安全。两者结合可以获得：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;访问数千个经过生产验证的 Java 类库（Apache Commons、Guava、Jackson 等）&lt;/li&gt;&#xA;&lt;li&gt;CPU 密集型操作以原生 JVM 速度运行&lt;/li&gt;&#xA;&lt;li&gt;共享内存空间，零序列化开销&lt;/li&gt;&#xA;&lt;li&gt;从遗留 CFML 向现代 Java 的渐进式迁移路径&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;这种集成不是 hack 或变通方案。Adobe ColdFusion 和 Lucee 都作为 Java 应用运行在 Servlet 容器上。你的 CFML 代码和 Java 代码共享同一个 JVM 堆、同一个类加载器层级和同一个垃圾回收器。&lt;/p&gt;&#xA;&lt;h2 id=&#34;基础-java-对象创建&#34;&gt;&#xA;  基础 Java 对象创建&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#%e5%9f%ba%e7%a1%80-java-%e5%af%b9%e8%b1%a1%e5%88%9b%e5%bb%ba&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;&lt;code&gt;createObject&lt;/code&gt; 函数是 CFML 与 Java 之间的主要桥梁：&lt;/p&gt;</description>
+    </item>
     <item>
       <title>深入理解 Go 并发编程模式</title>
       <link>https://tang9ian.github.io/zh-cn/posts/go-concurrency-patterns/</link>

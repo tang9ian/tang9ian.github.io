@@ -57,16 +57,27 @@
     <link rel="stylesheet" href="/css/terminal-style.css">
 
     
+    <script src="/js/interactions.js" defer></script>
+    <script src="/js/terminal-cli.js" defer></script>
+
+    
 </head>
 
 <body>
+    
+    <div class="boot-screen" id="boot-screen"><pre class="boot-log" id="boot-log"></pre></div>
     <script>
+        if (sessionStorage.getItem('booted') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.getElementById('boot-screen').classList.add('hidden');
+        }
         if (sessionStorage.getItem('terminal-fullscreen') === 'true') {
             document.body.classList.add('fullscreen');
         }
     </script>
+
     
-    
+    <div class="crt-overlay" aria-hidden="true"></div>
+
     <div class="terminal-window">
         <div class="terminal-header">
             <div class="terminal-buttons" aria-hidden="true">
@@ -251,16 +262,32 @@
 </div>
 
             </main>
+
+            <div class="terminal-input-area">
+                <div class="cmd-output" id="cmd-output"></div>
+                <div class="terminal-input-line">
+                    <label for="cmd-input" class="input-prompt-label">charles@portfolio:~$</label>
+                    <input type="text" id="cmd-input" class="terminal-input" autocomplete="off" spellcheck="false" placeholder="Type 'help' for commands...">
+                </div>
+            </div>
         </div>
 
         <div class="status-bar">
-            <span>Charles Tang | Charles Tang&#39;s Personal Portfolio</span>
+            <span class="status-left">
+                <span class="status-session">[charles@portfolio]</span>
+                <span class="status-path">~/projects/</span>
+            </span>
             <div class="status-right">
                 <span class="zoom-controls">
                     <button class="zoom-btn" onclick="zoomOut()" aria-label="Zoom out">A-</button>
                     <span class="zoom-level" onclick="zoomReset()" title="Click to reset">100%</span>
                     <button class="zoom-btn" onclick="zoomIn()" aria-label="Zoom in">A+</button>
                 </span>
+                <span class="status-sep">|</span>
+                <span class="status-encoding">utf-8</span>
+                <span class="status-sep">|</span>
+                <span class="status-line" id="status-line">ln 1</span>
+                <span class="status-sep">|</span>
                 <span class="status-time"></span>
             </div>
         </div>
@@ -337,16 +364,6 @@
 
             
             setZoom(getZoom());
-
-            
-            var content = document.querySelector('.content');
-            if (content) {
-                content.style.opacity = '0';
-                setTimeout(function() {
-                    content.style.transition = 'opacity 0.5s ease';
-                    content.style.opacity = '1';
-                }, 100);
-            }
 
             
             var statusTime = document.querySelector('.status-time');
