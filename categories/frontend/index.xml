@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Frontend on Charles Tang&#39;s Personal Portfolio</title>
-    <link>http://localhost:1313/categories/frontend/</link>
+    <link>https://tang9ian.github.io/categories/frontend/</link>
     <description>Recent content in Frontend on Charles Tang&#39;s Personal Portfolio</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 15 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://tang9ian.github.io/categories/frontend/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>React Cheat Sheet: A Practical Quick Reference</title>
-      <link>http://localhost:1313/posts/react-cheat-sheet/</link>
+      <link>https://tang9ian.github.io/posts/react-cheat-sheet/</link>
       <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/react-cheat-sheet/</guid>
+      <guid>https://tang9ian.github.io/posts/react-cheat-sheet/</guid>
       <description>&lt;h1 id=&#34;react-cheat-sheet-a-practical-quick-reference&#34;&gt;&#xA;  React Cheat Sheet: A Practical Quick Reference&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#react-cheat-sheet-a-practical-quick-reference&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;After years of writing React, I&amp;rsquo;ve noticed that most daily work boils down to a handful of patterns repeated over and over. This cheat sheet captures the syntax and idioms I actually reach for — not the theory, but the code I type when building real features.&lt;/p&gt;&#xA;&lt;h2 id=&#34;components-the-atom-of-react&#34;&gt;&#xA;  Components: The Atom of React&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#components-the-atom-of-react&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Modern React is functional. Forget classes unless you&amp;rsquo;re maintaining legacy code or writing an Error Boundary.&lt;/p&gt;</description>
     </item>
   </channel>

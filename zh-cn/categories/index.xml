@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Charles Tang的个人页面</title>
-    <link>http://localhost:1313/zh-cn/categories/</link>
+    <link>https://tang9ian.github.io/zh-cn/categories/</link>
     <description>Recent content in Categories on Charles Tang的个人页面</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 21 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/zh-cn/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://tang9ian.github.io/zh-cn/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>工具</title>
-      <link>http://localhost:1313/zh-cn/categories/%E5%B7%A5%E5%85%B7/</link>
+      <link>https://tang9ian.github.io/zh-cn/categories/%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Thu, 21 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/zh-cn/categories/%E5%B7%A5%E5%85%B7/</guid>
+      <guid>https://tang9ian.github.io/zh-cn/categories/%E5%B7%A5%E5%85%B7/</guid>
       <description></description>
     </item>
     <item>
       <title>前端开发</title>
-      <link>http://localhost:1313/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/</link>
+      <link>https://tang9ian.github.io/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/</link>
       <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/</guid>
+      <guid>https://tang9ian.github.io/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/</guid>
       <description></description>
     </item>
     <item>
       <title>后端开发</title>
-      <link>http://localhost:1313/zh-cn/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/</link>
+      <link>https://tang9ian.github.io/zh-cn/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/</link>
       <pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/zh-cn/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/</guid>
+      <guid>https://tang9ian.github.io/zh-cn/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/</guid>
       <description></description>
     </item>
     <item>
       <title>安全</title>
-      <link>http://localhost:1313/zh-cn/categories/%E5%AE%89%E5%85%A8/</link>
+      <link>https://tang9ian.github.io/zh-cn/categories/%E5%AE%89%E5%85%A8/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/zh-cn/categories/%E5%AE%89%E5%85%A8/</guid>
+      <guid>https://tang9ian.github.io/zh-cn/categories/%E5%AE%89%E5%85%A8/</guid>
       <description></description>
     </item>
     <item>
       <title>综合</title>
-      <link>http://localhost:1313/zh-cn/categories/%E7%BB%BC%E5%90%88/</link>
+      <link>https://tang9ian.github.io/zh-cn/categories/%E7%BB%BC%E5%90%88/</link>
       <pubDate>Sat, 21 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/zh-cn/categories/%E7%BB%BC%E5%90%88/</guid>
+      <guid>https://tang9ian.github.io/zh-cn/categories/%E7%BB%BC%E5%90%88/</guid>
       <description></description>
     </item>
   </channel>

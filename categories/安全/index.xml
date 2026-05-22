@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>安全 on Charles Tang&#39;s Personal Portfolio</title>
-    <link>http://localhost:1313/categories/%E5%AE%89%E5%85%A8/</link>
+    <link>https://tang9ian.github.io/categories/%E5%AE%89%E5%85%A8/</link>
     <description>Recent content in 安全 on Charles Tang&#39;s Personal Portfolio</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://tang9ian.github.io/categories/%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CFML 安全指南：常见漏洞与防御修复方案</title>
-      <link>http://localhost:1313/zh-cn/posts/cfml-security-guide/</link>
+      <link>https://tang9ian.github.io/zh-cn/posts/cfml-security-guide/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/zh-cn/posts/cfml-security-guide/</guid>
+      <guid>https://tang9ian.github.io/zh-cn/posts/cfml-security-guide/</guid>
       <description>&lt;h1 id=&#34;cfml-安全指南常见漏洞与防御修复方案&#34;&gt;&#xA;  CFML 安全指南：常见漏洞与防御修复方案&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#cfml-%e5%ae%89%e5%85%a8%e6%8c%87%e5%8d%97%e5%b8%b8%e8%a7%81%e6%bc%8f%e6%b4%9e%e4%b8%8e%e9%98%b2%e5%be%a1%e4%bf%ae%e5%a4%8d%e6%96%b9%e6%a1%88&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;ColdFusion（CFML）作为企业级 Web 应用开发语言已有数十年历史。大量遗留系统仍在其上运行，同时基于 Adobe ColdFusion 和 Lucee 引擎的新应用也在持续构建。然而，CFML 应用频繁成为攻击目标——部分原因是许多代码库在现代安全实践普及之前就已编写完成。&lt;/p&gt;&#xA;&lt;p&gt;本文将深入分析我在实战中遇到的最关键的 CFML 安全漏洞，并提供具体的防御措施和代码修复方案。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-sql-注入&#34;&gt;&#xA;  1. SQL 注入&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#1-sql-%e6%b3%a8%e5%85%a5&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;SQL 注入仍然是 CFML 应用面临的头号威胁。典型的漏洞代码如下：&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-cfml&#34; data-lang=&#34;cfml&#34;&gt;&amp;lt;!--- 漏洞代码：绝对不要这样写 ---&amp;gt;&#xA;&amp;lt;cfquery name=&amp;#34;getUser&amp;#34; datasource=&amp;#34;myDB&amp;#34;&amp;gt;&#xA;    SELECT * FROM users&#xA;    WHERE username = &amp;#39;#form.username#&amp;#39;&#xA;    AND password = &amp;#39;#form.password#&amp;#39;&#xA;&amp;lt;/cfquery&amp;gt;&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;攻击者只需提交 &lt;code&gt;&#39; OR 1=1 --&lt;/code&gt; 作为用户名，即可绕过整个身份验证。&lt;/p&gt;&#xA;&lt;h3 id=&#34;修复使用-cfqueryparam&#34;&gt;&#xA;  修复：使用 &lt;code&gt;cfqueryparam&lt;/code&gt;&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#%e4%bf%ae%e5%a4%8d%e4%bd%bf%e7%94%a8-cfqueryparam&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-cfml&#34; data-lang=&#34;cfml&#34;&gt;&amp;lt;!--- 安全写法：始终使用 cfqueryparam ---&amp;gt;&#xA;&amp;lt;cfquery name=&amp;#34;getUser&amp;#34; datasource=&amp;#34;myDB&amp;#34;&amp;gt;&#xA;    SELECT * FROM users&#xA;    WHERE username = &amp;lt;cfqueryparam value=&amp;#34;#form.username#&amp;#34; cfsqltype=&amp;#34;cf_sql_varchar&amp;#34;&amp;gt;&#xA;    AND password = &amp;lt;cfqueryparam value=&amp;#34;#form.password#&amp;#34; cfsqltype=&amp;#34;cf_sql_varchar&amp;#34;&amp;gt;&#xA;&amp;lt;/cfquery&amp;gt;&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;cfqueryparam&lt;/code&gt; 底层使用预编译语句（Prepared Statement），从根本上杜绝 SQL 注入。&lt;strong&gt;每一个查询变量都必须使用 &lt;code&gt;cfqueryparam&lt;/code&gt;，没有例外。&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
   </channel>
