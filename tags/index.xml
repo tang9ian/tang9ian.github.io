@@ -14,7 +14,7 @@
 		
 			<atom:link href="https://tang9ian.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 			<item>
-				<title>Cfml</title>
+				<title>CFML</title>
 				<link>https://tang9ian.github.io/tags/cfml/</link>
 				<pubDate>Tue, 11 Aug 2026 00:00:00 +0000</pubDate>
 				<guid>https://tang9ian.github.io/tags/cfml/</guid>
@@ -56,7 +56,7 @@
 				<description></description>
 			</item>
 			<item>
-				<title>Devops</title>
+				<title>DevOps</title>
 				<link>https://tang9ian.github.io/tags/devops/</link>
 				<pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
 				<guid>https://tang9ian.github.io/tags/devops/</guid>
@@ -105,7 +105,7 @@
 				<description></description>
 			</item>
 			<item>
-				<title>Javascript</title>
+				<title>JavaScript</title>
 				<link>https://tang9ian.github.io/tags/javascript/</link>
 				<pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
 				<guid>https://tang9ian.github.io/tags/javascript/</guid>
