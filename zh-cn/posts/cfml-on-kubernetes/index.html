@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="zh-cn">
+
+    
+        <title>在 Kubernetes 上运行 CFML 应用：实战操作全流程 · Charles Tang的个人页面</title>
+    
+
+    <meta name="description" content="一份手把手的实战指南：把 Lucee/ColdFusion（CFML）应用容器化并部署到 Kubernetes——Dockerfile、Deployment、Service、Ingress、配置、密钥、健康探针与扩缩容">
+    <meta name="keywords" content="blog,Web开发人员,个人项目">
+    <meta name="author" content="Charles Tang">
+    <link rel="canonical" href="https://tang9ian.github.io/zh-cn/posts/cfml-on-kubernetes/">
+
+    
+    <meta property="og:title" content="在 Kubernetes 上运行 CFML 应用：实战操作全流程">
+    <meta property="og:description" content="一份手把手的实战指南：把 Lucee/ColdFusion（CFML）应用容器化并部署到 Kubernetes——Dockerfile、Deployment、Service、Ingress、配置、密钥、健康探针与扩缩容">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tang9ian.github.io/zh-cn/posts/cfml-on-kubernetes/">
+    
+    <meta property="og:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+    <meta property="og:site_name" content="Charles Tang的个人页面">
+    
+    <meta property="article:published_time" content="2026-06-19T00:00:00Z">
+    <meta property="article:author" content="Charles Tang">
+    
+
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="在 Kubernetes 上运行 CFML 应用：实战操作全流程">
+    <meta name="twitter:description" content="一份手把手的实战指南：把 Lucee/ColdFusion（CFML）应用容器化并部署到 Kubernetes——Dockerfile、Deployment、Service、Ingress、配置、密钥、健康探针与扩缩容">
+    
+    <meta name="twitter:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+
+    
+    
+    
+    <link rel="alternate" hreflang="en" href="https://tang9ian.github.io/en/posts/cfml-on-kubernetes/">
+    
+    <link rel="alternate" hreflang="zh-cn" href="https://tang9ian.github.io/zh-cn/posts/cfml-on-kubernetes/">
+    
+    
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl0HPNiecjHem/PY0MiImBUDicklBhRPNsUklPYe2LiY6U68hiUy+CT1r9Hmyow0bPBnFGEISN9GhQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    
+    
+    <link rel="stylesheet" href="/css/terminal-style.a321ddfd174a48092b016cdff3b5e4bb.css">
+    
+
+    
+    
+    
+    <script src="/js/interactions.ece460395208fe7350d61c75db4d6359.js" defer></script>
+    
+    
+    
+    <script src="/js/terminal-cli.b6df75736331a95fd2df02a12a54f1c7.js" defer></script>
+    
+    
+
+    
+</head>
+
+<body>
+    
+    <div class="boot-screen" id="boot-screen"><pre class="boot-log" id="boot-log"></pre></div>
+    <script>
+        if (sessionStorage.getItem('booted') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.getElementById('boot-screen').classList.add('hidden');
+        }
+        if (sessionStorage.getItem('terminal-fullscreen') === 'true') {
+            document.body.classList.add('fullscreen');
+        }
+    </script>
+
+    
+    <div class="crt-overlay" aria-hidden="true"></div>
+
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons" aria-hidden="true">
+                <div class="terminal-button close"></div>
+                <div class="terminal-button minimize"></div>
+                <div class="terminal-button maximize" onclick="toggleFullscreen()" role="button" tabindex="0" aria-label="Toggle fullscreen" title="Fullscreen"></div>
+            </div>
+            <div class="terminal-title">charles@portfolio: 在 Kubernetes 上运行 CFML 应用：实战操作全流程</div>
+        </div>
+
+        <div class="terminal-content">
+            <nav class="navigation" aria-label="Main navigation">
+    <div class="prompt">ls -la /home/charles/portfolio/</div>
+    <ul class="navigation-list">
+        
+            <li class="navigation-item">
+                <a href="/zh-cn/about/">关于我</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/zh-cn/posts/">博客</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/zh-cn/projects/">项目</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/zh-cn/contact/">联系方式</a>
+            </li>
+        
+
+        
+            
+                
+                    <li class="navigation-item">
+                        <a href="/posts/cfml-on-kubernetes/" hreflang="en">English</a>
+                    </li>
+                
+            
+        
+    </ul>
+</nav>
+
+
+            <main id="main-content" class="content">
+                
+<div class="command-output">
+<div class="prompt">cat posts/cfml-on-kubernetes.md</div>
+<article class="post">
+    <header class="post-header">
+        <h1>在 Kubernetes 上运行 CFML 应用：实战操作全流程</h1>
+
+        
+            <div class="post-meta">
+                <span>
+                    <i class="fas fa-calendar" aria-hidden="true"></i>
+                    2026年6月19日
+                </span>
+
+                
+                    <span>
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        Charles Tang
+                    </span>
+                
+
+                
+                    <span>
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        3 分钟阅读
+                    </span>
+                
+            </div>
+        
+
+        
+            <div class="post-tags">
+                
+                    <span class="tag">Kubernetes</span>
+                
+                    <span class="tag">CFML</span>
+                
+                    <span class="tag">Lucee</span>
+                
+                    <span class="tag">Docker</span>
+                
+                    <span class="tag">DevOps</span>
+                
+            </div>
+        
+    </header>
+
+    <div class="post-content">
+        <h1 id="在-kubernetes-上运行-cfml-应用实战操作全流程">
+  在 Kubernetes 上运行 CFML 应用：实战操作全流程
+  <a class="heading-link" href="#%e5%9c%a8-kubernetes-%e4%b8%8a%e8%bf%90%e8%a1%8c-cfml-%e5%ba%94%e7%94%a8%e5%ae%9e%e6%88%98%e6%93%8d%e4%bd%9c%e5%85%a8%e6%b5%81%e7%a8%8b">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h1>
+<p>CFML（ColdFusion 标记语言）至今仍支撑着大量企业软件，而其中很多都被困在一台臃肿的单体应用服务器上。这篇文章讲的是我把一个 CFML 应用——基于开源 CFML 引擎 <a href="https://www.lucee.org/"  class="external-link" target="_blank" rel="noopener">Lucee</a> 构建——容器化并跑在 Kubernetes 上的实际步骤，并把那些真正会坑到你的细节一并点出来。</p>
+<p>这不是一篇从零开始的 Kubernetes 教程。它假设你能敲 <code>kubectl get pods</code>，并且手头有个可以连的集群（minikube、kind 或托管集群都行）。</p>
+<h2 id="心智模型">
+  心智模型
+  <a class="heading-link" href="#%e5%bf%83%e6%99%ba%e6%a8%a1%e5%9e%8b">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>CFML 应用跑在 Kubernetes 上，形态和任何其他 Web 应用一样，只有一处特殊：<strong>引擎和你的代码是绑在一起、装进同一个镜像里的</strong>。</p>
+<div class="code-block" data-lang="text">
+  <div class="code-block-bar">
+    <span class="code-block-lang">text</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <pre tabindex="0"><code>你的 .cfm/.cfc 代码  →  Docker 镜像（Lucee + 代码）  →  Pod  →  Service  →  Ingress  →  用户
+                         （构建一次）                    （运行 N 份副本）</code></pre>
+</div>
+<p>凡是不属于代码的东西——数据库密码、数据源配置、会话设置——都在运行时通过 ConfigMap 和 Secret 注入，绝不烤进镜像里。守住这条界线，剩下的就顺理成章了。</p>
+<h2 id="第一步容器化应用">
+  第一步：容器化应用
+  <a class="heading-link" href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e5%ae%b9%e5%99%a8%e5%8c%96%e5%ba%94%e7%94%a8">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>从官方 Lucee 镜像出发，把你的 webroot 拷进去。一个最小化的 <code>Dockerfile</code>：</p>
+<div class="code-block" data-lang="dockerfile">
+  <div class="code-block-bar">
+    <span class="code-block-lang">dockerfile</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="s">lucee/lucee:6.0-tomcat</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 应用代码放进 Tomcat 的 webroot</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">COPY</span> ./webroot /var/www<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># Lucee 管理密码与部署期设置来自环境变量，而非镜像</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">LUCEE_ADMIN_ENABLED</span><span class="o">=</span><span class="s2">&#34;false&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># Lucee 镜像里 Tomcat 监听 8888</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">EXPOSE</span><span class="w"> </span><span class="s">8888</span></span></span></code></pre></div>
+</div>
+<p>在 Kubernetes 还没登场之前，先在本地构建并冒烟测试：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build -t myregistry/cfml-app:1.0.0 .
+</span></span><span class="line"><span class="cl">docker run --rm -p 8888:8888 myregistry/cfml-app:1.0.0
+</span></span><span class="line"><span class="cl"><span class="c1"># 访问 http://localhost:8888 —— 确认 .cfm 页面能正常渲染</span>
+</span></span><span class="line"><span class="cl">docker push myregistry/cfml-app:1.0.0</span></span></code></pre></div>
+</div>
+<p><strong>用真实的版本号打 tag，永远别用 <code>latest</code>。</strong> Kubernetes 会激进地缓存镜像；<code>latest</code> 会让发布变得模糊，回滚则无从谈起。</p>
+<h2 id="第二步deployment">
+  第二步：Deployment
+  <a class="heading-link" href="#%e7%ac%ac%e4%ba%8c%e6%ad%a5deployment">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>Deployment 声明要跑几份 Pod 副本、用哪个镜像。</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">myregistry/cfml-app:1.0.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;250m&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;512Mi&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;1Gi&#34;</span></span></span></code></pre></div>
+</div>
+<p>关于内存有一句要说：Lucee 跑在 JVM 上，而<strong>除非你明确告诉它，JVM 是看不到容器内存上限的</strong>。要把堆大小设在上限之内，否则内核会在请求处理到一半时把 Pod OOM 杀掉。通过 JVM 选项的环境变量传入：</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">env</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">CATALINA_OPTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;-XX:MaxRAMPercentage=75.0&#34;</span></span></span></code></pre></div>
+</div>
+<p><code>MaxRAMPercentage</code> 让 JVM 按容器上限的比例来设定堆大小——比硬编码一个 <code>-Xmx</code> 安全得多。</p>
+<h2 id="第三步用-service-暴露出去">
+  第三步：用 Service 暴露出去
+  <a class="heading-link" href="#%e7%ac%ac%e4%b8%89%e6%ad%a5%e7%94%a8-service-%e6%9a%b4%e9%9c%b2%e5%87%ba%e5%8e%bb">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>Service 给这些 Pod 一个稳定的内部地址。Pod 来来去去，Service 的名字不变。</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span></span></span></code></pre></div>
+</div>
+<p>集群内部现在任何东西都能通过 <code>http://cfml-app</code> 访问到这个应用。要让外部世界进来，加一个 Ingress：</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">networking.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Ingress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">nginx.ingress.kubernetes.io/proxy-body-size</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;50m&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">app.example.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">http</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">pathType</span><span class="p">:</span><span class="w"> </span><span class="l">Prefix</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">backend</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">service</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">port</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                  </span><span class="nt">number</span><span class="p">:</span><span class="w"> </span><span class="m">80</span></span></span></code></pre></div>
+</div>
+<p>对于要处理文件上传的 CFML 应用来说，那个 <code>proxy-body-size</code> 注解很关键——Nginx 默认上限是 1 MB，超过就会被静默拒绝。</p>
+<h2 id="第四步配置与密钥">
+  第四步：配置与密钥
+  <a class="heading-link" href="#%e7%ac%ac%e5%9b%9b%e6%ad%a5%e9%85%8d%e7%bd%ae%e4%b8%8e%e5%af%86%e9%92%a5">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>千万别把数据库密码烤进镜像。非敏感配置放进 ConfigMap，凭据放进 Secret：</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;postgres.internal&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">DB_NAME</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;appdb&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Secret</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-secrets</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">Opaque</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">stringData</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;change-me-in-real-life&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">LUCEE_ADMIN_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;also-change-me&#34;</span></span></span></code></pre></div>
+</div>
+<p>用 <code>envFrom</code> 接到 Deployment 的容器里：</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">envFrom</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">configMapRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">secretRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-secrets</span></span></span></code></pre></div>
+</div>
+<p>然后在 <code>Application.cfc</code> 里读取它们，让数据源由环境决定，而不是硬编码：</p>
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">component {
+    this.name = &#34;myapp&#34;;
+    this.datasources[&#34;appdb&#34;] = {
+        class:    &#34;org.postgresql.Driver&#34;,
+        connectionString: &#34;jdbc:postgresql://#server.system.environment.DB_HOST#/#server.system.environment.DB_NAME#&#34;,
+        username: server.system.environment.DB_USER,
+        password: server.system.environment.DB_PASSWORD
+    };
+}</code></pre>
+</div>
+<p>同一个镜像现在不改一行就能跑在 dev、staging 和 prod——区别只在注入的配置。这正是整套做法的意义所在。</p>
+<h2 id="第五步健康探针">
+  第五步：健康探针
+  <a class="heading-link" href="#%e7%ac%ac%e4%ba%94%e6%ad%a5%e5%81%a5%e5%ba%b7%e6%8e%a2%e9%92%88">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>Kubernetes 需要知道一个 Pod 何时存活、何时准备好对外服务。CFML 应用预热引擎可能要花 20–60 秒，所以<strong>探针配错是导致部署陷入 crash 循环的头号原因</strong>。</p>
+<p>往 webroot 里加一个最简单的 <code>health.cfm</code>，只输出 <code>OK</code>，然后：</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">readinessProbe</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">httpGet</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/health.cfm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="m">20</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">livenessProbe</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">httpGet</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/health.cfm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="m">40</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="m">15</span></span></span></code></pre></div>
+</div>
+<ul>
+<li><strong>Readiness（就绪）</strong> 决定是否把流量发给这个 Pod。在 <code>/health.cfm</code> 应答之前，Pod 会被排除在 Service 之外。</li>
+<li><strong>Liveness（存活）</strong> 会重启已经卡死的 Pod。<code>initialDelaySeconds</code> 要给得宽裕些——杀得太早，Lucee 永远启动不完。</li>
+</ul>
+<h2 id="第六步应用并验证">
+  第六步：应用并验证
+  <a class="heading-link" href="#%e7%ac%ac%e5%85%ad%e6%ad%a5%e5%ba%94%e7%94%a8%e5%b9%b6%e9%aa%8c%e8%af%81">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply -f k8s/
+</span></span><span class="line"><span class="cl">kubectl rollout status deployment/cfml-app
+</span></span><span class="line"><span class="cl">kubectl get pods -l <span class="nv">app</span><span class="o">=</span>cfml-app
+</span></span><span class="line"><span class="cl">kubectl logs -f deploy/cfml-app          <span class="c1"># 观察 Lucee 启动</span></span></span></code></pre></div>
+</div>
+<p>如果某个 Pod 卡住了，<code>kubectl describe pod &lt;name&gt;</code> 会列出事件——拉镜像失败、OOM 被杀、探针失败都会在这里浮现。</p>
+<h2 id="第七步扩缩容与发布">
+  第七步：扩缩容与发布
+  <a class="heading-link" href="#%e7%ac%ac%e4%b8%83%e6%ad%a5%e6%89%a9%e7%bc%a9%e5%ae%b9%e4%b8%8e%e5%8f%91%e5%b8%83">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>水平扩容只需改副本数，或者让 Kubernetes 按 CPU 自动扩：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl scale deployment/cfml-app --replicas<span class="o">=</span><span class="m">4</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">kubectl autoscale deployment/cfml-app --cpu-percent<span class="o">=</span><span class="m">70</span> --min<span class="o">=</span><span class="m">2</span> --max<span class="o">=</span><span class="m">8</span></span></span></code></pre></div>
+</div>
+<p>有一个 CFML 有状态应用独有的坑：<strong>会话亲和性（session affinity）</strong>。如果你的应用把会话保存在 JVM 内存里，那同一个用户的请求就必须回到同一个 Pod。要么在 Ingress 上开启粘性会话：</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">nginx.ingress.kubernetes.io/affinity</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;cookie&#34;</span></span></span></code></pre></div>
+</div>
+<p>……要么更好的做法是把会话彻底移出 JVM——存到 Redis 或数据库里，这样任何 Pod 都能服务任何请求。无状态的 Pod 才能让扩缩容和滚动更新毫无痛感；粘性会话是权宜之计，不是归宿。</p>
+<p>发布新版本就是换一个镜像 tag：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl <span class="nb">set</span> image deployment/cfml-app cfml-app<span class="o">=</span>myregistry/cfml-app:1.1.0
+</span></span><span class="line"><span class="cl">kubectl rollout undo deployment/cfml-app   <span class="c1"># 出问题就秒回滚</span></span></span></code></pre></div>
+</div>
+<h2 id="检查清单">
+  检查清单
+  <a class="heading-link" href="#%e6%a3%80%e6%9f%a5%e6%b8%85%e5%8d%95">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>每次把 CFML 应用搬上 Kubernetes，真正决定成败的就是这几件事：</p>
+<ol>
+<li><strong>固定镜像 tag</strong>——永远别用 <code>latest</code>。</li>
+<li><strong>用 <code>MaxRAMPercentage</code> 把 JVM 堆大小框进容器上限。</strong></li>
+<li><strong>所有配置都注入</strong>——通过 ConfigMap 和 Secret，敏感信息一律不进镜像。</li>
+<li><strong>给探针足够的预热时间</strong>——Lucee 启动很慢。</li>
+<li><strong>让 Pod 无状态</strong>——外置会话，或接受粘性会话的局限。</li>
+<li><strong>设置 resource requests</strong>，让调度器能合理安置 Pod。</li>
+</ol>
+<p>把这六点做对，CFML 应用就和任何现代工作负载一样——可扩展、能自愈，并且以最好的方式变得&quot;平平无奇&quot;。CFML 那点&quot;遗留技术&quot;的名声，跟语言本身关系不大，更多是它一直以来的部署方式所致。而部署这件事，Kubernetes 给修好了。</p>
+
+    </div>
+</article>
+</div>
+
+<div class="command-output">
+<div class="prompt">ls -la ../</div>
+<div class="file-list">
+    <div class="file-item">
+        <a href="/zh-cn/">← 返回首页</a>
+    </div>
+    
+        
+            <div class="file-item">
+                <a href="https://github.com/tang9ian/" target="_blank" rel="noopener noreferrer">Github</a>
+            </div>
+        
+            <div class="file-item">
+                <a href="https://twitter.com/tang9ian/" target="_blank" rel="noopener noreferrer">Twitter</a>
+            </div>
+        
+    
+</div>
+</div>
+
+            </main>
+
+            <div class="terminal-input-area">
+                <div class="cmd-output" id="cmd-output"></div>
+                <div class="terminal-input-line">
+                    <label for="cmd-input" class="input-prompt-label">charles@portfolio:~$</label>
+                    <input type="text" id="cmd-input" class="terminal-input" autocomplete="off" spellcheck="false" placeholder="Type 'help' for commands...">
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <span class="status-left">
+                <span class="status-session">[charles@portfolio]</span>
+                <span class="status-path">~/zh-cn/posts/cfml-on-kubernetes/</span>
+            </span>
+            <div class="status-right">
+                <span class="zoom-controls">
+                    <button class="zoom-btn" onclick="zoomOut()" aria-label="Zoom out">A-</button>
+                    <span class="zoom-level" onclick="zoomReset()" title="Click to reset">100%</span>
+                    <button class="zoom-btn" onclick="zoomIn()" aria-label="Zoom in">A+</button>
+                </span>
+                <span class="status-sep">|</span>
+                <span class="status-encoding">utf-8</span>
+                <span class="status-sep">|</span>
+                <span class="status-line" id="status-line">ln 1</span>
+                <span class="status-sep">|</span>
+                <span class="status-time"></span>
+            </div>
+        </div>
+    </div>
+
+    
+    <button class="floating-theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <script>
+        
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = body.getAttribute('data-theme') || 'dark';
+
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        
+        function toggleFullscreen() {
+            var isFullscreen = document.body.classList.toggle('fullscreen');
+            sessionStorage.setItem('terminal-fullscreen', isFullscreen);
+        }
+
+        
+        var ZOOM_MIN = 80, ZOOM_MAX = 150, ZOOM_STEP = 10, ZOOM_DEFAULT = 100;
+
+        function getZoom() {
+            return parseInt(localStorage.getItem('content-zoom') || ZOOM_DEFAULT);
+        }
+
+        function setZoom(level) {
+            level = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, level));
+            var tc = document.querySelector('.terminal-content');
+            var zl = document.querySelector('.zoom-level');
+            var btns = document.querySelectorAll('.zoom-btn');
+            if (tc) tc.style.fontSize = level + '%';
+            if (zl) zl.textContent = level + '%';
+            if (btns.length === 2) {
+                btns[0].disabled = (level <= ZOOM_MIN);
+                btns[1].disabled = (level >= ZOOM_MAX);
+            }
+            if (level === ZOOM_DEFAULT) localStorage.removeItem('content-zoom');
+            else localStorage.setItem('content-zoom', level);
+        }
+
+        function zoomIn() { setZoom(getZoom() + ZOOM_STEP); }
+        function zoomOut() { setZoom(getZoom() - ZOOM_STEP); }
+        function zoomReset() { setZoom(ZOOM_DEFAULT); }
+
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.body.classList.contains('fullscreen')) {
+                toggleFullscreen();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var savedTheme = localStorage.getItem('theme') || 'dark';
+            var themeIcon = document.getElementById('theme-icon');
+            document.body.setAttribute('data-theme', savedTheme);
+            themeIcon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+
+            
+            setZoom(getZoom());
+
+            
+            var statusTime = document.querySelector('.status-time');
+            if (statusTime) {
+                function updateTime() {
+                    statusTime.textContent = new Date().toLocaleTimeString('en-US', { hour12: false });
+                }
+                updateTime();
+                setInterval(updateTime, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

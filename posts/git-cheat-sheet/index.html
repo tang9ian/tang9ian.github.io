@@ -54,11 +54,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl0HPNiecjHem/PY0MiImBUDicklBhRPNsUklPYe2LiY6U68hiUy+CT1r9Hmyow0bPBnFGEISN9GhQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     
-    <link rel="stylesheet" href="/css/terminal-style.css">
+    
+    <link rel="stylesheet" href="/css/terminal-style.a321ddfd174a48092b016cdff3b5e4bb.css">
+    
 
     
-    <script src="/js/interactions.js" defer></script>
-    <script src="/js/terminal-cli.js" defer></script>
+    
+    
+    <script src="/js/interactions.ece460395208fe7350d61c75db4d6359.js" defer></script>
+    
+    
+    
+    <script src="/js/terminal-cli.b6df75736331a95fd2df02a12a54f1c7.js" defer></script>
+    
+    
 
     
 </head>
@@ -182,16 +191,27 @@
   </a>
 </h2>
 <p>Git has three places a change can live, and almost every command moves work between them:</p>
-<pre tabindex="0"><code>Working Directory  →  Staging Area (Index)  →  Repository (commits)
-     (you edit)          (git add)               (git commit)
-</code></pre><p>A fourth place — the <strong>remote</strong> — is a copy of the repository on a server. <code>push</code> sends commits up, <code>fetch</code> brings them down. Keep this picture in your head and most of Git stops being mysterious.</p>
+<div class="code-block" data-lang="text">
+  <div class="code-block-bar">
+    <span class="code-block-lang">text</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code>Working Directory  →  Staging Area (Index)  →  Repository (commits)
+     (you edit)          (git add)               (git commit)</code></pre>
+</div>
+<p>A fourth place — the <strong>remote</strong> — is a copy of the repository on a server. <code>push</code> sends commits up, <code>fetch</code> brings them down. Keep this picture in your head and most of Git stops being mysterious.</p>
 <h2 id="one-time-setup">
   One-Time Setup
   <a class="heading-link" href="#one-time-setup">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global user.name  <span class="s2">&#34;Charles Tang&#34;</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global user.name  <span class="s2">&#34;Charles Tang&#34;</span>
 </span></span><span class="line"><span class="cl">git config --global user.email <span class="s2">&#34;you@example.com&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Use main as the default branch name for new repos</span>
@@ -202,8 +222,9 @@
 </span></span><span class="line"><span class="cl">git config --global pull.rebase <span class="nb">true</span>   <span class="c1"># rebase instead of merge on pull</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># See your config</span>
-</span></span><span class="line"><span class="cl">git config --list
-</span></span></code></pre></div><p>Setting <code>pull.rebase true</code> is opinionated but worth it: it keeps history linear instead of littering it with &ldquo;Merge branch &lsquo;main&rsquo;&rdquo; noise.</p>
+</span></span><span class="line"><span class="cl">git config --list</span></span></code></pre></div>
+</div>
+<p>Setting <code>pull.rebase true</code> is opinionated but worth it: it keeps history linear instead of littering it with &ldquo;Merge branch &lsquo;main&rsquo;&rdquo; noise.</p>
 <h2 id="the-daily-loop">
   The Daily Loop
   <a class="heading-link" href="#the-daily-loop">
@@ -211,7 +232,12 @@
   </a>
 </h2>
 <p>Ninety percent of days look like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git status                  <span class="c1"># what&#39;s changed?</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git status                  <span class="c1"># what&#39;s changed?</span>
 </span></span><span class="line"><span class="cl">git pull                    <span class="c1"># get the latest</span>
 </span></span><span class="line"><span class="cl">git checkout -b feat/login  <span class="c1"># branch for the work</span>
 </span></span><span class="line"><span class="cl">
@@ -219,15 +245,21 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">git add -p                  <span class="c1"># stage hunks interactively</span>
 </span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;Add login form validation&#34;</span>
-</span></span><span class="line"><span class="cl">git push -u origin feat/login
-</span></span></code></pre></div><p><code>git add -p</code> is underused. It walks you through each change hunk by hunk, so you commit exactly what you mean to — not the stray <code>console.log</code> you forgot to delete.</p>
+</span></span><span class="line"><span class="cl">git push -u origin feat/login</span></span></code></pre></div>
+</div>
+<p><code>git add -p</code> is underused. It walks you through each change hunk by hunk, so you commit exactly what you mean to — not the stray <code>console.log</code> you forgot to delete.</p>
 <h2 id="staging--committing">
   Staging &amp; Committing
   <a class="heading-link" href="#staging--committing">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add file.js             <span class="c1"># stage one file</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add file.js             <span class="c1"># stage one file</span>
 </span></span><span class="line"><span class="cl">git add .                   <span class="c1"># stage everything in current dir</span>
 </span></span><span class="line"><span class="cl">git add -p                  <span class="c1"># stage interactively, hunk by hunk</span>
 </span></span><span class="line"><span class="cl">git restore --staged file.js  <span class="c1"># unstage (keep the edit)</span>
@@ -235,62 +267,93 @@
 </span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;Message&#34;</span>     <span class="c1"># commit staged changes</span>
 </span></span><span class="line"><span class="cl">git commit -am <span class="s2">&#34;Message&#34;</span>    <span class="c1"># stage tracked files + commit, one step</span>
 </span></span><span class="line"><span class="cl">git commit --amend          <span class="c1"># rewrite the last commit</span>
-</span></span><span class="line"><span class="cl">git commit --amend --no-edit  <span class="c1"># add to last commit, keep its message</span>
-</span></span></code></pre></div><p><code>--amend</code> is your friend for &ldquo;oops, forgot a file&rdquo; — but only <strong>before you push</strong>. Amending published history forces everyone else to deal with the rewrite.</p>
+</span></span><span class="line"><span class="cl">git commit --amend --no-edit  <span class="c1"># add to last commit, keep its message</span></span></span></code></pre></div>
+</div>
+<p><code>--amend</code> is your friend for &ldquo;oops, forgot a file&rdquo; — but only <strong>before you push</strong>. Amending published history forces everyone else to deal with the rewrite.</p>
 <h3 id="writing-a-good-message">
   Writing a Good Message
   <a class="heading-link" href="#writing-a-good-message">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<pre tabindex="0"><code>Add rate limiting to login endpoint
+<div class="code-block" data-lang="text">
+  <div class="code-block-bar">
+    <span class="code-block-lang">text</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code>Add rate limiting to login endpoint
 
 Brute-force attempts were unthrottled. Cap at 5 tries
-per IP per minute, returning 429 after that.
-</code></pre><p>Subject in the imperative (&ldquo;Add&rdquo;, not &ldquo;Added&rdquo;), under ~50 characters, then a blank line, then the <em>why</em>. The diff already shows the <em>what</em>.</p>
+per IP per minute, returning 429 after that.</code></pre>
+</div>
+<p>Subject in the imperative (&ldquo;Add&rdquo;, not &ldquo;Added&rdquo;), under ~50 characters, then a blank line, then the <em>why</em>. The diff already shows the <em>what</em>.</p>
 <h2 id="branching">
   Branching
   <a class="heading-link" href="#branching">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git branch                  <span class="c1"># list local branches</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git branch                  <span class="c1"># list local branches</span>
 </span></span><span class="line"><span class="cl">git branch -a               <span class="c1"># include remote branches</span>
 </span></span><span class="line"><span class="cl">git checkout -b feat/x      <span class="c1"># create and switch</span>
 </span></span><span class="line"><span class="cl">git switch feat/x           <span class="c1"># switch (modern, clearer)</span>
 </span></span><span class="line"><span class="cl">git switch -c feat/x        <span class="c1"># create and switch (modern)</span>
 </span></span><span class="line"><span class="cl">git branch -d feat/x        <span class="c1"># delete (safe — refuses if unmerged)</span>
 </span></span><span class="line"><span class="cl">git branch -D feat/x        <span class="c1"># delete (force)</span>
-</span></span><span class="line"><span class="cl">git branch -m old new       <span class="c1"># rename</span>
-</span></span></code></pre></div><p><code>switch</code> and <code>restore</code> are the modern split of the overloaded <code>checkout</code>. <code>switch</code> changes branches; <code>restore</code> changes files. Use them — they&rsquo;re harder to misfire.</p>
+</span></span><span class="line"><span class="cl">git branch -m old new       <span class="c1"># rename</span></span></span></code></pre></div>
+</div>
+<p><code>switch</code> and <code>restore</code> are the modern split of the overloaded <code>checkout</code>. <code>switch</code> changes branches; <code>restore</code> changes files. Use them — they&rsquo;re harder to misfire.</p>
 <h2 id="inspecting-history">
   Inspecting History
   <a class="heading-link" href="#inspecting-history">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git log --oneline --graph --all    <span class="c1"># the view I keep open</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git log --oneline --graph --all    <span class="c1"># the view I keep open</span>
 </span></span><span class="line"><span class="cl">git log -p file.js                 <span class="c1"># history of one file, with diffs</span>
 </span></span><span class="line"><span class="cl">git log --since<span class="o">=</span><span class="s2">&#34;2 weeks ago&#34;</span>
 </span></span><span class="line"><span class="cl">git show &lt;commit&gt;                  <span class="c1"># full detail of one commit</span>
 </span></span><span class="line"><span class="cl">git diff                           <span class="c1"># working dir vs staged</span>
 </span></span><span class="line"><span class="cl">git diff --staged                  <span class="c1"># staged vs last commit</span>
 </span></span><span class="line"><span class="cl">git diff main..feat/x              <span class="c1"># between two branches</span>
-</span></span><span class="line"><span class="cl">git blame file.js                  <span class="c1"># who last touched each line</span>
-</span></span></code></pre></div><p>Make an alias for that first one — you&rsquo;ll type it constantly:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global alias.lg <span class="s2">&#34;log --oneline --graph --all --decorate&#34;</span>
-</span></span></code></pre></div><h2 id="syncing-with-the-remote">
+</span></span><span class="line"><span class="cl">git blame file.js                  <span class="c1"># who last touched each line</span></span></span></code></pre></div>
+</div>
+<p>Make an alias for that first one — you&rsquo;ll type it constantly:</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global alias.lg <span class="s2">&#34;log --oneline --graph --all --decorate&#34;</span></span></span></code></pre></div>
+</div>
+<h2 id="syncing-with-the-remote">
   Syncing With the Remote
   <a class="heading-link" href="#syncing-with-the-remote">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git fetch                   <span class="c1"># download remote changes, don&#39;t apply</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git fetch                   <span class="c1"># download remote changes, don&#39;t apply</span>
 </span></span><span class="line"><span class="cl">git pull                    <span class="c1"># fetch + integrate into current branch</span>
 </span></span><span class="line"><span class="cl">git push                    <span class="c1"># upload commits</span>
 </span></span><span class="line"><span class="cl">git push -u origin feat/x   <span class="c1"># push and set upstream (first time)</span>
-</span></span><span class="line"><span class="cl">git push --force-with-lease <span class="c1"># safe force push after a rebase</span>
-</span></span></code></pre></div><p><strong>Never use plain <code>git push --force</code>.</strong> Use <code>--force-with-lease</code> instead: it refuses to push if someone else has added commits you haven&rsquo;t seen, so you can&rsquo;t silently clobber a teammate&rsquo;s work.</p>
+</span></span><span class="line"><span class="cl">git push --force-with-lease <span class="c1"># safe force push after a rebase</span></span></span></code></pre></div>
+</div>
+<p><strong>Never use plain <code>git push --force</code>.</strong> Use <code>--force-with-lease</code> instead: it refuses to push if someone else has added commits you haven&rsquo;t seen, so you can&rsquo;t silently clobber a teammate&rsquo;s work.</p>
 <h2 id="undoing-things">
   Undoing Things
   <a class="heading-link" href="#undoing-things">
@@ -298,7 +361,12 @@ per IP per minute, returning 429 after that.
   </a>
 </h2>
 <p>This is the part everyone fears. Most of it is reversible.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Discard uncommitted changes to a file</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Discard uncommitted changes to a file</span>
 </span></span><span class="line"><span class="cl">git restore file.js
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Unstage a file (keep the edit)</span>
@@ -314,8 +382,9 @@ per IP per minute, returning 429 after that.
 </span></span><span class="line"><span class="cl">git reset --hard HEAD~1
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Undo a commit by making a new, inverse commit (safe on shared history)</span>
-</span></span><span class="line"><span class="cl">git revert &lt;commit&gt;
-</span></span></code></pre></div><p>The rule of thumb: <strong><code>reset</code> rewrites history, <code>revert</code> adds to it.</strong> On a shared branch, always <code>revert</code>. <code>reset --hard</code> is the only one that throws work away — treat it with respect.</p>
+</span></span><span class="line"><span class="cl">git revert &lt;commit&gt;</span></span></code></pre></div>
+</div>
+<p>The rule of thumb: <strong><code>reset</code> rewrites history, <code>revert</code> adds to it.</strong> On a shared branch, always <code>revert</code>. <code>reset --hard</code> is the only one that throws work away — treat it with respect.</p>
 <h3 id="the-safety-net-reflog">
   The Safety Net: reflog
   <a class="heading-link" href="#the-safety-net-reflog">
@@ -323,10 +392,16 @@ per IP per minute, returning 429 after that.
   </a>
 </h3>
 <p>Even after a <code>reset --hard</code>, your commits aren&rsquo;t gone for ~30 days. <code>reflog</code> lists every position <code>HEAD</code> has been:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git reflog
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git reflog
 </span></span><span class="line"><span class="cl"><span class="c1"># pick the hash from before the mistake</span>
-</span></span><span class="line"><span class="cl">git reset --hard HEAD@<span class="o">{</span>2<span class="o">}</span>
-</span></span></code></pre></div><p>This has saved me more times than I&rsquo;ll admit. If you think you lost a commit, check the reflog before panicking.</p>
+</span></span><span class="line"><span class="cl">git reset --hard HEAD@<span class="o">{</span>2<span class="o">}</span></span></span></code></pre></div>
+</div>
+<p>This has saved me more times than I&rsquo;ll admit. If you think you lost a commit, check the reflog before panicking.</p>
 <h2 id="stashing">
   Stashing
   <a class="heading-link" href="#stashing">
@@ -334,13 +409,19 @@ per IP per minute, returning 429 after that.
   </a>
 </h2>
 <p>For when you need to switch context with half-finished work:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git stash                   <span class="c1"># shelve changes, clean working dir</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git stash                   <span class="c1"># shelve changes, clean working dir</span>
 </span></span><span class="line"><span class="cl">git stash -u                <span class="c1"># include untracked files</span>
 </span></span><span class="line"><span class="cl">git stash list              <span class="c1"># see your stashes</span>
 </span></span><span class="line"><span class="cl">git stash pop               <span class="c1"># reapply most recent, remove from stack</span>
 </span></span><span class="line"><span class="cl">git stash apply             <span class="c1"># reapply but keep in stack</span>
-</span></span><span class="line"><span class="cl">git stash drop              <span class="c1"># delete a stash</span>
-</span></span></code></pre></div><p>Stash is a quick drawer, not a filing cabinet. If something lives in a stash for more than a day, it should be a branch.</p>
+</span></span><span class="line"><span class="cl">git stash drop              <span class="c1"># delete a stash</span></span></span></code></pre></div>
+</div>
+<p>Stash is a quick drawer, not a filing cabinet. If something lives in a stash for more than a day, it should be a branch.</p>
 <h2 id="merge-vs-rebase">
   Merge vs Rebase
   <a class="heading-link" href="#merge-vs-rebase">
@@ -348,14 +429,20 @@ per IP per minute, returning 429 after that.
   </a>
 </h2>
 <p>Two ways to bring a branch up to date with <code>main</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Merge — preserves history exactly, adds a merge commit</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Merge — preserves history exactly, adds a merge commit</span>
 </span></span><span class="line"><span class="cl">git switch feat/x
 </span></span><span class="line"><span class="cl">git merge main
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Rebase — replays your commits on top of main, linear history</span>
 </span></span><span class="line"><span class="cl">git switch feat/x
-</span></span><span class="line"><span class="cl">git rebase main
-</span></span></code></pre></div><p><strong>Merge</strong> keeps a true record of what happened, at the cost of a tangled graph. <strong>Rebase</strong> gives you a clean straight line, at the cost of rewriting your commit hashes.</p>
+</span></span><span class="line"><span class="cl">git rebase main</span></span></code></pre></div>
+</div>
+<p><strong>Merge</strong> keeps a true record of what happened, at the cost of a tangled graph. <strong>Rebase</strong> gives you a clean straight line, at the cost of rewriting your commit hashes.</p>
 <p>My rule: <strong>rebase your own feature branch</strong> to keep it tidy before review; <strong>never rebase anything others have pulled.</strong> Rewriting shared history is how you ruin a Friday.</p>
 <h3 id="cleaning-up-before-review">
   Cleaning Up Before Review
@@ -364,13 +451,25 @@ per IP per minute, returning 429 after that.
   </a>
 </h3>
 <p>Interactive rebase lets you squash, reorder, and reword commits:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git rebase -i HEAD~4
-</span></span></code></pre></div><p>You get an editor with your last 4 commits:</p>
-<pre tabindex="0"><code>pick a1b2c3d Add login form
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git rebase -i HEAD~4</span></span></code></pre></div>
+</div>
+<p>You get an editor with your last 4 commits:</p>
+<div class="code-block" data-lang="text">
+  <div class="code-block-bar">
+    <span class="code-block-lang">text</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code>pick a1b2c3d Add login form
 squash e4f5g6h Fix typo
 squash h7i8j9k Fix another typo
-reword l0m1n2o Wire up validation
-</code></pre><p><code>squash</code> folds a commit into the one above it; <code>reword</code> lets you fix a message. Ship one clean commit instead of five messy ones.</p>
+reword l0m1n2o Wire up validation</code></pre>
+</div>
+<p><code>squash</code> folds a commit into the one above it; <code>reword</code> lets you fix a message. Ship one clean commit instead of five messy ones.</p>
 <h2 id="resolving-conflicts">
   Resolving Conflicts
   <a class="heading-link" href="#resolving-conflicts">
@@ -378,16 +477,28 @@ reword l0m1n2o Wire up validation
   </a>
 </h2>
 <p>A conflict isn&rsquo;t an error — it&rsquo;s Git asking you to make a decision it can&rsquo;t:</p>
-<pre tabindex="0"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+<div class="code-block" data-lang="text">
+  <div class="code-block-bar">
+    <span class="code-block-lang">text</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 const timeout = 3000;
 =======
 const timeout = 5000;
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; feat/x
-</code></pre><p>Edit the file to the version you want, delete the <code>&lt;&lt;&lt;</code>, <code>===</code>, <code>&gt;&gt;&gt;</code> markers, then:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add file.js             <span class="c1"># mark this conflict resolved</span>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feat/x</code></pre>
+</div>
+<p>Edit the file to the version you want, delete the <code>&lt;&lt;&lt;</code>, <code>===</code>, <code>&gt;&gt;&gt;</code> markers, then:</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add file.js             <span class="c1"># mark this conflict resolved</span>
 </span></span><span class="line"><span class="cl">git rebase --continue       <span class="c1"># or: git merge --continue</span>
-</span></span><span class="line"><span class="cl">git rebase --abort          <span class="c1"># bail out, back to where you started</span>
-</span></span></code></pre></div><p>When in doubt, <code>--abort</code> is always safe. It puts everything back.</p>
+</span></span><span class="line"><span class="cl">git rebase --abort          <span class="c1"># bail out, back to where you started</span></span></span></code></pre></div>
+</div>
+<p>When in doubt, <code>--abort</code> is always safe. It puts everything back.</p>
 <h2 id="a-team-feature-branch-workflow">
   A Team Feature-Branch Workflow
   <a class="heading-link" href="#a-team-feature-branch-workflow">
@@ -395,7 +506,12 @@ const timeout = 5000;
   </a>
 </h2>
 <p>The process I follow on real teams:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. Start fresh from main</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. Start fresh from main</span>
 </span></span><span class="line"><span class="cl">git switch main
 </span></span><span class="line"><span class="cl">git pull
 </span></span><span class="line"><span class="cl">
@@ -418,8 +534,9 @@ const timeout = 5000;
 </span></span><span class="line"><span class="cl"><span class="c1"># 7. After the PR merges, clean up</span>
 </span></span><span class="line"><span class="cl">git switch main
 </span></span><span class="line"><span class="cl">git pull
-</span></span><span class="line"><span class="cl">git branch -d feat/user-export
-</span></span></code></pre></div><p>Short-lived branches, small commits, rebase to stay current, squash before merge. The longer a branch lives, the worse the conflicts — keep them measured in days, not weeks.</p>
+</span></span><span class="line"><span class="cl">git branch -d feat/user-export</span></span></code></pre></div>
+</div>
+<p>Short-lived branches, small commits, rebase to stay current, squash before merge. The longer a branch lives, the worse the conflicts — keep them measured in days, not weeks.</p>
 <h2 id="common-gotchas">
   Common Gotchas
   <a class="heading-link" href="#common-gotchas">
@@ -437,7 +554,12 @@ const timeout = 5000;
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<pre tabindex="0"><code class="language-gitignore" data-lang="gitignore"># Dependencies
+<div class="code-block" data-lang="gitignore">
+  <div class="code-block-bar">
+    <span class="code-block-lang">gitignore</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-gitignore" data-lang="gitignore"># Dependencies
 node_modules/
 
 # Build output
@@ -450,8 +572,9 @@ public/
 
 # Editor &amp; OS cruft
 .vscode/
-.DS_Store
-</code></pre><p>Add it in the <em>first</em> commit. Untracking something later (<code>git rm --cached</code>) works, but the file still sits in history.</p>
+.DS_Store</code></pre>
+</div>
+<p>Add it in the <em>first</em> commit. Untracking something later (<code>git rm --cached</code>) works, but the file still sits in history.</p>
 <h2 id="the-cheat-sheet-condensed">
   The Cheat Sheet, Condensed
   <a class="heading-link" href="#the-cheat-sheet-condensed">
@@ -459,86 +582,86 @@ public/
   </a>
 </h2>
 <table>
-  <thead>
-      <tr>
-          <th>Task</th>
-          <th>Command</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Status</td>
-          <td><code>git status</code></td>
-      </tr>
-      <tr>
-          <td>Stage interactively</td>
-          <td><code>git add -p</code></td>
-      </tr>
-      <tr>
-          <td>Commit</td>
-          <td><code>git commit -m &quot;...&quot;</code></td>
-      </tr>
-      <tr>
-          <td>Fix last commit</td>
-          <td><code>git commit --amend</code></td>
-      </tr>
-      <tr>
-          <td>New branch</td>
-          <td><code>git switch -c feat/x</code></td>
-      </tr>
-      <tr>
-          <td>Switch branch</td>
-          <td><code>git switch main</code></td>
-      </tr>
-      <tr>
-          <td>Update from remote</td>
-          <td><code>git pull</code></td>
-      </tr>
-      <tr>
-          <td>Push first time</td>
-          <td><code>git push -u origin feat/x</code></td>
-      </tr>
-      <tr>
-          <td>Safe force push</td>
-          <td><code>git push --force-with-lease</code></td>
-      </tr>
-      <tr>
-          <td>Pretty history</td>
-          <td><code>git log --oneline --graph --all</code></td>
-      </tr>
-      <tr>
-          <td>Discard file edit</td>
-          <td><code>git restore file.js</code></td>
-      </tr>
-      <tr>
-          <td>Unstage file</td>
-          <td><code>git restore --staged file.js</code></td>
-      </tr>
-      <tr>
-          <td>Undo commit, keep work</td>
-          <td><code>git reset --soft HEAD~1</code></td>
-      </tr>
-      <tr>
-          <td>Undo a shared commit</td>
-          <td><code>git revert &lt;commit&gt;</code></td>
-      </tr>
-      <tr>
-          <td>Shelve work</td>
-          <td><code>git stash</code> / <code>git stash pop</code></td>
-      </tr>
-      <tr>
-          <td>Recover lost commit</td>
-          <td><code>git reflog</code></td>
-      </tr>
-      <tr>
-          <td>Rebase onto main</td>
-          <td><code>git rebase main</code></td>
-      </tr>
-      <tr>
-          <td>Clean up commits</td>
-          <td><code>git rebase -i HEAD~N</code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Task</th>
+					<th>Command</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Status</td>
+					<td><code>git status</code></td>
+			</tr>
+			<tr>
+					<td>Stage interactively</td>
+					<td><code>git add -p</code></td>
+			</tr>
+			<tr>
+					<td>Commit</td>
+					<td><code>git commit -m &quot;...&quot;</code></td>
+			</tr>
+			<tr>
+					<td>Fix last commit</td>
+					<td><code>git commit --amend</code></td>
+			</tr>
+			<tr>
+					<td>New branch</td>
+					<td><code>git switch -c feat/x</code></td>
+			</tr>
+			<tr>
+					<td>Switch branch</td>
+					<td><code>git switch main</code></td>
+			</tr>
+			<tr>
+					<td>Update from remote</td>
+					<td><code>git pull</code></td>
+			</tr>
+			<tr>
+					<td>Push first time</td>
+					<td><code>git push -u origin feat/x</code></td>
+			</tr>
+			<tr>
+					<td>Safe force push</td>
+					<td><code>git push --force-with-lease</code></td>
+			</tr>
+			<tr>
+					<td>Pretty history</td>
+					<td><code>git log --oneline --graph --all</code></td>
+			</tr>
+			<tr>
+					<td>Discard file edit</td>
+					<td><code>git restore file.js</code></td>
+			</tr>
+			<tr>
+					<td>Unstage file</td>
+					<td><code>git restore --staged file.js</code></td>
+			</tr>
+			<tr>
+					<td>Undo commit, keep work</td>
+					<td><code>git reset --soft HEAD~1</code></td>
+			</tr>
+			<tr>
+					<td>Undo a shared commit</td>
+					<td><code>git revert &lt;commit&gt;</code></td>
+			</tr>
+			<tr>
+					<td>Shelve work</td>
+					<td><code>git stash</code> / <code>git stash pop</code></td>
+			</tr>
+			<tr>
+					<td>Recover lost commit</td>
+					<td><code>git reflog</code></td>
+			</tr>
+			<tr>
+					<td>Rebase onto main</td>
+					<td><code>git rebase main</code></td>
+			</tr>
+			<tr>
+					<td>Clean up commits</td>
+					<td><code>git rebase -i HEAD~N</code></td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="closing-thought">
   Closing Thought

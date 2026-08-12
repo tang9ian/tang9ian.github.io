@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tools on Charles Tang&#39;s Personal Portfolio</title>
-    <link>https://tang9ian.github.io/categories/tools/</link>
-    <description>Recent content in Tools on Charles Tang&#39;s Personal Portfolio</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 21 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://tang9ian.github.io/categories/tools/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Git Workflow &amp; Cheat Sheet: A Practical Quick Reference</title>
-      <link>https://tang9ian.github.io/posts/git-cheat-sheet/</link>
-      <pubDate>Thu, 21 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tang9ian.github.io/posts/git-cheat-sheet/</guid>
-      <description>&lt;h1 id=&#34;git-workflow--cheat-sheet-a-practical-quick-reference&#34;&gt;&#xA;  Git Workflow &amp;amp; Cheat Sheet: A Practical Quick Reference&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#git-workflow--cheat-sheet-a-practical-quick-reference&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Git has a hundred subcommands, but daily work runs on maybe fifteen of them. This is a guide to the workflow I actually use — plus a cheat sheet of the commands worth keeping within reach. Not the internals, not the theory. The keystrokes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-mental-model&#34;&gt;&#xA;  The Mental Model&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#the-mental-model&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Git has three places a change can live, and almost every command moves work between them:&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Tools on Charles Tang&#39;s Personal Portfolio</title>
+		<link>https://tang9ian.github.io/categories/tools/</link>
+		<description>Recent content in Tools on Charles Tang&#39;s Personal Portfolio</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Thu, 21 May 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://tang9ian.github.io/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Git Workflow &amp; Cheat Sheet: A Practical Quick Reference</title>
+				<link>https://tang9ian.github.io/posts/git-cheat-sheet/</link>
+				<pubDate>Thu, 21 May 2026 00:00:00 +0000</pubDate>
+				<guid>https://tang9ian.github.io/posts/git-cheat-sheet/</guid>
+				<description>&lt;h1 id=&#34;git-workflow--cheat-sheet-a-practical-quick-reference&#34;&gt;&#xA;  Git Workflow &amp;amp; Cheat Sheet: A Practical Quick Reference&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#git-workflow--cheat-sheet-a-practical-quick-reference&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Git has a hundred subcommands, but daily work runs on maybe fifteen of them. This is a guide to the workflow I actually use — plus a cheat sheet of the commands worth keeping within reach. Not the internals, not the theory. The keystrokes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-mental-model&#34;&gt;&#xA;  The Mental Model&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#the-mental-model&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Git has three places a change can live, and almost every command moves work between them:&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

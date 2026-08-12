@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://tang9ian.github.io/zh-cn/categories/</loc>
-    <lastmod>2026-05-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-11T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
@@ -15,8 +15,21 @@
                 href="https://tang9ian.github.io/zh-cn/categories/"
                 />
   </url><url>
+    <loc>https://tang9ian.github.io/zh-cn/tags/cfml/</loc>
+    <lastmod>2026-08-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://tang9ian.github.io/tags/cfml/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://tang9ian.github.io/zh-cn/tags/cfml/"
+                />
+  </url><url>
     <loc>https://tang9ian.github.io/zh-cn/</loc>
-    <lastmod>2026-05-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-11T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
@@ -26,6 +39,149 @@
                 rel="alternate"
                 hreflang="zh-cn"
                 href="https://tang9ian.github.io/zh-cn/"
+                />
+  </url><url>
+    <loc>https://tang9ian.github.io/zh-cn/categories/devops/</loc>
+    <lastmod>2026-08-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://tang9ian.github.io/categories/devops/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://tang9ian.github.io/zh-cn/categories/devops/"
+                />
+  </url><url>
+    <loc>https://tang9ian.github.io/zh-cn/tags/docker/</loc>
+    <lastmod>2026-08-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://tang9ian.github.io/tags/docker/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://tang9ian.github.io/zh-cn/tags/docker/"
+                />
+  </url><url>
+    <loc>https://tang9ian.github.io/zh-cn/tags/kubernetes/</loc>
+    <lastmod>2026-08-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://tang9ian.github.io/tags/kubernetes/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://tang9ian.github.io/zh-cn/tags/kubernetes/"
+                />
+  </url><url>
+    <loc>https://tang9ian.github.io/zh-cn/tags/lucee/</loc>
+    <lastmod>2026-08-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://tang9ian.github.io/tags/lucee/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://tang9ian.github.io/zh-cn/tags/lucee/"
+                />
+  </url><url>
+    <loc>https://tang9ian.github.io/zh-cn/tags/macos/</loc>
+    <lastmod>2026-08-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://tang9ian.github.io/tags/macos/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://tang9ian.github.io/zh-cn/tags/macos/"
+                />
+  </url><url>
+    <loc>https://tang9ian.github.io/zh-cn/tags/minikube/</loc>
+    <lastmod>2026-08-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://tang9ian.github.io/tags/minikube/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://tang9ian.github.io/zh-cn/tags/minikube/"
+                />
+  </url><url>
+    <loc>https://tang9ian.github.io/zh-cn/tags/</loc>
+    <lastmod>2026-08-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://tang9ian.github.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://tang9ian.github.io/zh-cn/tags/"
+                />
+  </url><url>
+    <loc>https://tang9ian.github.io/zh-cn/posts/</loc>
+    <lastmod>2026-08-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://tang9ian.github.io/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://tang9ian.github.io/zh-cn/posts/"
+                />
+  </url><url>
+    <loc>https://tang9ian.github.io/zh-cn/posts/minikube-cfml-macos/</loc>
+    <lastmod>2026-08-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://tang9ian.github.io/posts/minikube-cfml-macos/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://tang9ian.github.io/zh-cn/posts/minikube-cfml-macos/"
+                />
+  </url><url>
+    <loc>https://tang9ian.github.io/zh-cn/tags/devops/</loc>
+    <lastmod>2026-06-19T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://tang9ian.github.io/tags/devops/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://tang9ian.github.io/zh-cn/tags/devops/"
+                />
+  </url><url>
+    <loc>https://tang9ian.github.io/zh-cn/posts/cfml-on-kubernetes/</loc>
+    <lastmod>2026-06-19T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://tang9ian.github.io/posts/cfml-on-kubernetes/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://tang9ian.github.io/zh-cn/posts/cfml-on-kubernetes/"
                 />
   </url><url>
     <loc>https://tang9ian.github.io/zh-cn/tags/git/</loc>
@@ -54,19 +210,6 @@
                 href="https://tang9ian.github.io/zh-cn/posts/git-cheat-sheet/"
                 />
   </url><url>
-    <loc>https://tang9ian.github.io/zh-cn/tags/</loc>
-    <lastmod>2026-05-21T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://tang9ian.github.io/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://tang9ian.github.io/zh-cn/tags/"
-                />
-  </url><url>
     <loc>https://tang9ian.github.io/zh-cn/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</loc>
     <lastmod>2026-05-21T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -78,19 +221,6 @@
                 rel="alternate"
                 hreflang="zh-cn"
                 href="https://tang9ian.github.io/zh-cn/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/"
-                />
-  </url><url>
-    <loc>https://tang9ian.github.io/zh-cn/posts/</loc>
-    <lastmod>2026-05-21T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://tang9ian.github.io/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://tang9ian.github.io/zh-cn/posts/"
                 />
   </url><url>
     <loc>https://tang9ian.github.io/zh-cn/categories/%E5%B7%A5%E5%85%B7/</loc>
@@ -184,19 +314,6 @@
                 href="https://tang9ian.github.io/zh-cn/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"
                 />
   </url><url>
-    <loc>https://tang9ian.github.io/zh-cn/tags/cfml/</loc>
-    <lastmod>2026-04-18T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://tang9ian.github.io/tags/cfml/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://tang9ian.github.io/zh-cn/tags/cfml/"
-                />
-  </url><url>
     <loc>https://tang9ian.github.io/zh-cn/posts/cfml-java-integration-guide/</loc>
     <lastmod>2026-04-18T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -234,19 +351,6 @@
                 rel="alternate"
                 hreflang="zh-cn"
                 href="https://tang9ian.github.io/zh-cn/tags/java/"
-                />
-  </url><url>
-    <loc>https://tang9ian.github.io/zh-cn/tags/lucee/</loc>
-    <lastmod>2026-04-18T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://tang9ian.github.io/tags/lucee/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://tang9ian.github.io/zh-cn/tags/lucee/"
                 />
   </url><url>
     <loc>https://tang9ian.github.io/zh-cn/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/</loc>

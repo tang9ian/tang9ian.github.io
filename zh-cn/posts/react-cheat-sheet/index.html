@@ -54,11 +54,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl0HPNiecjHem/PY0MiImBUDicklBhRPNsUklPYe2LiY6U68hiUy+CT1r9Hmyow0bPBnFGEISN9GhQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     
-    <link rel="stylesheet" href="/css/terminal-style.css">
+    
+    <link rel="stylesheet" href="/css/terminal-style.a321ddfd174a48092b016cdff3b5e4bb.css">
+    
 
     
-    <script src="/js/interactions.js" defer></script>
-    <script src="/js/terminal-cli.js" defer></script>
+    
+    
+    <script src="/js/interactions.ece460395208fe7350d61c75db4d6359.js" defer></script>
+    
+    
+    
+    <script src="/js/terminal-cli.b6df75736331a95fd2df02a12a54f1c7.js" defer></script>
+    
+    
 
     
 </head>
@@ -182,7 +191,12 @@
   </a>
 </h2>
 <p>现代 React 已经全面拥抱函数式。除非你在维护遗留代码或者写 Error Boundary，否则就别再写类组件了。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="c1">// 函数组件——默认写法
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="c1">// 函数组件——默认写法
 </span></span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">Welcome</span><span class="p">({</span> <span class="nx">name</span> <span class="p">})</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="nx">Hello</span><span class="p">,</span> <span class="p">{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">h1</span><span class="p">&gt;;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -190,8 +204,9 @@
 </span></span><span class="line"><span class="cl"><span class="c1">// 箭头函数写法——同样常见
 </span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">Welcome</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">name</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="nx">Hello</span><span class="p">,</span> <span class="p">{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">h1</span><span class="p">&gt;;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">Welcome</span><span class="p">;</span>
-</span></span></code></pre></div><p>组件就是一个接收 props、返回 JSX 的函数。整个心智模型就这么简单。</p>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">Welcome</span><span class="p">;</span></span></span></code></pre></div>
+</div>
+<p>组件就是一个接收 props、返回 JSX 的函数。整个心智模型就这么简单。</p>
 <h2 id="hooks逻辑的归宿">
   Hooks：逻辑的归宿
   <a class="heading-link" href="#hooks%e9%80%bb%e8%be%91%e7%9a%84%e5%bd%92%e5%ae%bf">
@@ -204,25 +219,37 @@
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 直接更新
 </span></span></span><span class="line"><span class="cl"><span class="nx">setCount</span><span class="p">(</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 函数式更新——当新状态依赖旧状态时使用
-</span></span></span><span class="line"><span class="cl"><span class="nx">setCount</span><span class="p">((</span><span class="nx">prev</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">prev</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-</span></span></code></pre></div><p>经验法则：如果新状态依赖旧状态，就用函数式更新，可以避免闭包陷阱带来的 bug。</p>
+</span></span></span><span class="line"><span class="cl"><span class="nx">setCount</span><span class="p">((</span><span class="nx">prev</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">prev</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span></span></span></code></pre></div>
+</div>
+<p>经验法则：如果新状态依赖旧状态，就用函数式更新，可以避免闭包陷阱带来的 bug。</p>
 <h3 id="useeffect--副作用">
   useEffect —— 副作用
   <a class="heading-link" href="#useeffect--%e5%89%af%e4%bd%9c%e7%94%a8">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="nx">tick</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span> <span class="c1">// 清理函数
-</span></span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="p">[</span><span class="nx">tick</span><span class="p">]);</span>
-</span></span></code></pre></div><p>依赖数组决定了 effect 何时重新执行：</p>
+</span></span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="p">[</span><span class="nx">tick</span><span class="p">]);</span></span></span></code></pre></div>
+</div>
+<p>依赖数组决定了 effect 何时重新执行：</p>
 <ul>
 <li><code>[]</code> —— 仅在挂载时执行一次</li>
 <li><code>[a, b]</code> —— 当 <code>a</code> 或 <code>b</code> 变化时执行</li>
@@ -234,33 +261,50 @@
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="p">[]);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="p">&lt;</span><span class="nt">input</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="p">/&gt;;</span>
-</span></span></code></pre></div><p><code>useRef</code> 不仅能引用 DOM，也很适合存放任何不应触发重渲染的可变值——定时器 ID、上一次的 props 等等。</p>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="p">&lt;</span><span class="nt">input</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="p">/&gt;;</span></span></span></code></pre></div>
+</div>
+<p><code>useRef</code> 不仅能引用 DOM，也很适合存放任何不应触发重渲染的可变值——定时器 ID、上一次的 props 等等。</p>
 <h3 id="usememo-和-usecallback--性能优化">
   useMemo 和 useCallback —— 性能优化
   <a class="heading-link" href="#usememo-%e5%92%8c-usecallback--%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="c1">// 缓存昂贵的计算
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="c1">// 缓存昂贵的计算
 </span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sorted</span> <span class="o">=</span> <span class="nx">useMemo</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">items</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="nx">compare</span><span class="p">),</span> <span class="p">[</span><span class="nx">items</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 缓存传给已 memo 化子组件的回调
-</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">handleClick</span> <span class="o">=</span> <span class="nx">useCallback</span><span class="p">((</span><span class="nx">id</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">deleteItem</span><span class="p">(</span><span class="nx">id</span><span class="p">),</span> <span class="p">[</span><span class="nx">deleteItem</span><span class="p">]);</span>
-</span></span></code></pre></div><p>不要无脑滥用这两个 Hook。只有在你测出了真实的性能问题，或者要把函数/对象传给 <code>React.memo</code> 包装过的组件时，才需要它们。</p>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">handleClick</span> <span class="o">=</span> <span class="nx">useCallback</span><span class="p">((</span><span class="nx">id</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">deleteItem</span><span class="p">(</span><span class="nx">id</span><span class="p">),</span> <span class="p">[</span><span class="nx">deleteItem</span><span class="p">]);</span></span></span></code></pre></div>
+</div>
+<p>不要无脑滥用这两个 Hook。只有在你测出了真实的性能问题，或者要把函数/对象传给 <code>React.memo</code> 包装过的组件时，才需要它们。</p>
 <h3 id="usecontext--摆脱-props-透传">
   useContext —— 摆脱 Props 透传
   <a class="heading-link" href="#usecontext--%e6%91%86%e8%84%b1-props-%e9%80%8f%e4%bc%a0">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">ThemeContext</span> <span class="o">=</span> <span class="nx">createContext</span><span class="p">(</span><span class="s2">&#34;light&#34;</span><span class="p">);</span>
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">ThemeContext</span> <span class="o">=</span> <span class="nx">createContext</span><span class="p">(</span><span class="s2">&#34;light&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span>
@@ -273,14 +317,20 @@
 </span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">Toolbar</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">theme</span> <span class="o">=</span> <span class="nx">useContext</span><span class="p">(</span><span class="nx">ThemeContext</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="p">{</span><span class="nx">theme</span><span class="p">}&gt;...&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="usereducer--复杂状态">
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+</div>
+<h3 id="usereducer--复杂状态">
   useReducer —— 复杂状态
   <a class="heading-link" href="#usereducer--%e5%a4%8d%e6%9d%82%e7%8a%b6%e6%80%81">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">reducer</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">reducer</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s2">&#34;increment&#34;</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="p">{</span> <span class="nx">count</span><span class="o">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">};</span>
@@ -292,8 +342,9 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="p">[</span><span class="nx">state</span><span class="p">,</span> <span class="nx">dispatch</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useReducer</span><span class="p">(</span><span class="nx">reducer</span><span class="p">,</span> <span class="p">{</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">0</span> <span class="p">});</span>
-</span></span><span class="line"><span class="cl"><span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s2">&#34;increment&#34;</span> <span class="p">});</span>
-</span></span></code></pre></div><p>当状态转换变得复杂、或者多个相关值会一起变化时，就该考虑 <code>useReducer</code>。</p>
+</span></span><span class="line"><span class="cl"><span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s2">&#34;increment&#34;</span> <span class="p">});</span></span></span></code></pre></div>
+</div>
+<p>当状态转换变得复杂、或者多个相关值会一起变化时，就该考虑 <code>useReducer</code>。</p>
 <h2 id="每天都会用到的-jsx-模式">
   每天都会用到的 JSX 模式
   <a class="heading-link" href="#%e6%af%8f%e5%a4%a9%e9%83%bd%e4%bc%9a%e7%94%a8%e5%88%b0%e7%9a%84-jsx-%e6%a8%a1%e5%bc%8f">
@@ -306,7 +357,12 @@
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">{</span>
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">isLoggedIn</span> <span class="o">&amp;&amp;</span> <span class="p">&lt;</span><span class="nt">Dashboard</span> <span class="p">/&gt;;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -314,41 +370,65 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">user</span><span class="o">?</span><span class="p">.</span><span class="nx">name</span> <span class="o">??</span> <span class="s2">&#34;游客&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="列表渲染">
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+</div>
+<h3 id="列表渲染">
   列表渲染
   <a class="heading-link" href="#%e5%88%97%e8%a1%a8%e6%b8%b2%e6%9f%93">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">{</span>
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">todos</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">todo</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">&lt;</span><span class="nt">li</span> <span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">id</span><span class="p">}&gt;{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">text</span><span class="p">}&lt;/</span><span class="nt">li</span><span class="p">&gt;);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p><strong>永远</strong>要用稳定的 <code>key</code>。除非列表永不重新排序，否则不要拿数组下标当 key。</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+</div>
+<p><strong>永远</strong>要用稳定的 <code>key</code>。除非列表永不重新排序，否则不要拿数组下标当 key。</p>
 <h3 id="props-展开">
   Props 展开
   <a class="heading-link" href="#props-%e5%b1%95%e5%bc%80">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">Input</span> <span class="p">{</span><span class="na">...commonProps</span><span class="p">}</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">value</span><span class="p">}</span> <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">onChange</span><span class="p">}</span> <span class="p">/&gt;</span>
-</span></span></code></pre></div><h3 id="fragment">
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">Input</span> <span class="p">{</span><span class="na">...commonProps</span><span class="p">}</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">value</span><span class="p">}</span> <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">onChange</span><span class="p">}</span> <span class="p">/&gt;</span></span></span></code></pre></div>
+</div>
+<h3 id="fragment">
   Fragment
   <a class="heading-link" href="#fragment">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">&lt;&gt;</span>
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">&lt;&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">Header</span> <span class="p">/&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">Main</span> <span class="p">/&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/&gt;</span>
-</span></span></code></pre></div><h2 id="受控表单">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/&gt;</span></span></span></code></pre></div>
+</div>
+<h2 id="受控表单">
   受控表单
   <a class="heading-link" href="#%e5%8f%97%e6%8e%a7%e8%a1%a8%e5%8d%95">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">LoginForm</span><span class="p">()</span> <span class="p">{</span>
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">LoginForm</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">email</span><span class="p">,</span> <span class="nx">setEmail</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">handleSubmit</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -366,8 +446,9 @@
 </span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span><span class="p">&gt;</span><span class="nx">登录</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>三条铁律：<code>value</code> 绑定到状态、<code>onChange</code> 更新状态、<code>onSubmit</code> 里调 <code>preventDefault</code>。</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+</div>
+<p>三条铁律：<code>value</code> 绑定到状态、<code>onChange</code> 更新状态、<code>onSubmit</code> 里调 <code>preventDefault</code>。</p>
 <h2 id="自定义-hook复用利器">
   自定义 Hook：复用利器
   <a class="heading-link" href="#%e8%87%aa%e5%ae%9a%e4%b9%89-hook%e5%a4%8d%e7%94%a8%e5%88%a9%e5%99%a8">
@@ -375,7 +456,12 @@
   </a>
 </h2>
 <p>任何以 <code>use</code> 开头、并且内部调用了其他 Hook 的函数，都是自定义 Hook。要抽取的是<strong>逻辑</strong>，不是 JSX。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">useFetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">useFetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">data</span><span class="p">,</span> <span class="nx">setData</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">loading</span><span class="p">,</span> <span class="nx">setLoading</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
@@ -395,15 +481,21 @@
 </span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="p">[</span><span class="nx">url</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">loading</span> <span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>那个 <code>cancelled</code> 标志能避免组件卸载后还去调用 <code>setState</code>——这是一个常见但隐蔽的 bug。</p>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+</div>
+<p>那个 <code>cancelled</code> 标志能避免组件卸载后还去调用 <code>setState</code>——这是一个常见但隐蔽的 bug。</p>
 <h2 id="性能工具">
   性能工具
   <a class="heading-link" href="#%e6%80%a7%e8%83%bd%e5%b7%a5%e5%85%b7">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="c1">// 当 props 浅相等时跳过重渲染
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="c1">// 当 props 浅相等时跳过重渲染
 </span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">Card</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">memo</span><span class="p">(</span><span class="kd">function</span> <span class="nx">Card</span><span class="p">({</span> <span class="nx">title</span> <span class="p">})</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="nx">title</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;;</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
@@ -413,14 +505,20 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">Suspense</span> <span class="na">fallback</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Spinner</span> <span class="p">/&gt;}&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">Editor</span> <span class="p">/&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">Suspense</span><span class="p">&gt;;</span>
-</span></span></code></pre></div><h2 id="react-router-v6-路由">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">Suspense</span><span class="p">&gt;;</span></span></span></code></pre></div>
+</div>
+<h2 id="react-router-v6-路由">
   React Router v6 路由
   <a class="heading-link" href="#react-router-v6-%e8%b7%af%e7%94%b1">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span>
+<div class="code-block" data-lang="jsx">
+  <div class="code-block-bar">
+    <span class="code-block-lang">jsx</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">BrowserRouter</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">Routes</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">Route</span><span class="p">,</span>
@@ -444,8 +542,9 @@
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span> <span class="nx">id</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useParams</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">navigate</span> <span class="o">=</span> <span class="nx">useNavigate</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="nx">navigate</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">)}&gt;</span><span class="nx">返回</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="常见坑">
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+</div>
+<h2 id="常见坑">
   常见坑
   <a class="heading-link" href="#%e5%b8%b8%e8%a7%81%e5%9d%91">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
@@ -461,14 +560,20 @@
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<pre tabindex="0"><code>src/
+<div class="code-block" data-lang="text">
+  <div class="code-block-bar">
+    <span class="code-block-lang">text</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <pre tabindex="0"><code>src/
   components/    # 通用可复用 UI
   pages/         # 路由级页面组件
   hooks/         # 自定义 Hook
   contexts/      # Context Provider
   api/           # 网络请求层
-  utils/         # 纯函数工具
-</code></pre><p>具体起什么名字其实不重要，关键是选一种结构、然后<strong>坚持下去</strong>。</p>
+  utils/         # 纯函数工具</code></pre>
+</div>
+<p>具体起什么名字其实不重要，关键是选一种结构、然后<strong>坚持下去</strong>。</p>
 <h2 id="写在最后">
   写在最后
   <a class="heading-link" href="#%e5%86%99%e5%9c%a8%e6%9c%80%e5%90%8e">

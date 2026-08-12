@@ -1,54 +1,73 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Blog Posts on Charles Tang&#39;s Personal Portfolio</title>
-    <link>https://tang9ian.github.io/posts/</link>
-    <description>Recent content in Blog Posts on Charles Tang&#39;s Personal Portfolio</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 21 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://tang9ian.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Git Workflow &amp; Cheat Sheet: A Practical Quick Reference</title>
-      <link>https://tang9ian.github.io/posts/git-cheat-sheet/</link>
-      <pubDate>Thu, 21 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tang9ian.github.io/posts/git-cheat-sheet/</guid>
-      <description>&lt;h1 id=&#34;git-workflow--cheat-sheet-a-practical-quick-reference&#34;&gt;&#xA;  Git Workflow &amp;amp; Cheat Sheet: A Practical Quick Reference&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#git-workflow--cheat-sheet-a-practical-quick-reference&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Git has a hundred subcommands, but daily work runs on maybe fifteen of them. This is a guide to the workflow I actually use — plus a cheat sheet of the commands worth keeping within reach. Not the internals, not the theory. The keystrokes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-mental-model&#34;&gt;&#xA;  The Mental Model&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#the-mental-model&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Git has three places a change can live, and almost every command moves work between them:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>React Cheat Sheet: A Practical Quick Reference</title>
-      <link>https://tang9ian.github.io/posts/react-cheat-sheet/</link>
-      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tang9ian.github.io/posts/react-cheat-sheet/</guid>
-      <description>&lt;h1 id=&#34;react-cheat-sheet-a-practical-quick-reference&#34;&gt;&#xA;  React Cheat Sheet: A Practical Quick Reference&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#react-cheat-sheet-a-practical-quick-reference&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;After years of writing React, I&amp;rsquo;ve noticed that most daily work boils down to a handful of patterns repeated over and over. This cheat sheet captures the syntax and idioms I actually reach for — not the theory, but the code I type when building real features.&lt;/p&gt;&#xA;&lt;h2 id=&#34;components-the-atom-of-react&#34;&gt;&#xA;  Components: The Atom of React&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#components-the-atom-of-react&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Modern React is functional. Forget classes unless you&amp;rsquo;re maintaining legacy code or writing an Error Boundary.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>CFML and Java Integration: A Practical Guide to Interoperability</title>
-      <link>https://tang9ian.github.io/posts/cfml-java-integration-guide/</link>
-      <pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://tang9ian.github.io/posts/cfml-java-integration-guide/</guid>
-      <description>&lt;p&gt;ColdFusion runs on the JVM. This single fact is the most powerful and underutilized feature of the CFML ecosystem. Every Java class available to your JVM is directly callable from CFML code &amp;mdash; no REST calls, no message queues, no serialization overhead. Just direct, in-process method invocation.&lt;/p&gt;&#xA;&lt;p&gt;This guide covers practical patterns for integrating Java into CFML applications, from basic object creation to advanced patterns like implementing Java interfaces, working with third-party libraries, and building hybrid architectures.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>CFML Security: Common Vulnerabilities and How to Fix Them</title>
-      <link>https://tang9ian.github.io/posts/cfml-security-guide/</link>
-      <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://tang9ian.github.io/posts/cfml-security-guide/</guid>
-      <description>&lt;h1 id=&#34;cfml-security-common-vulnerabilities-and-how-to-fix-them&#34;&gt;&#xA;  CFML Security: Common Vulnerabilities and How to Fix Them&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#cfml-security-common-vulnerabilities-and-how-to-fix-them&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;ColdFusion (CFML) has been powering enterprise web applications for decades. Many legacy systems still run on it, and new CFML applications continue to be built with engines like Adobe ColdFusion and Lucee. However, CFML applications are frequently targeted by attackers — partly because many codebases were written before modern security practices became standard.&lt;/p&gt;&#xA;&lt;p&gt;This post covers the most critical CFML security vulnerabilities I&amp;rsquo;ve encountered, along with concrete defensive measures and code fixes.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Understanding Go Concurrency Patterns</title>
-      <link>https://tang9ian.github.io/posts/go-concurrency-patterns/</link>
-      <pubDate>Fri, 20 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://tang9ian.github.io/posts/go-concurrency-patterns/</guid>
-      <description>&lt;h1 id=&#34;understanding-go-concurrency-patterns&#34;&gt;&#xA;  Understanding Go Concurrency Patterns&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#understanding-go-concurrency-patterns&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Concurrency is one of Go&amp;rsquo;s strongest features. Unlike many languages where concurrent programming feels bolted on, Go was designed from the ground up with concurrency in mind. In this post, I&amp;rsquo;ll walk through the most useful concurrency patterns I use daily.&lt;/p&gt;&#xA;&lt;h2 id=&#34;goroutines-and-channels-the-basics&#34;&gt;&#xA;  Goroutines and Channels: The Basics&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#goroutines-and-channels-the-basics&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;A goroutine is a lightweight thread managed by the Go runtime. Channels are the pipes that connect them. Here&amp;rsquo;s the simplest example:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Welcome to My Blog</title>
-      <link>https://tang9ian.github.io/posts/welcome/</link>
-      <pubDate>Sat, 21 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://tang9ian.github.io/posts/welcome/</guid>
-      <description>&lt;h1 id=&#34;welcome-to-my-blog&#34;&gt;&#xA;  Welcome to My Blog!&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#welcome-to-my-blog&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Hello and welcome to my personal blog! I&amp;rsquo;m excited to share my journey as a full-stack developer with you.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-youll-find-here&#34;&gt;&#xA;  What You&amp;rsquo;ll Find Here&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#what-youll-find-here&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;In this blog, I&amp;rsquo;ll be sharing:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Technical tutorials&lt;/strong&gt; and how-to guides&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Project insights&lt;/strong&gt; from my development work&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Industry trends&lt;/strong&gt; and new technologies&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Personal experiences&lt;/strong&gt; in software development&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Tips and tricks&lt;/strong&gt; I&amp;rsquo;ve learned along the way&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;my-writing-philosophy&#34;&gt;&#xA;  My Writing Philosophy&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#my-writing-philosophy&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;I believe in making complex technical concepts accessible to everyone. Whether you&amp;rsquo;re a beginner just starting out or an experienced developer looking for new perspectives, I hope you&amp;rsquo;ll find something valuable here.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Blog Posts on Charles Tang&#39;s Personal Portfolio</title>
+		<link>https://tang9ian.github.io/posts/</link>
+		<description>Recent content in Blog Posts on Charles Tang&#39;s Personal Portfolio</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 11 Aug 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://tang9ian.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Installing minikube on macOS and Running CFML Apps Locally</title>
+				<link>https://tang9ian.github.io/posts/minikube-cfml-macos/</link>
+				<pubDate>Tue, 11 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>https://tang9ian.github.io/posts/minikube-cfml-macos/</guid>
+				<description>&lt;h1 id=&#34;installing-minikube-on-macos-and-running-cfml-apps-locally&#34;&gt;&#xA;  Installing minikube on macOS and Running CFML Apps Locally&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#installing-minikube-on-macos-and-running-cfml-apps-locally&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://tang9ian.github.io/posts/cfml-on-kubernetes/&#34; &gt;Running CFML Apps on Kubernetes&lt;/a&gt; assumes you already have a cluster. This guide is the step before that: getting a real Kubernetes cluster running on your Mac with minikube, and getting a Lucee/CFML app onto it — no registry, no cloud account, no YAML you can&amp;rsquo;t delete afterwards.&lt;/p&gt;&#xA;&lt;p&gt;Everything below was done on macOS with the Docker driver, which is the path that works identically on Intel and Apple Silicon.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Running CFML Apps on Kubernetes: A Hands-On Walkthrough</title>
+				<link>https://tang9ian.github.io/posts/cfml-on-kubernetes/</link>
+				<pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+				<guid>https://tang9ian.github.io/posts/cfml-on-kubernetes/</guid>
+				<description>&lt;h1 id=&#34;running-cfml-apps-on-kubernetes-a-hands-on-walkthrough&#34;&gt;&#xA;  Running CFML Apps on Kubernetes: A Hands-On Walkthrough&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#running-cfml-apps-on-kubernetes-a-hands-on-walkthrough&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;CFML (ColdFusion Markup Language) still powers a surprising amount of business software, and a lot of it is stuck on a single fat application server. This guide walks through the practical steps I take to containerize a CFML app — built on &lt;a href=&#34;https://www.lucee.org/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Lucee&lt;/a&gt;, the open-source CFML engine — and run it on Kubernetes, with the rough edges that actually bite you called out along the way.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Git Workflow &amp; Cheat Sheet: A Practical Quick Reference</title>
+				<link>https://tang9ian.github.io/posts/git-cheat-sheet/</link>
+				<pubDate>Thu, 21 May 2026 00:00:00 +0000</pubDate>
+				<guid>https://tang9ian.github.io/posts/git-cheat-sheet/</guid>
+				<description>&lt;h1 id=&#34;git-workflow--cheat-sheet-a-practical-quick-reference&#34;&gt;&#xA;  Git Workflow &amp;amp; Cheat Sheet: A Practical Quick Reference&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#git-workflow--cheat-sheet-a-practical-quick-reference&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Git has a hundred subcommands, but daily work runs on maybe fifteen of them. This is a guide to the workflow I actually use — plus a cheat sheet of the commands worth keeping within reach. Not the internals, not the theory. The keystrokes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-mental-model&#34;&gt;&#xA;  The Mental Model&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#the-mental-model&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Git has three places a change can live, and almost every command moves work between them:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>React Cheat Sheet: A Practical Quick Reference</title>
+				<link>https://tang9ian.github.io/posts/react-cheat-sheet/</link>
+				<pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+				<guid>https://tang9ian.github.io/posts/react-cheat-sheet/</guid>
+				<description>&lt;h1 id=&#34;react-cheat-sheet-a-practical-quick-reference&#34;&gt;&#xA;  React Cheat Sheet: A Practical Quick Reference&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#react-cheat-sheet-a-practical-quick-reference&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;After years of writing React, I&amp;rsquo;ve noticed that most daily work boils down to a handful of patterns repeated over and over. This cheat sheet captures the syntax and idioms I actually reach for — not the theory, but the code I type when building real features.&lt;/p&gt;&#xA;&lt;h2 id=&#34;components-the-atom-of-react&#34;&gt;&#xA;  Components: The Atom of React&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#components-the-atom-of-react&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Modern React is functional. Forget classes unless you&amp;rsquo;re maintaining legacy code or writing an Error Boundary.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>CFML and Java Integration: A Practical Guide to Interoperability</title>
+				<link>https://tang9ian.github.io/posts/cfml-java-integration-guide/</link>
+				<pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
+				<guid>https://tang9ian.github.io/posts/cfml-java-integration-guide/</guid>
+				<description>&lt;p&gt;ColdFusion runs on the JVM. This single fact is the most powerful and underutilized feature of the CFML ecosystem. Every Java class available to your JVM is directly callable from CFML code &amp;mdash; no REST calls, no message queues, no serialization overhead. Just direct, in-process method invocation.&lt;/p&gt;&#xA;&lt;p&gt;This guide covers practical patterns for integrating Java into CFML applications, from basic object creation to advanced patterns like implementing Java interfaces, working with third-party libraries, and building hybrid architectures.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>CFML Security: Common Vulnerabilities and How to Fix Them</title>
+				<link>https://tang9ian.github.io/posts/cfml-security-guide/</link>
+				<pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
+				<guid>https://tang9ian.github.io/posts/cfml-security-guide/</guid>
+				<description>&lt;h1 id=&#34;cfml-security-common-vulnerabilities-and-how-to-fix-them&#34;&gt;&#xA;  CFML Security: Common Vulnerabilities and How to Fix Them&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#cfml-security-common-vulnerabilities-and-how-to-fix-them&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;ColdFusion (CFML) has been powering enterprise web applications for decades. Many legacy systems still run on it, and new CFML applications continue to be built with engines like Adobe ColdFusion and Lucee. However, CFML applications are frequently targeted by attackers — partly because many codebases were written before modern security practices became standard.&lt;/p&gt;&#xA;&lt;p&gt;This post covers the most critical CFML security vulnerabilities I&amp;rsquo;ve encountered, along with concrete defensive measures and code fixes.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Understanding Go Concurrency Patterns</title>
+				<link>https://tang9ian.github.io/posts/go-concurrency-patterns/</link>
+				<pubDate>Fri, 20 Mar 2026 00:00:00 +0000</pubDate>
+				<guid>https://tang9ian.github.io/posts/go-concurrency-patterns/</guid>
+				<description>&lt;h1 id=&#34;understanding-go-concurrency-patterns&#34;&gt;&#xA;  Understanding Go Concurrency Patterns&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#understanding-go-concurrency-patterns&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Concurrency is one of Go&amp;rsquo;s strongest features. Unlike many languages where concurrent programming feels bolted on, Go was designed from the ground up with concurrency in mind. In this post, I&amp;rsquo;ll walk through the most useful concurrency patterns I use daily.&lt;/p&gt;&#xA;&lt;h2 id=&#34;goroutines-and-channels-the-basics&#34;&gt;&#xA;  Goroutines and Channels: The Basics&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#goroutines-and-channels-the-basics&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;A goroutine is a lightweight thread managed by the Go runtime. Channels are the pipes that connect them. Here&amp;rsquo;s the simplest example:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Welcome to My Blog</title>
+				<link>https://tang9ian.github.io/posts/welcome/</link>
+				<pubDate>Sat, 21 Dec 2024 00:00:00 +0000</pubDate>
+				<guid>https://tang9ian.github.io/posts/welcome/</guid>
+				<description>&lt;h1 id=&#34;welcome-to-my-blog&#34;&gt;&#xA;  Welcome to My Blog!&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#welcome-to-my-blog&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Hello and welcome to my personal blog! I&amp;rsquo;m excited to share my journey as a full-stack developer with you.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-youll-find-here&#34;&gt;&#xA;  What You&amp;rsquo;ll Find Here&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#what-youll-find-here&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;In this blog, I&amp;rsquo;ll be sharing:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Technical tutorials&lt;/strong&gt; and how-to guides&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Project insights&lt;/strong&gt; from my development work&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Industry trends&lt;/strong&gt; and new technologies&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Personal experiences&lt;/strong&gt; in software development&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Tips and tricks&lt;/strong&gt; I&amp;rsquo;ve learned along the way&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;my-writing-philosophy&#34;&gt;&#xA;  My Writing Philosophy&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#my-writing-philosophy&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;I believe in making complex technical concepts accessible to everyone. Whether you&amp;rsquo;re a beginner just starting out or an experienced developer looking for new perspectives, I hope you&amp;rsquo;ll find something valuable here.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

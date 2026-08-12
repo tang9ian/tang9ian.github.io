@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="zh-cn">
+
+    
+        <title>在 macOS 上安装 minikube 并本地运行 CFML 应用 · Charles Tang的个人页面</title>
+    
+
+    <meta name="description" content="手把手教程：在 macOS（Intel 与 Apple Silicon）上安装 minikube、启动适配 Lucee 的集群、免镜像仓库构建镜像、暴露服务，并搭建 CFML 的热编辑开发循环">
+    <meta name="keywords" content="blog,Web开发人员,个人项目">
+    <meta name="author" content="Charles Tang">
+    <link rel="canonical" href="https://tang9ian.github.io/zh-cn/posts/minikube-cfml-macos/">
+
+    
+    <meta property="og:title" content="在 macOS 上安装 minikube 并本地运行 CFML 应用">
+    <meta property="og:description" content="手把手教程：在 macOS（Intel 与 Apple Silicon）上安装 minikube、启动适配 Lucee 的集群、免镜像仓库构建镜像、暴露服务，并搭建 CFML 的热编辑开发循环">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tang9ian.github.io/zh-cn/posts/minikube-cfml-macos/">
+    
+    <meta property="og:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+    <meta property="og:site_name" content="Charles Tang的个人页面">
+    
+    <meta property="article:published_time" content="2026-08-11T00:00:00Z">
+    <meta property="article:author" content="Charles Tang">
+    
+
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="在 macOS 上安装 minikube 并本地运行 CFML 应用">
+    <meta name="twitter:description" content="手把手教程：在 macOS（Intel 与 Apple Silicon）上安装 minikube、启动适配 Lucee 的集群、免镜像仓库构建镜像、暴露服务，并搭建 CFML 的热编辑开发循环">
+    
+    <meta name="twitter:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+
+    
+    
+    
+    <link rel="alternate" hreflang="en" href="https://tang9ian.github.io/en/posts/minikube-cfml-macos/">
+    
+    <link rel="alternate" hreflang="zh-cn" href="https://tang9ian.github.io/zh-cn/posts/minikube-cfml-macos/">
+    
+    
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl0HPNiecjHem/PY0MiImBUDicklBhRPNsUklPYe2LiY6U68hiUy+CT1r9Hmyow0bPBnFGEISN9GhQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    
+    
+    <link rel="stylesheet" href="/css/terminal-style.a321ddfd174a48092b016cdff3b5e4bb.css">
+    
+
+    
+    
+    
+    <script src="/js/interactions.ece460395208fe7350d61c75db4d6359.js" defer></script>
+    
+    
+    
+    <script src="/js/terminal-cli.b6df75736331a95fd2df02a12a54f1c7.js" defer></script>
+    
+    
+
+    
+</head>
+
+<body>
+    
+    <div class="boot-screen" id="boot-screen"><pre class="boot-log" id="boot-log"></pre></div>
+    <script>
+        if (sessionStorage.getItem('booted') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.getElementById('boot-screen').classList.add('hidden');
+        }
+        if (sessionStorage.getItem('terminal-fullscreen') === 'true') {
+            document.body.classList.add('fullscreen');
+        }
+    </script>
+
+    
+    <div class="crt-overlay" aria-hidden="true"></div>
+
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons" aria-hidden="true">
+                <div class="terminal-button close"></div>
+                <div class="terminal-button minimize"></div>
+                <div class="terminal-button maximize" onclick="toggleFullscreen()" role="button" tabindex="0" aria-label="Toggle fullscreen" title="Fullscreen"></div>
+            </div>
+            <div class="terminal-title">charles@portfolio: 在 macOS 上安装 minikube 并本地运行 CFML 应用</div>
+        </div>
+
+        <div class="terminal-content">
+            <nav class="navigation" aria-label="Main navigation">
+    <div class="prompt">ls -la /home/charles/portfolio/</div>
+    <ul class="navigation-list">
+        
+            <li class="navigation-item">
+                <a href="/zh-cn/about/">关于我</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/zh-cn/posts/">博客</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/zh-cn/projects/">项目</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/zh-cn/contact/">联系方式</a>
+            </li>
+        
+
+        
+            
+                
+                    <li class="navigation-item">
+                        <a href="/posts/minikube-cfml-macos/" hreflang="en">English</a>
+                    </li>
+                
+            
+        
+    </ul>
+</nav>
+
+
+            <main id="main-content" class="content">
+                
+<div class="command-output">
+<div class="prompt">cat posts/minikube-cfml-macos.md</div>
+<article class="post">
+    <header class="post-header">
+        <h1>在 macOS 上安装 minikube 并本地运行 CFML 应用</h1>
+
+        
+            <div class="post-meta">
+                <span>
+                    <i class="fas fa-calendar" aria-hidden="true"></i>
+                    2026年8月11日
+                </span>
+
+                
+                    <span>
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        Charles Tang
+                    </span>
+                
+
+                
+                    <span>
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        4 分钟阅读
+                    </span>
+                
+            </div>
+        
+
+        
+            <div class="post-tags">
+                
+                    <span class="tag">minikube</span>
+                
+                    <span class="tag">Kubernetes</span>
+                
+                    <span class="tag">CFML</span>
+                
+                    <span class="tag">Lucee</span>
+                
+                    <span class="tag">macOS</span>
+                
+                    <span class="tag">Docker</span>
+                
+            </div>
+        
+    </header>
+
+    <div class="post-content">
+        <h1 id="在-macos-上安装-minikube-并本地运行-cfml-应用">
+  在 macOS 上安装 minikube 并本地运行 CFML 应用
+  <a class="heading-link" href="#%e5%9c%a8-macos-%e4%b8%8a%e5%ae%89%e8%a3%85-minikube-%e5%b9%b6%e6%9c%ac%e5%9c%b0%e8%bf%90%e8%a1%8c-cfml-%e5%ba%94%e7%94%a8">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h1>
+<p><a href="/zh-cn/posts/cfml-on-kubernetes/" >《在 Kubernetes 上运行 CFML 应用》</a> 默认你手里已经有一个集群。这篇讲的是它的前一步：用 minikube 在自己的 Mac 上跑起一个真实的 Kubernetes 集群，并把 Lucee/CFML 应用部署上去——不需要镜像仓库，不需要云账号，也不会留下删不掉的 YAML。</p>
+<p>下面所有操作都在 macOS 上使用 Docker 驱动完成，这条路径在 Intel 和 Apple Silicon 上表现完全一致。</p>
+<h2 id="第零步前置条件">
+  第零步：前置条件
+  <a class="heading-link" href="#%e7%ac%ac%e9%9b%b6%e6%ad%a5%e5%89%8d%e7%bd%ae%e6%9d%a1%e4%bb%b6">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>你需要 Homebrew 和一个容器运行时。Docker Desktop 最省事；<a href="https://github.com/abiosoft/colima"  class="external-link" target="_blank" rel="noopener">Colima</a> 也可以，而且更轻量。</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Homebrew——已装可跳过</span>
+</span></span><span class="line"><span class="cl">/bin/bash -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 容器运行时——二选一</span>
+</span></span><span class="line"><span class="cl">brew install --cask docker      <span class="c1"># Docker Desktop，装完从&#34;应用程序&#34;里先启动一次</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 或</span>
+</span></span><span class="line"><span class="cl">brew install colima <span class="o">&amp;&amp;</span> colima start --cpus <span class="m">4</span> --memory <span class="m">8</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">docker ps                       <span class="c1"># 这条命令必须成功，才能继续</span></span></span></code></pre></div>
+</div>
+<p><strong>给运行时留足资源。</strong> Lucee 是跑在 Tomcat 里的 JVM 应用，Docker Desktop 默认的 2 GB 会让 Pod 以各种&quot;看起来像 Kubernetes 问题、其实不是&quot;的方式挂掉。在 Docker Desktop 里：<em>Settings → Resources</em>，至少给 4 CPU 和 8 GB 内存。</p>
+<h2 id="第一步安装-minikube-与-kubectl">
+  第一步：安装 minikube 与 kubectl
+  <a class="heading-link" href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e5%ae%89%e8%a3%85-minikube-%e4%b8%8e-kubectl">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install minikube
+</span></span><span class="line"><span class="cl">brew install kubectl
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">minikube version
+</span></span><span class="line"><span class="cl">kubectl version --client</span></span></code></pre></div>
+</div>
+<p>两者都是单个二进制文件，用 Homebrew 只是图方便。在 Apple Silicon 上，<code>brew install minikube</code> 会自动装 arm64 版本。</p>
+<h2 id="第二步启动集群">
+  第二步：启动集群
+  <a class="heading-link" href="#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e5%90%af%e5%8a%a8%e9%9b%86%e7%be%a4">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">minikube start --driver<span class="o">=</span>docker --cpus<span class="o">=</span><span class="m">4</span> --memory<span class="o">=</span><span class="m">8192</span> --disk-size<span class="o">=</span>40g</span></span></code></pre></div>
+</div>
+<p>关于这几个参数：</p>
+<ul>
+<li><strong><code>--driver=docker</code></strong>——Docker 在运行时它就是默认值，也是我在 Apple Silicon 上唯一推荐的驱动。老的 <code>hyperkit</code> 驱动只支持 Intel 且已废弃；<code>qemu</code> 虽然能跑 arm64，但网络要额外配 <code>socket_vmnet</code>，在这个场景里没有任何收益。</li>
+<li><strong><code>--memory=8192</code></strong>——这是集群的预算，必须小于你给 Docker 的额度。一个 Lucee Pod 舒服跑起来要 ~1 GB；两个副本加一个本地 Postgres 再加系统组件，4 GB 很快就满了。</li>
+<li><strong><code>--disk-size</code></strong>——Lucee 镜像约 600 MB。等你构建过十几个 tag，默认的 20 GB 会比想象中更快耗尽。</li>
+</ul>
+<p>验证：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl get nodes
+</span></span><span class="line"><span class="cl"><span class="c1"># NAME       STATUS   ROLES           AGE   VERSION</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># minikube   Ready    control-plane   45s   v1.31.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">minikube status</span></span></code></pre></div>
+</div>
+<p><code>minikube start</code> 会顺手把 <code>kubectl</code> 的 context 指向新集群，所以 <code>kubectl</code> 命令可以直接用。如果你同时管着多个集群：<code>kubectl config use-context minikube</code>。</p>
+<p>一些后面会用到的插件，现在就开好：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">minikube addons <span class="nb">enable</span> ingress          <span class="c1"># nginx ingress 控制器</span>
+</span></span><span class="line"><span class="cl">minikube addons <span class="nb">enable</span> metrics-server   <span class="c1"># kubectl top、HPA</span></span></span></code></pre></div>
+</div>
+<h2 id="第三步把镜像构建在集群内部">
+  第三步：把镜像构建在集群<strong>内部</strong>
+  <a class="heading-link" href="#%e7%ac%ac%e4%b8%89%e6%ad%a5%e6%8a%8a%e9%95%9c%e5%83%8f%e6%9e%84%e5%bb%ba%e5%9c%a8%e9%9b%86%e7%be%a4%e5%86%85%e9%83%a8">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>这是 macOS 上最省时间的一个技巧。minikube 自带一套独立于你 Mac 的容器运行时。你在本地构建的镜像它是看不见的，Pod 会以 <code>ErrImagePull</code> 失败——哪怕 <code>docker images</code> 明明列出了那个镜像。</p>
+<p>解决办法是把当前 shell 的 Docker 客户端指向 minikube 的守护进程，在那里构建：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">eval</span> <span class="k">$(</span>minikube docker-env<span class="k">)</span>     <span class="c1"># 这个 shell 从此对接 minikube 的 Docker</span>
+</span></span><span class="line"><span class="cl">docker build -t cfml-app:dev .
+</span></span><span class="line"><span class="cl">docker images <span class="p">|</span> grep cfml-app   <span class="c1"># 集群内部可见</span></span></span></code></pre></div>
+</div>
+<p><code>eval</code> 只对当前 shell 生效。新开一个终端标签页就又回到了 Mac 本地的 Docker——这是&quot;重新构建了却不生效&quot;的常见原因。</p>
+<p>另一种做法，适用于所有驱动，也不会&quot;劫持&quot;你的 shell：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build -t cfml-app:dev .
+</span></span><span class="line"><span class="cl">minikube image load cfml-app:dev</span></span></code></pre></div>
+</div>
+<p>它更慢（要把镜像拷进集群），但足够显式。我迭代时用 <code>docker-env</code>，写脚本时用 <code>image load</code>。</p>
+<p>不管用哪种，<strong>都必须在清单里设置 <code>imagePullPolicy: Never</code></strong>，否则 Kubernetes 会跑去 Docker Hub 拉 <code>cfml-app:dev</code>，然后失败。</p>
+<p><code>Dockerfile</code> 本身没什么特别的：</p>
+<div class="code-block" data-lang="dockerfile">
+  <div class="code-block-bar">
+    <span class="code-block-lang">dockerfile</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="s">lucee/lucee:6.0-tomcat</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">COPY</span> ./webroot /var/www<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">LUCEE_ADMIN_ENABLED</span><span class="o">=</span><span class="s2">&#34;false&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 让 JVM 按容器限额分配堆，而不是去猜宿主机的内存</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">JAVA_TOOL_OPTIONS</span><span class="o">=</span><span class="s2">&#34;-XX:MaxRAMPercentage=75&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">EXPOSE</span><span class="w"> </span><span class="s">8888</span></span></span></code></pre></div>
+</div>
+<h2 id="第四步部署应用">
+  第四步：部署应用
+  <a class="heading-link" href="#%e7%ac%ac%e5%9b%9b%e6%ad%a5%e9%83%a8%e7%bd%b2%e5%ba%94%e7%94%a8">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>一个文件 <code>k8s/app.yaml</code>，装下 Deployment 和一个 NodePort Service：</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app:dev</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w"> </span><span class="c"># 本地构建镜像的关键</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;768Mi&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;250m&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;1536Mi&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">readinessProbe</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">httpGet</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/health.cfm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="m">25</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">livenessProbe</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">httpGet</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/health.cfm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="m">60</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="m">15</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">NodePort</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span></span></span></code></pre></div>
+</div>
+<p>webroot 里的 <code>health.cfm</code> 一行就够：</p>
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;cfoutput&gt;OK&lt;/cfoutput&gt;</code></pre>
+</div>
+<p>应用并观察启动过程：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply -f k8s/app.yaml
+</span></span><span class="line"><span class="cl">kubectl rollout status deployment/cfml-app
+</span></span><span class="line"><span class="cl">kubectl logs -f deploy/cfml-app          <span class="c1"># Lucee 启动日志，首次约 30 秒</span></span></span></code></pre></div>
+</div>
+<p>第一次启动很慢——Lucee 要在首启时完成编译并写下自己的配置。上面 <code>initialDelaySeconds</code> 给得宽松正是为此；调紧了你会得到一串看起来像应用 bug 的崩溃重启循环。</p>
+<h2 id="第五步从浏览器访问应用">
+  第五步：从浏览器访问应用
+  <a class="heading-link" href="#%e7%ac%ac%e4%ba%94%e6%ad%a5%e4%bb%8e%e6%b5%8f%e8%a7%88%e5%99%a8%e8%ae%bf%e9%97%ae%e5%ba%94%e7%94%a8">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>这里是 macOS 与 Linux 的分水岭。在 Docker 驱动下，minikube 节点的 IP <strong>在 macOS 上是不可路由的</strong>——<code>minikube ip</code> 返回的地址你根本 curl 不通。你需要一条隧道。</p>
+<p>快捷方式：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">minikube service cfml-app --url
+</span></span><span class="line"><span class="cl"><span class="c1"># http://127.0.0.1:52194</span></span></span></code></pre></div>
+</div>
+<p>在 macOS 上这条命令会<strong>驻留前台</strong>来维持隧道。关掉它，URL 就失效了。让它单开一个终端标签页跑着。</p>
+<p>日常更简单、也更可预期的做法——直接端口转发：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl port-forward svc/cfml-app 8888:80
+</span></span><span class="line"><span class="cl"><span class="c1"># http://localhost:8888</span></span></span></code></pre></div>
+</div>
+<h3 id="如果你想要一个域名ingress">
+  如果你想要一个域名：Ingress
+  <a class="heading-link" href="#%e5%a6%82%e6%9e%9c%e4%bd%a0%e6%83%b3%e8%a6%81%e4%b8%80%e4%b8%aa%e5%9f%9f%e5%90%8dingress">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h3>
+<p>在启用了 <code>ingress</code> 插件的前提下：</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">networking.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Ingress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">nginx.ingress.kubernetes.io/proxy-read-timeout</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;120&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ingressClassName</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">cfml.local</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">http</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">pathType</span><span class="p">:</span><span class="w"> </span><span class="l">Prefix</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">backend</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">service</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">port</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                  </span><span class="nt">number</span><span class="p">:</span><span class="w"> </span><span class="m">80</span></span></span></code></pre></div>
+</div>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply -f k8s/ingress.yaml
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo minikube tunnel        <span class="c1"># 保持运行；会要求输入密码</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;127.0.0.1 cfml.local&#34;</span> <span class="p">|</span> sudo tee -a /etc/hosts
+</span></span><span class="line"><span class="cl"><span class="c1"># http://cfml.local</span></span></span></code></pre></div>
+</div>
+<p>在 Docker 驱动下，是 <code>minikube tunnel</code> 把 ingress 映射到 <code>127.0.0.1</code>，所以 <code>cfml.local</code> 要指向 localhost，<strong>而不是</strong> <code>minikube ip</code>。搞反这一点，就是&quot;我的 ingress 在 Mac 上不通&quot;最常见的原因。</p>
+<h2 id="第六步搭一个热编辑开发循环">
+  第六步：搭一个热编辑开发循环
+  <a class="heading-link" href="#%e7%ac%ac%e5%85%ad%e6%ad%a5%e6%90%ad%e4%b8%80%e4%b8%aa%e7%83%ad%e7%bc%96%e8%be%91%e5%bc%80%e5%8f%91%e5%be%aa%e7%8e%af">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>每改一个 <code>.cfm</code> 就重建一次镜像太痛苦了。改成把 Mac 上的 webroot 挂载进集群：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">minikube mount <span class="s2">&#34;</span><span class="nv">$PWD</span><span class="s2">/webroot:/mnt/webroot&#34;</span>     <span class="c1"># 前台运行，保持不关</span></span></span></code></pre></div>
+</div>
+<p>然后让 Pod 指向这个挂载点：</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">          </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">webroot</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/var/www</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">webroot</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">hostPath</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/mnt/webroot</span></span></span></code></pre></div>
+</div>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl rollout restart deployment/cfml-app</span></span></code></pre></div>
+</div>
+<p>现在在编辑器里改 <code>.cfm</code> 文件，刷新页面就能看到效果——Lucee 会在请求时重新编译变更过的模板。这套只留给开发环境：挂载意味着运行时实时依赖你的笔记本，而镜像的意义恰恰在于生产环境自带全部代码。</p>
+<p>注意 <code>minikube mount</code> 是第三个前台进程，加上隧道一共三个。三个终端标签页就是 macOS 上 minikube 的常态工作布局。</p>
+<h2 id="第七步给本地开发配一个数据库">
+  第七步：给本地开发配一个数据库
+  <a class="heading-link" href="#%e7%ac%ac%e4%b8%83%e6%ad%a5%e7%bb%99%e6%9c%ac%e5%9c%b0%e5%bc%80%e5%8f%91%e9%85%8d%e4%b8%80%e4%b8%aa%e6%95%b0%e6%8d%ae%e5%ba%93">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>CFML 应用基本都需要数据源。把它跑在集群里而不是 Mac 上，这样连接串的形态才和生产一致：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl create secret generic cfml-db <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --from-literal<span class="o">=</span><span class="nv">DB_USER</span><span class="o">=</span>app <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --from-literal<span class="o">=</span><span class="nv">DB_PASSWORD</span><span class="o">=</span>devpassword
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">kubectl create deployment postgres --image<span class="o">=</span>postgres:16
+</span></span><span class="line"><span class="cl">kubectl <span class="nb">set</span> env deployment/postgres <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>devpassword <span class="nv">POSTGRES_USER</span><span class="o">=</span>app <span class="nv">POSTGRES_DB</span><span class="o">=</span>appdb
+</span></span><span class="line"><span class="cl">kubectl expose deployment postgres --port<span class="o">=</span><span class="m">5432</span></span></span></code></pre></div>
+</div>
+<p>把凭据注入应用 Pod：</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">env</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DB_HOST</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;postgres&#34;</span><span class="w"> </span><span class="c"># Service 名就是主机名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DB_NAME</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;appdb&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">envFrom</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">secretRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-db</span></span></span></code></pre></div>
+</div>
+<p>再在 <code>Application.cfc</code> 里从环境变量定义数据源，任何东西都不写死：</p>
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">component {
+    this.datasources[&#34;appdb&#34;] = {
+        class:            &#34;org.postgresql.Driver&#34;,
+        connectionString: &#34;jdbc:postgresql://#server.system.environment.DB_HOST#/#server.system.environment.DB_NAME#&#34;,
+        username:         server.system.environment.DB_USER,
+        password:         server.system.environment.DB_PASSWORD
+    };
+}</code></pre>
+</div>
+<p>这和 <a href="/zh-cn/posts/cfml-on-kubernetes/" >Kubernetes 指南</a> 在生产里用的是同一套模式——变的只是注入进去的值。</p>
+<h2 id="排障速查">
+  排障速查
+  <a class="heading-link" href="#%e6%8e%92%e9%9a%9c%e9%80%9f%e6%9f%a5">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<table>
+	<thead>
+			<tr>
+					<th>现象</th>
+					<th>原因</th>
+					<th>解决</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>ErrImagePull</code> / <code>ImagePullBackOff</code></td>
+					<td>镜像构建在 Mac 的 Docker 里，不在 minikube 里</td>
+					<td><code>eval $(minikube docker-env)</code> 后重建，或用 <code>minikube image load</code>；并设置 <code>imagePullPolicy: Never</code></td>
+			</tr>
+			<tr>
+					<td><code>CrashLoopBackOff</code>，日志停在启动中途</td>
+					<td>存活探针在 Lucee 启动完成前就把它杀了</td>
+					<td>把 <code>initialDelaySeconds</code> 提到 60 以上</td>
+			</tr>
+			<tr>
+					<td>Pod 被 <code>OOMKilled</code></td>
+					<td>JVM 按宿主机内存算堆，而非容器限额</td>
+					<td>加 <code>-XX:MaxRAMPercentage=75</code>，内存 limit 不低于 1 Gi</td>
+			</tr>
+			<tr>
+					<td>浏览器访问 <code>minikube ip</code> 无响应</td>
+					<td>Docker 驱动的节点 IP 在 macOS 上不可路由</td>
+					<td>用 <code>kubectl port-forward</code> 或 <code>minikube service --url</code></td>
+			</tr>
+			<tr>
+					<td>Ingress 域名超时</td>
+					<td>没有开隧道</td>
+					<td><code>sudo minikube tunnel</code>，并把域名指到 <code>127.0.0.1</code></td>
+			</tr>
+			<tr>
+					<td>Docker 重启后集群起不来</td>
+					<td>集群状态残留</td>
+					<td><code>minikube delete &amp;&amp; minikube start</code>——它只是开发集群，删掉没有任何代价</td>
+			</tr>
+	</tbody>
+</table>
+<p>真的看不出问题时，这两条命令值得记住：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl describe pod &lt;name&gt;     <span class="c1"># 事件：拉取失败、OOM、探针失败都在这里</span>
+</span></span><span class="line"><span class="cl">minikube dashboard              <span class="c1"># 浏览器里的集群全景 UI</span></span></span></code></pre></div>
+</div>
+<h2 id="清理">
+  清理
+  <a class="heading-link" href="#%e6%b8%85%e7%90%86">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">minikube stop      <span class="c1"># 保留集群，释放 CPU/内存</span>
+</span></span><span class="line"><span class="cl">minikube start     <span class="c1"># 约 20 秒回来</span>
+</span></span><span class="line"><span class="cl">minikube delete    <span class="c1"># 彻底删除</span></span></span></code></pre></div>
+</div>
+<p>一天工作结束时你要的是 <code>minikube stop</code>。而集群一旦开始&quot;发癫&quot;，答案就是 <code>delete</code>——本地开发集群里没有任何值得保留的状态，重建的成本不过是一条命令加一次镜像加载。</p>
+<h2 id="小结">
+  小结
+  <a class="heading-link" href="#%e5%b0%8f%e7%bb%93">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>整套流程配好之后就是：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">minikube start                          <span class="c1"># 1. 集群</span>
+</span></span><span class="line"><span class="cl"><span class="nb">eval</span> <span class="k">$(</span>minikube docker-env<span class="k">)</span>             <span class="c1"># 2. Docker 指向集群</span>
+</span></span><span class="line"><span class="cl">docker build -t cfml-app:dev .          <span class="c1"># 3. 在集群内构建</span>
+</span></span><span class="line"><span class="cl">kubectl apply -f k8s/                   <span class="c1"># 4. 部署</span>
+</span></span><span class="line"><span class="cl">kubectl port-forward svc/cfml-app 8888:80   <span class="c1"># 5. 打开它</span></span></span></code></pre></div>
+</div>
+<p>五条命令，就能在笔记本上让 CFML 应用跑在真实的 Kubernetes 里。minikube 的价值不在于它等于生产——它当然不是——而在于清单、探针、配置注入以及各种失败模式，都和你在托管集群上会遇到的一模一样。在本地就把 Lucee 的慢启动和容器感知堆内存这两件事搞定，就不必等到预发布环境才发现它们。</p>
+
+    </div>
+</article>
+</div>
+
+<div class="command-output">
+<div class="prompt">ls -la ../</div>
+<div class="file-list">
+    <div class="file-item">
+        <a href="/zh-cn/">← 返回首页</a>
+    </div>
+    
+        
+            <div class="file-item">
+                <a href="https://github.com/tang9ian/" target="_blank" rel="noopener noreferrer">Github</a>
+            </div>
+        
+            <div class="file-item">
+                <a href="https://twitter.com/tang9ian/" target="_blank" rel="noopener noreferrer">Twitter</a>
+            </div>
+        
+    
+</div>
+</div>
+
+            </main>
+
+            <div class="terminal-input-area">
+                <div class="cmd-output" id="cmd-output"></div>
+                <div class="terminal-input-line">
+                    <label for="cmd-input" class="input-prompt-label">charles@portfolio:~$</label>
+                    <input type="text" id="cmd-input" class="terminal-input" autocomplete="off" spellcheck="false" placeholder="Type 'help' for commands...">
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <span class="status-left">
+                <span class="status-session">[charles@portfolio]</span>
+                <span class="status-path">~/zh-cn/posts/minikube-cfml-macos/</span>
+            </span>
+            <div class="status-right">
+                <span class="zoom-controls">
+                    <button class="zoom-btn" onclick="zoomOut()" aria-label="Zoom out">A-</button>
+                    <span class="zoom-level" onclick="zoomReset()" title="Click to reset">100%</span>
+                    <button class="zoom-btn" onclick="zoomIn()" aria-label="Zoom in">A+</button>
+                </span>
+                <span class="status-sep">|</span>
+                <span class="status-encoding">utf-8</span>
+                <span class="status-sep">|</span>
+                <span class="status-line" id="status-line">ln 1</span>
+                <span class="status-sep">|</span>
+                <span class="status-time"></span>
+            </div>
+        </div>
+    </div>
+
+    
+    <button class="floating-theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <script>
+        
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = body.getAttribute('data-theme') || 'dark';
+
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        
+        function toggleFullscreen() {
+            var isFullscreen = document.body.classList.toggle('fullscreen');
+            sessionStorage.setItem('terminal-fullscreen', isFullscreen);
+        }
+
+        
+        var ZOOM_MIN = 80, ZOOM_MAX = 150, ZOOM_STEP = 10, ZOOM_DEFAULT = 100;
+
+        function getZoom() {
+            return parseInt(localStorage.getItem('content-zoom') || ZOOM_DEFAULT);
+        }
+
+        function setZoom(level) {
+            level = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, level));
+            var tc = document.querySelector('.terminal-content');
+            var zl = document.querySelector('.zoom-level');
+            var btns = document.querySelectorAll('.zoom-btn');
+            if (tc) tc.style.fontSize = level + '%';
+            if (zl) zl.textContent = level + '%';
+            if (btns.length === 2) {
+                btns[0].disabled = (level <= ZOOM_MIN);
+                btns[1].disabled = (level >= ZOOM_MAX);
+            }
+            if (level === ZOOM_DEFAULT) localStorage.removeItem('content-zoom');
+            else localStorage.setItem('content-zoom', level);
+        }
+
+        function zoomIn() { setZoom(getZoom() + ZOOM_STEP); }
+        function zoomOut() { setZoom(getZoom() - ZOOM_STEP); }
+        function zoomReset() { setZoom(ZOOM_DEFAULT); }
+
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.body.classList.contains('fullscreen')) {
+                toggleFullscreen();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var savedTheme = localStorage.getItem('theme') || 'dark';
+            var themeIcon = document.getElementById('theme-icon');
+            document.body.setAttribute('data-theme', savedTheme);
+            themeIcon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+
+            
+            setZoom(getZoom());
+
+            
+            var statusTime = document.querySelector('.status-time');
+            if (statusTime) {
+                function updateTime() {
+                    statusTime.textContent = new Date().toLocaleTimeString('en-US', { hour12: false });
+                }
+                updateTime();
+                setInterval(updateTime, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

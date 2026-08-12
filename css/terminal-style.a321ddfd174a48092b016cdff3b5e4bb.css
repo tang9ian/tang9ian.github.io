@@ -16,6 +16,21 @@
   --terminal-code-bg: #161b22;
   --terminal-glow: rgba(227, 168, 85, 0.12);
   --terminal-accent-glow: rgba(227, 168, 85, 0.15);
+
+  /* Syntax highlighting tokens (dark) */
+  --syn-comment: #768390;
+  --syn-keyword: #f47067;
+  --syn-string: #a5d6ff;
+  --syn-number: #6cb6ff;
+  --syn-function: #d2a8ff;
+  --syn-type: #56d4a0;
+  --syn-variable: #e3a855;
+  --syn-operator: #8b949e;
+  --syn-added: #56d4a0;
+  --syn-removed: #f47067;
+  --syn-line-hl: rgba(227, 168, 85, 0.1);
+  --code-pane-bg: #1a212b;
+  --code-inline-bg: rgba(227, 168, 85, 0.12);
 }
 
 /* Light theme */
@@ -35,6 +50,21 @@
   --terminal-code-bg: #eee9e1;
   --terminal-glow: rgba(36, 41, 47, 0.1);
   --terminal-accent-glow: rgba(179, 80, 0, 0.12);
+
+  /* Syntax highlighting tokens (light) */
+  --syn-comment: #6e7781;
+  --syn-keyword: #cf222e;
+  --syn-string: #0a3069;
+  --syn-number: #0550ae;
+  --syn-function: #8250df;
+  --syn-type: #1a7f37;
+  --syn-variable: #953800;
+  --syn-operator: #57606a;
+  --syn-added: #1a7f37;
+  --syn-removed: #cf222e;
+  --syn-line-hl: rgba(179, 80, 0, 0.09);
+  --code-pane-bg: #e9e2d6;
+  --code-inline-bg: rgba(179, 80, 0, 0.1);
 }
 
 * {
@@ -287,33 +317,46 @@ a:hover {
   text-shadow: 0 0 8px rgba(86, 212, 160, 0.3);
 }
 
-/* Code blocks */
-pre,
-code {
-  background: var(--terminal-code-bg);
-  border: 1px solid var(--terminal-border);
-  border-radius: 4px;
+/* Inline code — tinted fill, no outline: a 1px box on every inline chip
+   collides with the chips on the line above. Never applies inside a <pre>. */
+:not(pre) > code {
+  background: var(--code-inline-bg);
+  border: 0;
+  border-radius: 3px;
   font-family: inherit;
+  font-size: 0.95em;
+  padding: 0.1em 0.4em;
+  color: var(--terminal-accent);
+  white-space: break-spaces;
 }
 
+/* Code blocks */
 pre {
-  padding: 16px;
+  background: var(--code-pane-bg);
+  border: 0;
+  border-radius: 6px;
+  font-family: inherit;
+  padding: 14px 16px;
   overflow-x: auto;
   margin: 16px 0;
   position: relative;
+  line-height: 1.55;
+  tab-size: 4;
+  color: var(--terminal-fg);
 }
 
-/* Only add $ prefix to shell/bash code blocks */
-pre.language-bash::before,
-pre.language-shell::before,
-pre.language-sh::before {
-  content: "$ ";
-  color: var(--terminal-accent);
-}
-
-code {
-  padding: 2px 6px;
-  color: var(--terminal-accent);
+/* A <code> inside a block is only a container: no chip chrome, no line boxes */
+pre code {
+  display: block;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  white-space: pre;
 }
 
 /* Lists */
@@ -898,6 +941,9 @@ h6:hover .heading-link {
 }
 
 .boot-log {
+  background: none;
+  border: 0;
+  padding: 0;
   white-space: pre-wrap;
   line-height: 1.8;
   margin: 0;
@@ -1061,5 +1107,267 @@ h6:hover .heading-link {
   .boot-screen {
     padding: 20px;
     font-size: 11px;
+  }
+}
+
+/* ==========================================================================
+   Code blocks: terminal pane + Chroma syntax highlighting
+   ========================================================================== */
+
+/* Wrapper produced by layouts/_default/_markup/render-codeblock.html */
+.code-block {
+  margin: 18px 0;
+  border: 0;
+  border-radius: 6px;
+  background: var(--code-pane-bg);
+  overflow: hidden;
+}
+
+.code-block-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px 0;
+  background: none;
+  border: 0;
+  font-size: 0.78em;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+.code-block-lang {
+  color: var(--terminal-secondary);
+  letter-spacing: 0.06em;
+}
+
+.code-block-lang::before {
+  content: "-- ";
+  color: var(--terminal-accent);
+}
+
+.code-copy-btn {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: var(--terminal-secondary);
+  font-family: inherit;
+  font-size: inherit;
+  padding: 1px 8px;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.code-copy-btn:hover,
+.code-copy-btn:focus-visible {
+  color: var(--terminal-accent);
+  border-color: var(--terminal-accent);
+}
+
+.code-copy-btn.copied {
+  color: var(--terminal-cyan);
+  border-color: var(--terminal-cyan);
+}
+
+/* The bar is a label row, not a titlebar: it shares the pane fill and is
+   separated by space alone, so the block carries no internal rules. */
+.code-block pre,
+.code-block .highlight {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.code-block pre {
+  padding: 10px 16px 14px;
+}
+
+/* Chroma scrollbar, kept subtle */
+.code-block pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.code-block pre::-webkit-scrollbar-thumb {
+  background: var(--terminal-border);
+  border-radius: 4px;
+}
+
+.code-block pre::-webkit-scrollbar-thumb:hover {
+  background: var(--terminal-secondary);
+}
+
+/* Chroma line wrapper (upstream default): one flex row per source line, so a
+   line never renders as an inline box fragment with its own border. */
+.chroma .line {
+  display: flex;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+/* Highlighted lines (```lang {hl_lines=[2]}) */
+.chroma .hl {
+  background: var(--syn-line-hl);
+  box-shadow: inset 2px 0 0 var(--terminal-accent);
+}
+
+/* Line numbers, when enabled */
+.chroma .lnt,
+.chroma .ln,
+.chroma .lntd:first-child {
+  color: var(--terminal-secondary);
+  opacity: 0.55;
+  user-select: none;
+}
+
+.chroma .lntable {
+  border: 0;
+  border-spacing: 0;
+  width: auto;
+  display: block;
+}
+
+.chroma .lntd {
+  vertical-align: top;
+  padding: 0;
+  border: 0;
+}
+
+/* --- Tokens ------------------------------------------------------------- */
+
+/* Comments */
+.chroma .c,
+.chroma .ch,
+.chroma .cm,
+.chroma .cp,
+.chroma .cpf,
+.chroma .c1,
+.chroma .cs {
+  color: var(--syn-comment);
+  font-style: italic;
+}
+
+/* Keywords */
+.chroma .k,
+.chroma .kc,
+.chroma .kd,
+.chroma .kn,
+.chroma .kp,
+.chroma .kr {
+  color: var(--syn-keyword);
+}
+
+/* Types, builtins, classes, tags */
+.chroma .kt,
+.chroma .nb,
+.chroma .nc,
+.chroma .nn,
+.chroma .no,
+.chroma .ne,
+.chroma .nt {
+  color: var(--syn-type);
+}
+
+/* Functions, decorators, labels */
+.chroma .nf,
+.chroma .fm,
+.chroma .nd,
+.chroma .nl {
+  color: var(--syn-function);
+}
+
+/* Variables, attributes, properties */
+.chroma .nv,
+.chroma .vc,
+.chroma .vg,
+.chroma .vi,
+.chroma .vm,
+.chroma .na,
+.chroma .py {
+  color: var(--syn-variable);
+}
+
+/* Strings */
+.chroma .s,
+.chroma .sa,
+.chroma .sb,
+.chroma .sc,
+.chroma .dl,
+.chroma .sd,
+.chroma .s2,
+.chroma .sh,
+.chroma .sx,
+.chroma .s1,
+.chroma .ss {
+  color: var(--syn-string);
+}
+
+/* Escapes and interpolation inside strings */
+.chroma .se,
+.chroma .si,
+.chroma .sr {
+  color: var(--syn-function);
+}
+
+/* Numbers */
+.chroma .m,
+.chroma .mb,
+.chroma .mf,
+.chroma .mh,
+.chroma .mi,
+.chroma .mo,
+.chroma .il {
+  color: var(--syn-number);
+}
+
+/* Operators and punctuation */
+.chroma .o,
+.chroma .ow,
+.chroma .p {
+  color: var(--syn-operator);
+}
+
+/* Plain names inherit the body text colour for maximum contrast */
+.chroma .n,
+.chroma .nx,
+.chroma .ni,
+.chroma .w {
+  color: inherit;
+}
+
+/* Errors and diffs */
+.chroma .err {
+  color: var(--terminal-error);
+}
+
+.chroma .gd {
+  color: var(--syn-removed);
+}
+
+.chroma .gi {
+  color: var(--syn-added);
+}
+
+.chroma .gh,
+.chroma .gu {
+  color: var(--terminal-accent);
+  font-weight: 600;
+}
+
+.chroma .ge {
+  font-style: italic;
+}
+
+.chroma .gs {
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .code-block pre {
+    padding: 12px;
+    font-size: 0.92em;
   }
 }

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    
+        <title>DevOps · Charles Tang&#39;s Personal Portfolio</title>
+    
+
+    <meta name="description" content="Charles Tang&#39;s personal website">
+    <meta name="keywords" content="blog,developer,personal">
+    <meta name="author" content="Charles Tang">
+    <link rel="canonical" href="https://tang9ian.github.io/categories/devops/">
+
+    
+    <meta property="og:title" content="DevOps">
+    <meta property="og:description" content="Charles Tang&#39;s personal website">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tang9ian.github.io/categories/devops/">
+    
+    <meta property="og:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+    <meta property="og:site_name" content="Charles Tang&#39;s Personal Portfolio">
+    
+
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="DevOps">
+    <meta name="twitter:description" content="Charles Tang&#39;s personal website">
+    
+    <meta name="twitter:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+
+    
+    
+    
+    <link rel="alternate" hreflang="en" href="https://tang9ian.github.io/categories/devops/">
+    
+    <link rel="alternate" hreflang="zh-cn" href="https://tang9ian.github.io/categories/devops/">
+    
+    
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl0HPNiecjHem/PY0MiImBUDicklBhRPNsUklPYe2LiY6U68hiUy+CT1r9Hmyow0bPBnFGEISN9GhQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    
+    
+    <link rel="stylesheet" href="/css/terminal-style.a321ddfd174a48092b016cdff3b5e4bb.css">
+    
+
+    
+    
+    
+    <script src="/js/interactions.ece460395208fe7350d61c75db4d6359.js" defer></script>
+    
+    
+    
+    <script src="/js/terminal-cli.b6df75736331a95fd2df02a12a54f1c7.js" defer></script>
+    
+    
+
+    
+</head>
+
+<body>
+    
+    <div class="boot-screen" id="boot-screen"><pre class="boot-log" id="boot-log"></pre></div>
+    <script>
+        if (sessionStorage.getItem('booted') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.getElementById('boot-screen').classList.add('hidden');
+        }
+        if (sessionStorage.getItem('terminal-fullscreen') === 'true') {
+            document.body.classList.add('fullscreen');
+        }
+    </script>
+
+    
+    <div class="crt-overlay" aria-hidden="true"></div>
+
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons" aria-hidden="true">
+                <div class="terminal-button close"></div>
+                <div class="terminal-button minimize"></div>
+                <div class="terminal-button maximize" onclick="toggleFullscreen()" role="button" tabindex="0" aria-label="Toggle fullscreen" title="Fullscreen"></div>
+            </div>
+            <div class="terminal-title">charles@portfolio: DevOps</div>
+        </div>
+
+        <div class="terminal-content">
+            <nav class="navigation" aria-label="Main navigation">
+    <div class="prompt">ls -la /home/charles/portfolio/</div>
+    <ul class="navigation-list">
+        
+            <li class="navigation-item">
+                <a href="/about/">About</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/posts/">Blog</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/projects/">Projects</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/contact/">Contact me</a>
+            </li>
+        
+
+        
+            
+                
+                    <li class="navigation-item">
+                        <a href="/zh-cn/categories/devops/" hreflang="zh-cn">中文</a>
+                    </li>
+                
+            
+        
+    </ul>
+</nav>
+
+
+            <main id="main-content" class="content">
+                
+<div class="command-output">
+<div class="prompt">ls -la /home/charles/DevOps/</div>
+<h1>DevOps</h1>
+
+</div>
+
+
+
+<div class="command-output">
+<div class="prompt">find . -name "*.md" -type f</div>
+<div class="file-list">
+    
+        <div class="file-item">
+            <a href="/posts/minikube-cfml-macos/">August 11, 2026 - Installing minikube on macOS and Running CFML Apps Locally</a>
+        </div>
+    
+        <div class="file-item">
+            <a href="/zh-cn/posts/minikube-cfml-macos/">August 11, 2026 - 在 macOS 上安装 minikube 并本地运行 CFML 应用</a>
+        </div>
+    
+        <div class="file-item">
+            <a href="/posts/cfml-on-kubernetes/">June 19, 2026 - Running CFML Apps on Kubernetes: A Hands-On Walkthrough</a>
+        </div>
+    
+        <div class="file-item">
+            <a href="/zh-cn/posts/cfml-on-kubernetes/">June 19, 2026 - 在 Kubernetes 上运行 CFML 应用：实战操作全流程</a>
+        </div>
+    
+</div>
+</div>
+
+
+            </main>
+
+            <div class="terminal-input-area">
+                <div class="cmd-output" id="cmd-output"></div>
+                <div class="terminal-input-line">
+                    <label for="cmd-input" class="input-prompt-label">charles@portfolio:~$</label>
+                    <input type="text" id="cmd-input" class="terminal-input" autocomplete="off" spellcheck="false" placeholder="Type 'help' for commands...">
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <span class="status-left">
+                <span class="status-session">[charles@portfolio]</span>
+                <span class="status-path">~/categories/devops/</span>
+            </span>
+            <div class="status-right">
+                <span class="zoom-controls">
+                    <button class="zoom-btn" onclick="zoomOut()" aria-label="Zoom out">A-</button>
+                    <span class="zoom-level" onclick="zoomReset()" title="Click to reset">100%</span>
+                    <button class="zoom-btn" onclick="zoomIn()" aria-label="Zoom in">A+</button>
+                </span>
+                <span class="status-sep">|</span>
+                <span class="status-encoding">utf-8</span>
+                <span class="status-sep">|</span>
+                <span class="status-line" id="status-line">ln 1</span>
+                <span class="status-sep">|</span>
+                <span class="status-time"></span>
+            </div>
+        </div>
+    </div>
+
+    
+    <button class="floating-theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <script>
+        
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = body.getAttribute('data-theme') || 'dark';
+
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        
+        function toggleFullscreen() {
+            var isFullscreen = document.body.classList.toggle('fullscreen');
+            sessionStorage.setItem('terminal-fullscreen', isFullscreen);
+        }
+
+        
+        var ZOOM_MIN = 80, ZOOM_MAX = 150, ZOOM_STEP = 10, ZOOM_DEFAULT = 100;
+
+        function getZoom() {
+            return parseInt(localStorage.getItem('content-zoom') || ZOOM_DEFAULT);
+        }
+
+        function setZoom(level) {
+            level = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, level));
+            var tc = document.querySelector('.terminal-content');
+            var zl = document.querySelector('.zoom-level');
+            var btns = document.querySelectorAll('.zoom-btn');
+            if (tc) tc.style.fontSize = level + '%';
+            if (zl) zl.textContent = level + '%';
+            if (btns.length === 2) {
+                btns[0].disabled = (level <= ZOOM_MIN);
+                btns[1].disabled = (level >= ZOOM_MAX);
+            }
+            if (level === ZOOM_DEFAULT) localStorage.removeItem('content-zoom');
+            else localStorage.setItem('content-zoom', level);
+        }
+
+        function zoomIn() { setZoom(getZoom() + ZOOM_STEP); }
+        function zoomOut() { setZoom(getZoom() - ZOOM_STEP); }
+        function zoomReset() { setZoom(ZOOM_DEFAULT); }
+
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.body.classList.contains('fullscreen')) {
+                toggleFullscreen();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var savedTheme = localStorage.getItem('theme') || 'dark';
+            var themeIcon = document.getElementById('theme-icon');
+            document.body.setAttribute('data-theme', savedTheme);
+            themeIcon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+
+            
+            setZoom(getZoom());
+
+            
+            var statusTime = document.querySelector('.status-time');
+            if (statusTime) {
+                function updateTime() {
+                    statusTime.textContent = new Date().toLocaleTimeString('en-US', { hour12: false });
+                }
+                updateTime();
+                setInterval(updateTime, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

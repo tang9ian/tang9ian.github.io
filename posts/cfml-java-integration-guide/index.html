@@ -54,11 +54,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl0HPNiecjHem/PY0MiImBUDicklBhRPNsUklPYe2LiY6U68hiUy+CT1r9Hmyow0bPBnFGEISN9GhQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     
-    <link rel="stylesheet" href="/css/terminal-style.css">
+    
+    <link rel="stylesheet" href="/css/terminal-style.a321ddfd174a48092b016cdff3b5e4bb.css">
+    
 
     
-    <script src="/js/interactions.js" defer></script>
-    <script src="/js/terminal-cli.js" defer></script>
+    
+    
+    <script src="/js/interactions.ece460395208fe7350d61c75db4d6359.js" defer></script>
+    
+    
+    
+    <script src="/js/terminal-cli.b6df75736331a95fd2df02a12a54f1c7.js" defer></script>
+    
+    
 
     
 </head>
@@ -197,7 +206,12 @@
   </a>
 </h2>
 <p>The <code>createObject</code> function is the primary bridge between CFML and Java:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Create a Java object ---&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Create a Java object ---&gt;
 &lt;cfset arrayList = createObject(&#34;java&#34;, &#34;java.util.ArrayList&#34;)&gt;
 &lt;cfset arrayList.init()&gt;
 &lt;cfset arrayList.add(&#34;ColdFusion&#34;)&gt;
@@ -205,9 +219,15 @@
 &lt;cfset arrayList.add(&#34;BoxLang&#34;)&gt;
 
 &lt;cfoutput&gt;Size: #arrayList.size()#&lt;/cfoutput&gt;
-&lt;!--- Output: Size: 3 ---&gt;
-</code></pre><p>In cfscript syntax, which is cleaner for Java-heavy code:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// cfscript style
+&lt;!--- Output: Size: 3 ---&gt;</code></pre>
+</div>
+<p>In cfscript syntax, which is cleaner for Java-heavy code:</p>
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">// cfscript style
 hashMap = createObject(&#34;java&#34;, &#34;java.util.LinkedHashMap&#34;).init();
 hashMap.put(&#34;engine&#34;, &#34;Lucee&#34;);
 hashMap.put(&#34;version&#34;, &#34;5.4&#34;);
@@ -215,15 +235,21 @@ hashMap.put(&#34;javaVersion&#34;, server.java.version);
 
 for (key in hashMap.keySet()) {
     writeOutput(&#34;#key#: #hashMap.get(key)#&lt;br&gt;&#34;);
-}
-</code></pre><h3 id="constructor-overloading">
+}</code></pre>
+</div>
+<h3 id="constructor-overloading">
   Constructor Overloading
   <a class="heading-link" href="#constructor-overloading">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
 <p>Java classes often have multiple constructors. CFML resolves them by argument type:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// java.io.File has File(String) and File(String, String)
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">// java.io.File has File(String) and File(String, String)
 file = createObject(&#34;java&#34;, &#34;java.io.File&#34;).init(&#34;/var/log&#34;);
 
 // Two-argument constructor
@@ -233,15 +259,21 @@ file = createObject(&#34;java&#34;, &#34;java.io.File&#34;).init(&#34;/var/log&#
 price = createObject(&#34;java&#34;, &#34;java.math.BigDecimal&#34;).init(&#34;19.99&#34;);
 tax = createObject(&#34;java&#34;, &#34;java.math.BigDecimal&#34;).init(&#34;0.08&#34;);
 total = price.add(price.multiply(tax));
-writeOutput(total.setScale(2, createObject(&#34;java&#34;, &#34;java.math.RoundingMode&#34;).HALF_UP));
-</code></pre><h2 id="working-with-static-methods-and-fields">
+writeOutput(total.setScale(2, createObject(&#34;java&#34;, &#34;java.math.RoundingMode&#34;).HALF_UP));</code></pre>
+</div>
+<h2 id="working-with-static-methods-and-fields">
   Working with Static Methods and Fields
   <a class="heading-link" href="#working-with-static-methods-and-fields">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
 <p>Access static members directly on the class object without calling <code>init()</code>:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Static method call
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Static method call
 uuid = createObject(&#34;java&#34;, &#34;java.util.UUID&#34;).randomUUID().toString();
 
 // Static field access
@@ -254,8 +286,9 @@ javaHome = createObject(&#34;java&#34;, &#34;java.lang.System&#34;).getProperty(
 // Collections utility
 emptyList = createObject(&#34;java&#34;, &#34;java.util.Collections&#34;).emptyList();
 singletonMap = createObject(&#34;java&#34;, &#34;java.util.Collections&#34;)
-    .singletonMap(&#34;status&#34;, &#34;active&#34;);
-</code></pre><h2 id="type-mapping-between-cfml-and-java">
+    .singletonMap(&#34;status&#34;, &#34;active&#34;);</code></pre>
+</div>
+<h2 id="type-mapping-between-cfml-and-java">
   Type Mapping Between CFML and Java
   <a class="heading-link" href="#type-mapping-between-cfml-and-java">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
@@ -263,55 +296,55 @@ singletonMap = createObject(&#34;java&#34;, &#34;java.util.Collections&#34;)
 </h2>
 <p>Understanding how types convert across the boundary is critical. Mismatched types cause the most common integration bugs.</p>
 <table>
-  <thead>
-      <tr>
-          <th>CFML Type</th>
-          <th>Java Type Received</th>
-          <th>Notes</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>String</td>
-          <td><code>java.lang.String</code></td>
-          <td>Direct mapping</td>
-      </tr>
-      <tr>
-          <td>Numeric</td>
-          <td><code>java.lang.Double</code></td>
-          <td>CFML numbers are always Double</td>
-      </tr>
-      <tr>
-          <td>Boolean</td>
-          <td><code>java.lang.Boolean</code></td>
-          <td>Direct mapping</td>
-      </tr>
-      <tr>
-          <td>Date</td>
-          <td><code>java.util.Date</code></td>
-          <td>Lucee may use different internal types</td>
-      </tr>
-      <tr>
-          <td>Array</td>
-          <td><code>java.util.List</code> (Lucee) or <code>Object[]</code> (ACF)</td>
-          <td>Engine-dependent</td>
-      </tr>
-      <tr>
-          <td>Struct</td>
-          <td><code>java.util.Map</code></td>
-          <td>Maintains insertion order in modern engines</td>
-      </tr>
-      <tr>
-          <td>Query</td>
-          <td><code>coldfusion.sql.QueryTable</code></td>
-          <td>Engine-specific class</td>
-      </tr>
-      <tr>
-          <td>Binary</td>
-          <td><code>byte[]</code></td>
-          <td>Direct mapping</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>CFML Type</th>
+					<th>Java Type Received</th>
+					<th>Notes</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>String</td>
+					<td><code>java.lang.String</code></td>
+					<td>Direct mapping</td>
+			</tr>
+			<tr>
+					<td>Numeric</td>
+					<td><code>java.lang.Double</code></td>
+					<td>CFML numbers are always Double</td>
+			</tr>
+			<tr>
+					<td>Boolean</td>
+					<td><code>java.lang.Boolean</code></td>
+					<td>Direct mapping</td>
+			</tr>
+			<tr>
+					<td>Date</td>
+					<td><code>java.util.Date</code></td>
+					<td>Lucee may use different internal types</td>
+			</tr>
+			<tr>
+					<td>Array</td>
+					<td><code>java.util.List</code> (Lucee) or <code>Object[]</code> (ACF)</td>
+					<td>Engine-dependent</td>
+			</tr>
+			<tr>
+					<td>Struct</td>
+					<td><code>java.util.Map</code></td>
+					<td>Maintains insertion order in modern engines</td>
+			</tr>
+			<tr>
+					<td>Query</td>
+					<td><code>coldfusion.sql.QueryTable</code></td>
+					<td>Engine-specific class</td>
+			</tr>
+			<tr>
+					<td>Binary</td>
+					<td><code>byte[]</code></td>
+					<td>Direct mapping</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="handling-type-conversion-issues">
   Handling Type Conversion Issues
@@ -320,7 +353,12 @@ singletonMap = createObject(&#34;java&#34;, &#34;java.util.Collections&#34;)
   </a>
 </h3>
 <p>When a Java method has overloaded signatures, CFML might pick the wrong one. Use <code>javaCast()</code> to force the correct type:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Without javaCast --- CFML passes Double, but method expects int
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Without javaCast --- CFML passes Double, but method expects int
 arrayList = createObject(&#34;java&#34;, &#34;java.util.ArrayList&#34;).init();
 arrayList.add(&#34;A&#34;);
 arrayList.add(&#34;B&#34;);
@@ -331,17 +369,24 @@ arrayList.add(&#34;C&#34;);
 
 // Correct: force int type for remove(int index) not remove(Object)
 arrayList.remove(javaCast(&#34;int&#34;, 1));
-writeOutput(arrayList.toString()); // [A, C]
-</code></pre><p>Common <code>javaCast</code> targets:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">javaCast(&#34;int&#34;, 42)           // java.lang.Integer
+writeOutput(arrayList.toString()); // [A, C]</code></pre>
+</div>
+<p>Common <code>javaCast</code> targets:</p>
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">javaCast(&#34;int&#34;, 42)           // java.lang.Integer
 javaCast(&#34;long&#34;, 42)          // java.lang.Long
 javaCast(&#34;float&#34;, 3.14)       // java.lang.Float
 javaCast(&#34;double&#34;, 3.14)      // java.lang.Double
 javaCast(&#34;boolean&#34;, true)     // java.lang.Boolean
 javaCast(&#34;string&#34;, value)     // java.lang.String
 javaCast(&#34;byte[]&#34;, binaryVal) // byte array
-javaCast(&#34;null&#34;, &#34;&#34;)          // null reference
-</code></pre><h2 id="loading-third-party-java-libraries">
+javaCast(&#34;null&#34;, &#34;&#34;)          // null reference</code></pre>
+</div>
+<h2 id="loading-third-party-java-libraries">
   Loading Third-Party Java Libraries
   <a class="heading-link" href="#loading-third-party-java-libraries">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
@@ -355,21 +400,32 @@ javaCast(&#34;null&#34;, &#34;&#34;)          // null reference
   </a>
 </h3>
 <p>Place <code>.jar</code> files in the engine&rsquo;s lib directory:</p>
-<pre tabindex="0"><code># Adobe ColdFusion
+<div class="code-block" data-lang="text">
+  <div class="code-block-bar">
+    <span class="code-block-lang">text</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code># Adobe ColdFusion
 {cf-install}/cfusion/lib/
 
 # Lucee
 {lucee-install}/lib/ext/
 
-# Then restart the CFML engine
-</code></pre><h3 id="method-2-dynamic-class-loading-lucee">
+# Then restart the CFML engine</code></pre>
+</div>
+<h3 id="method-2-dynamic-class-loading-lucee">
   Method 2: Dynamic Class Loading (Lucee)
   <a class="heading-link" href="#method-2-dynamic-class-loading-lucee">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
 <p>Lucee supports loading JARs at runtime without a restart:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Load a specific JAR at runtime
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Load a specific JAR at runtime
 jars = [
     expandPath(&#34;/lib/gson-2.10.jar&#34;),
     expandPath(&#34;/lib/commons-csv-1.10.jar&#34;)
@@ -381,21 +437,28 @@ gson = createObject(&#34;java&#34;, &#34;com.google.gson.Gson&#34;, jars).init()
 // Serialize CFML struct to JSON via Gson
 data = { name: &#34;Charles&#34;, role: &#34;Developer&#34;, active: true };
 jsonString = gson.toJson(data);
-writeOutput(jsonString);
-</code></pre><h3 id="method-3-applicationcfc-javasettings-acf">
+writeOutput(jsonString);</code></pre>
+</div>
+<h3 id="method-3-applicationcfc-javasettings-acf">
   Method 3: Application.cfc JavaSettings (ACF)
   <a class="heading-link" href="#method-3-applicationcfc-javasettings-acf">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// In Application.cfc
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">// In Application.cfc
 this.javaSettings = {
     loadPaths: [&#34;/opt/app/lib/&#34;],
     loadColdFusionClassPath: true,
     reloadOnChange: false,    // set true in development only
     watchInterval: 60
-};
-</code></pre><h2 id="practical-integration-patterns">
+};</code></pre>
+</div>
+<h2 id="practical-integration-patterns">
   Practical Integration Patterns
   <a class="heading-link" href="#practical-integration-patterns">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
@@ -408,7 +471,12 @@ this.javaSettings = {
   </a>
 </h3>
 <p>CFML&rsquo;s built-in <code>hash()</code> function is limited. Java provides the full cryptographic toolkit:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">function hashWithSHA256(required string input) {
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">function hashWithSHA256(required string input) {
     var digest = createObject(&#34;java&#34;, &#34;java.security.MessageDigest&#34;)
         .getInstance(&#34;SHA-256&#34;);
     var bytes = digest.digest(input.getBytes(&#34;UTF-8&#34;));
@@ -418,15 +486,21 @@ this.javaSettings = {
     return formatter.formatHex(bytes);
 }
 
-writeOutput(hashWithSHA256(&#34;sensitive-data&#34;));
-</code></pre><h3 id="pattern-2-concurrent-processing-with-executorservice">
+writeOutput(hashWithSHA256(&#34;sensitive-data&#34;));</code></pre>
+</div>
+<h3 id="pattern-2-concurrent-processing-with-executorservice">
   Pattern 2: Concurrent Processing with ExecutorService
   <a class="heading-link" href="#pattern-2-concurrent-processing-with-executorservice">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
 <p>Process multiple tasks in parallel using Java&rsquo;s thread pool:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">function processInParallel(required array tasks) {
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">function processInParallel(required array tasks) {
     var executorClass = createObject(&#34;java&#34;, &#34;java.util.concurrent.Executors&#34;);
     var executor = executorClass.newFixedThreadPool(javaCast(&#34;int&#34;, 4));
     var futures = [];
@@ -449,14 +523,20 @@ writeOutput(hashWithSHA256(&#34;sensitive-data&#34;));
     } finally {
         executor.shutdown();
     }
-}
-</code></pre><h3 id="pattern-3-reading-excel-files-with-apache-poi">
+}</code></pre>
+</div>
+<h3 id="pattern-3-reading-excel-files-with-apache-poi">
   Pattern 3: Reading Excel Files with Apache POI
   <a class="heading-link" href="#pattern-3-reading-excel-files-with-apache-poi">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">function readExcel(required string filePath) {
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">function readExcel(required string filePath) {
     var FileInputStream = createObject(&#34;java&#34;, &#34;java.io.FileInputStream&#34;);
     var WorkbookFactory = createObject(&#34;java&#34;, &#34;org.apache.poi.ss.usermodel.WorkbookFactory&#34;);
     var fis = FileInputStream.init(arguments.filePath);
@@ -482,15 +562,21 @@ writeOutput(hashWithSHA256(&#34;sensitive-data&#34;));
         workbook.close();
         fis.close();
     }
-}
-</code></pre><h3 id="pattern-4-custom-java-classes-in-cfml">
+}</code></pre>
+</div>
+<h3 id="pattern-4-custom-java-classes-in-cfml">
   Pattern 4: Custom Java Classes in CFML
   <a class="heading-link" href="#pattern-4-custom-java-classes-in-cfml">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
 <p>Write performance-critical logic in Java and call it from CFML:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// src/com/myapp/TextAnalyzer.java</span><span class="w">
+<div class="code-block" data-lang="java">
+  <div class="code-block-bar">
+    <span class="code-block-lang">java</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// src/com/myapp/TextAnalyzer.java</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.myapp</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.*</span><span class="p">;</span><span class="w">
@@ -527,9 +613,15 @@ writeOutput(hashWithSHA256(&#34;sensitive-data&#34;));
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">word</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">3</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">1</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">word</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="s">&#34;[^aeiouy]+&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34; &#34;</span><span class="p">).</span><span class="na">trim</span><span class="p">().</span><span class="na">split</span><span class="p">(</span><span class="s">&#34; &#34;</span><span class="p">).</span><span class="na">length</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></div><p>Compile and use from CFML:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// After compiling and placing the JAR in the classpath
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+</div>
+<p>Compile and use from CFML:</p>
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">// After compiling and placing the JAR in the classpath
 analyzer = createObject(&#34;java&#34;, &#34;com.myapp.TextAnalyzer&#34;).init();
 
 article = fileRead(expandPath(&#34;/content/sample-post.txt&#34;));
@@ -544,15 +636,21 @@ for (entry in frequencies.entrySet()) {
     if (entry.getValue() &gt; 3) {
         writeOutput(&#34;#entry.getKey()#: #entry.getValue()#&lt;br&gt;&#34;);
     }
-}
-</code></pre><h2 id="implementing-java-interfaces-in-cfml">
+}</code></pre>
+</div>
+<h2 id="implementing-java-interfaces-in-cfml">
   Implementing Java Interfaces in CFML
   <a class="heading-link" href="#implementing-java-interfaces-in-cfml">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
 <p>Lucee and modern ACF support implementing Java interfaces using CFML components:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Comparator.cfc --- implements java.util.Comparator
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Comparator.cfc --- implements java.util.Comparator
 component implements=&#34;java:java.util.Comparator&#34; {
 
     function compare(obj1, obj2) {
@@ -566,8 +664,14 @@ component implements=&#34;java:java.util.Comparator&#34; {
     function equals(obj) {
         return false;
     }
-}
-</code></pre><pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Usage
+}</code></pre>
+</div>
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">// Usage
 words = createObject(&#34;java&#34;, &#34;java.util.ArrayList&#34;).init();
 words.add(&#34;ColdFusion&#34;);
 words.add(&#34;Go&#34;);
@@ -577,8 +681,9 @@ words.add(&#34;C&#34;);
 
 comparator = new Comparator();
 createObject(&#34;java&#34;, &#34;java.util.Collections&#34;).sort(words, comparator);
-writeOutput(words.toString()); // [C, Go, Java, Rust, ColdFusion]
-</code></pre><h2 id="performance-considerations">
+writeOutput(words.toString()); // [C, Go, Java, Rust, ColdFusion]</code></pre>
+</div>
+<h2 id="performance-considerations">
   Performance Considerations
   <a class="heading-link" href="#performance-considerations">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
@@ -612,7 +717,12 @@ writeOutput(words.toString()); // [C, Go, Java, Rust, ColdFusion]
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">function benchmark(required string label, required function fn, numeric iterations = 10000) {
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">function benchmark(required string label, required function fn, numeric iterations = 10000) {
     var nanoTime = createObject(&#34;java&#34;, &#34;java.lang.System&#34;);
     var start = nanoTime.nanoTime();
 
@@ -632,8 +742,9 @@ benchmark(&#34;CFML hash()&#34;, function() {
 benchmark(&#34;Java MessageDigest&#34;, function() {
     var digest = createObject(&#34;java&#34;, &#34;java.security.MessageDigest&#34;).getInstance(&#34;SHA-256&#34;);
     digest.digest(charsetDecode(&#34;benchmark-input-string&#34;, &#34;UTF-8&#34;));
-});
-</code></pre><h2 id="common-mistakes">
+});</code></pre>
+</div>
+<h2 id="common-mistakes">
   Common Mistakes
   <a class="heading-link" href="#common-mistakes">
     <i class="fa-solid fa-link" aria-hidden="true"></i>

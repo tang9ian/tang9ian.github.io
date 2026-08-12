@@ -54,11 +54,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl0HPNiecjHem/PY0MiImBUDicklBhRPNsUklPYe2LiY6U68hiUy+CT1r9Hmyow0bPBnFGEISN9GhQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     
-    <link rel="stylesheet" href="/css/terminal-style.css">
+    
+    <link rel="stylesheet" href="/css/terminal-style.a321ddfd174a48092b016cdff3b5e4bb.css">
+    
 
     
-    <script src="/js/interactions.js" defer></script>
-    <script src="/js/terminal-cli.js" defer></script>
+    
+    
+    <script src="/js/interactions.ece460395208fe7350d61c75db4d6359.js" defer></script>
+    
+    
+    
+    <script src="/js/terminal-cli.b6df75736331a95fd2df02a12a54f1c7.js" defer></script>
+    
+    
 
     
 </head>
@@ -185,49 +194,78 @@
   </a>
 </h2>
 <p>SQL injection remains the #1 threat to CFML applications. The classic vulnerable pattern looks like this:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE: Never do this ---&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE: Never do this ---&gt;
 &lt;cfquery name=&#34;getUser&#34; datasource=&#34;myDB&#34;&gt;
     SELECT * FROM users
     WHERE username = &#39;#form.username#&#39;
     AND password = &#39;#form.password#&#39;
-&lt;/cfquery&gt;
-</code></pre><p>An attacker can submit <code>' OR 1=1 --</code> as the username to bypass authentication entirely.</p>
+&lt;/cfquery&gt;</code></pre>
+</div>
+<p>An attacker can submit <code>' OR 1=1 --</code> as the username to bypass authentication entirely.</p>
 <h3 id="fix-use-cfqueryparam">
   Fix: Use <code>cfqueryparam</code>
   <a class="heading-link" href="#fix-use-cfqueryparam">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- SECURE: Always use cfqueryparam ---&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- SECURE: Always use cfqueryparam ---&gt;
 &lt;cfquery name=&#34;getUser&#34; datasource=&#34;myDB&#34;&gt;
     SELECT * FROM users
     WHERE username = &lt;cfqueryparam value=&#34;#form.username#&#34; cfsqltype=&#34;cf_sql_varchar&#34;&gt;
     AND password = &lt;cfqueryparam value=&#34;#form.password#&#34; cfsqltype=&#34;cf_sql_varchar&#34;&gt;
-&lt;/cfquery&gt;
-</code></pre><p><code>cfqueryparam</code> uses prepared statements under the hood, making SQL injection impossible. <strong>Every single query variable must use <code>cfqueryparam</code> — no exceptions.</strong></p>
+&lt;/cfquery&gt;</code></pre>
+</div>
+<p><code>cfqueryparam</code> uses prepared statements under the hood, making SQL injection impossible. <strong>Every single query variable must use <code>cfqueryparam</code> — no exceptions.</strong></p>
 <p>For dynamic table or column names (which can&rsquo;t be parameterized), use a whitelist:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;cfset allowedColumns = &#34;username,email,created_date&#34;&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;cfset allowedColumns = &#34;username,email,created_date&#34;&gt;
 &lt;cfif NOT listFindNoCase(allowedColumns, url.sortColumn)&gt;
     &lt;cfset url.sortColumn = &#34;username&#34;&gt;
-&lt;/cfif&gt;
-</code></pre><h2 id="2-cross-site-scripting-xss">
+&lt;/cfif&gt;</code></pre>
+</div>
+<h2 id="2-cross-site-scripting-xss">
   2. Cross-Site Scripting (XSS)
   <a class="heading-link" href="#2-cross-site-scripting-xss">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
 <p>CFML does not auto-escape output by default, making XSS extremely common:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE ---&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE ---&gt;
 &lt;cfoutput&gt;
     Welcome, #url.name#!
-&lt;/cfoutput&gt;
-</code></pre><h3 id="fix-encode-all-output">
+&lt;/cfoutput&gt;</code></pre>
+</div>
+<h3 id="fix-encode-all-output">
   Fix: Encode All Output
   <a class="heading-link" href="#fix-encode-all-output">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- SECURE: Context-aware encoding ---&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- SECURE: Context-aware encoding ---&gt;
 &lt;cfoutput&gt;
     &lt;!--- HTML context ---&gt;
     Welcome, #encodeForHTML(url.name)#!
@@ -243,37 +281,38 @@
 
     &lt;!--- CSS context ---&gt;
     &lt;div style=&#34;background: #encodeForCSS(url.color)#;&#34;&gt;&lt;/div&gt;
-&lt;/cfoutput&gt;
-</code></pre><p>Use the right encoding function for each context:</p>
+&lt;/cfoutput&gt;</code></pre>
+</div>
+<p>Use the right encoding function for each context:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Context</th>
-          <th>Function</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>HTML body</td>
-          <td><code>encodeForHTML()</code></td>
-      </tr>
-      <tr>
-          <td>HTML attribute</td>
-          <td><code>encodeForHTMLAttribute()</code></td>
-      </tr>
-      <tr>
-          <td>JavaScript</td>
-          <td><code>encodeForJavaScript()</code></td>
-      </tr>
-      <tr>
-          <td>URL parameter</td>
-          <td><code>encodeForURL()</code></td>
-      </tr>
-      <tr>
-          <td>CSS value</td>
-          <td><code>encodeForCSS()</code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Context</th>
+					<th>Function</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>HTML body</td>
+					<td><code>encodeForHTML()</code></td>
+			</tr>
+			<tr>
+					<td>HTML attribute</td>
+					<td><code>encodeForHTMLAttribute()</code></td>
+			</tr>
+			<tr>
+					<td>JavaScript</td>
+					<td><code>encodeForJavaScript()</code></td>
+			</tr>
+			<tr>
+					<td>URL parameter</td>
+					<td><code>encodeForURL()</code></td>
+			</tr>
+			<tr>
+					<td>CSS value</td>
+					<td><code>encodeForCSS()</code></td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="enable-global-script-protection">
   Enable Global Script Protection
@@ -282,8 +321,14 @@
   </a>
 </h3>
 <p>In <code>Application.cfc</code>:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">this.scriptProtect = &#34;all&#34;;
-</code></pre><p>This provides a basic layer of defense but <strong>should not be your only protection</strong> — it can be bypassed. Always encode output explicitly.</p>
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">this.scriptProtect = &#34;all&#34;;</code></pre>
+</div>
+<p>This provides a basic layer of defense but <strong>should not be your only protection</strong> — it can be bypassed. Always encode output explicitly.</p>
 <h2 id="3-path-traversal--file-inclusion">
   3. Path Traversal &amp; File Inclusion
   <a class="heading-link" href="#3-path-traversal--file-inclusion">
@@ -291,17 +336,28 @@
   </a>
 </h2>
 <p>CFML&rsquo;s powerful file operations make path traversal a serious risk:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE ---&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE ---&gt;
 &lt;cffile action=&#34;read&#34; file=&#34;/uploads/#url.filename#&#34; variable=&#34;content&#34;&gt;
 
-&lt;!--- An attacker submits: ../../../etc/passwd ---&gt;
-</code></pre><h3 id="fix-validate-and-canonicalize-paths">
+&lt;!--- An attacker submits: ../../../etc/passwd ---&gt;</code></pre>
+</div>
+<h3 id="fix-validate-and-canonicalize-paths">
   Fix: Validate and Canonicalize Paths
   <a class="heading-link" href="#fix-validate-and-canonicalize-paths">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;cfset uploadDir = expandPath(&#34;/uploads/&#34;)&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;cfset uploadDir = expandPath(&#34;/uploads/&#34;)&gt;
 &lt;cfset requestedFile = getCanonicalPath(uploadDir &amp; url.filename)&gt;
 
 &lt;!--- Ensure the resolved path is still within the upload directory ---&gt;
@@ -315,9 +371,15 @@
     &lt;cfthrow message=&#34;Access denied: invalid file type&#34;&gt;
 &lt;/cfif&gt;
 
-&lt;cffile action=&#34;read&#34; file=&#34;#requestedFile#&#34; variable=&#34;content&#34;&gt;
-</code></pre><p>Also restrict <code>cfinclude</code> to known templates:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE ---&gt;
+&lt;cffile action=&#34;read&#34; file=&#34;#requestedFile#&#34; variable=&#34;content&#34;&gt;</code></pre>
+</div>
+<p>Also restrict <code>cfinclude</code> to known templates:</p>
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE ---&gt;
 &lt;cfinclude template=&#34;#url.page#.cfm&#34;&gt;
 
 &lt;!--- SECURE: Whitelist approach ---&gt;
@@ -326,20 +388,27 @@
     &lt;cfinclude template=&#34;#url.page#.cfm&#34;&gt;
 &lt;cfelse&gt;
     &lt;cfinclude template=&#34;404.cfm&#34;&gt;
-&lt;/cfif&gt;
-</code></pre><h2 id="4-remote-code-execution-via-cfexecute-and-evaluate">
+&lt;/cfif&gt;</code></pre>
+</div>
+<h2 id="4-remote-code-execution-via-cfexecute-and-evaluate">
   4. Remote Code Execution via <code>cfexecute</code> and <code>evaluate()</code>
   <a class="heading-link" href="#4-remote-code-execution-via-cfexecute-and-evaluate">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
 <p>These are the most dangerous CFML functions when misused:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- CRITICAL VULNERABILITY ---&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- CRITICAL VULNERABILITY ---&gt;
 &lt;cfexecute name=&#34;#form.command#&#34; arguments=&#34;#form.args#&#34; timeout=&#34;10&#34; /&gt;
 
 &lt;!--- CRITICAL VULNERABILITY ---&gt;
-&lt;cfset result = evaluate(url.expression)&gt;
-</code></pre><h3 id="fix-eliminate-dynamic-execution">
+&lt;cfset result = evaluate(url.expression)&gt;</code></pre>
+</div>
+<h3 id="fix-eliminate-dynamic-execution">
   Fix: Eliminate Dynamic Execution
   <a class="heading-link" href="#fix-eliminate-dynamic-execution">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
@@ -349,33 +418,56 @@
 <li><strong>Never</strong> pass user input to <code>cfexecute</code>. If you must call system commands, hardcode the command and strictly validate arguments.</li>
 <li><strong>Never</strong> use <code>evaluate()</code> with user input. In modern CFML, <code>evaluate()</code> is almost never needed — use bracket notation instead:</li>
 </ul>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Instead of evaluate(&#34;form.#fieldName#&#34;) ---&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Instead of evaluate(&#34;form.#fieldName#&#34;) ---&gt;
 &lt;cfset value = form[fieldName]&gt;
 
 &lt;!--- Instead of evaluate(&#34;variables.config.#settingName#&#34;) ---&gt;
-&lt;cfset value = variables.config[settingName]&gt;
-</code></pre><p>In the ColdFusion Administrator or Lucee Admin, disable <code>cfexecute</code> entirely if it&rsquo;s not needed:</p>
-<pre tabindex="0"><code>&lt;!--- In Application.cfc for Lucee ---&gt;
-this.blockedExtTags = &#34;cfexecute&#34;;
-</code></pre><h2 id="5-insecure-deserialization">
+&lt;cfset value = variables.config[settingName]&gt;</code></pre>
+</div>
+<p>In the ColdFusion Administrator or Lucee Admin, disable <code>cfexecute</code> entirely if it&rsquo;s not needed:</p>
+<div class="code-block" data-lang="text">
+  <div class="code-block-bar">
+    <span class="code-block-lang">text</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code>&lt;!--- In Application.cfc for Lucee ---&gt;
+this.blockedExtTags = &#34;cfexecute&#34;;</code></pre>
+</div>
+<h2 id="5-insecure-deserialization">
   5. Insecure Deserialization
   <a class="heading-link" href="#5-insecure-deserialization">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
 <p>CFML&rsquo;s <code>deserializeJSON()</code> and WDDX deserialization can be exploited:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE if input is attacker-controlled ---&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE if input is attacker-controlled ---&gt;
 &lt;cfset data = deserializeJSON(form.payload)&gt;
 
 &lt;!--- WDDX deserialization ---&gt;
-&lt;cfwddx action=&#34;wddx2cfml&#34; input=&#34;#form.data#&#34; output=&#34;result&#34;&gt;
-</code></pre><h3 id="fix-validate-before-deserializing">
+&lt;cfwddx action=&#34;wddx2cfml&#34; input=&#34;#form.data#&#34; output=&#34;result&#34;&gt;</code></pre>
+</div>
+<h3 id="fix-validate-before-deserializing">
   Fix: Validate Before Deserializing
   <a class="heading-link" href="#fix-validate-before-deserializing">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Validate JSON structure against expected schema ---&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Validate JSON structure against expected schema ---&gt;
 &lt;cfset rawPayload = form.payload&gt;
 
 &lt;!--- Limit payload size ---&gt;
@@ -391,8 +483,9 @@ this.blockedExtTags = &#34;cfexecute&#34;;
     OR NOT structKeyExists(data, &#34;name&#34;)
     OR NOT isSimpleValue(data.name)&gt;
     &lt;cfthrow message=&#34;Invalid payload structure&#34;&gt;
-&lt;/cfif&gt;
-</code></pre><p><strong>Avoid WDDX deserialization of user input entirely.</strong> If you need data exchange, use JSON with strict validation.</p>
+&lt;/cfif&gt;</code></pre>
+</div>
+<p><strong>Avoid WDDX deserialization of user input entirely.</strong> If you need data exchange, use JSON with strict validation.</p>
 <h2 id="6-authentication--session-security">
   6. Authentication &amp; Session Security
   <a class="heading-link" href="#6-authentication--session-security">
@@ -405,7 +498,12 @@ this.blockedExtTags = &#34;cfexecute&#34;;
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Application.cfc: SECURE session settings ---&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Application.cfc: SECURE session settings ---&gt;
 component {
     this.name = &#34;MySecureApp&#34;;
     this.sessionManagement = true;
@@ -425,14 +523,20 @@ component {
         pc.setHeader(&#34;Set-Cookie&#34;,
             &#34;JSESSIONID=#session.sessionid#; Path=/; HttpOnly; Secure; SameSite=Strict&#34;);
     }
-}
-</code></pre><h3 id="session-fixation-prevention">
+}</code></pre>
+</div>
+<h3 id="session-fixation-prevention">
   Session Fixation Prevention
   <a class="heading-link" href="#session-fixation-prevention">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;cffunction name=&#34;onSuccessfulLogin&#34;&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;cffunction name=&#34;onSuccessfulLogin&#34;&gt;
     &lt;!--- Invalidate old session and create new one ---&gt;
     &lt;cfset sessionInvalidate()&gt;
     &lt;cfset sessionRotate()&gt;
@@ -441,14 +545,20 @@ component {
     &lt;cfset session.isLoggedIn = true&gt;
     &lt;cfset session.userId = authenticatedUserId&gt;
     &lt;cfset session.loginTime = now()&gt;
-&lt;/cffunction&gt;
-</code></pre><h3 id="password-storage">
+&lt;/cffunction&gt;</code></pre>
+</div>
+<h3 id="password-storage">
   Password Storage
   <a class="heading-link" href="#password-storage">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE: Plain text or simple hash ---&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- VULNERABLE: Plain text or simple hash ---&gt;
 &lt;cfset storedPassword = hash(form.password, &#34;MD5&#34;)&gt;
 
 &lt;!--- SECURE: Use bcrypt via Java integration ---&gt;
@@ -458,14 +568,20 @@ component {
 &lt;!--- Verify password ---&gt;
 &lt;cfif bcrypt.checkpw(form.password, storedHash)&gt;
     &lt;!--- Password matches ---&gt;
-&lt;/cfif&gt;
-</code></pre><h2 id="7-csrf-protection">
+&lt;/cfif&gt;</code></pre>
+</div>
+<h2 id="7-csrf-protection">
   7. CSRF Protection
   <a class="heading-link" href="#7-csrf-protection">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Generate CSRF token ---&gt;
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">&lt;!--- Generate CSRF token ---&gt;
 &lt;cfset csrfToken = CSRFGenerateToken()&gt;
 
 &lt;form method=&#34;POST&#34; action=&#34;/update-profile&#34;&gt;
@@ -477,8 +593,9 @@ component {
 &lt;!--- Verify on submission ---&gt;
 &lt;cfif NOT CSRFVerifyToken(form.csrf_token)&gt;
     &lt;cfthrow message=&#34;CSRF validation failed&#34;&gt;
-&lt;/cfif&gt;
-</code></pre><h2 id="8-coldfusion-administrator-hardening">
+&lt;/cfif&gt;</code></pre>
+</div>
+<h2 id="8-coldfusion-administrator-hardening">
   8. ColdFusion Administrator Hardening
   <a class="heading-link" href="#8-coldfusion-administrator-hardening">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
@@ -494,17 +611,28 @@ component {
 <li><strong>Sandbox security</strong> — Enable sandbox security to restrict file system access, tag usage, and data source access per application</li>
 <li><strong>Disable unused services</strong> — Turn off WebSocket, Flash Remoting, and other unused features</li>
 </ol>
-<pre tabindex="0"><code>&lt;!--- In Application.cfc: disable debugging in production ---&gt;
+<div class="code-block" data-lang="text">
+  <div class="code-block-bar">
+    <span class="code-block-lang">text</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code>&lt;!--- In Application.cfc: disable debugging in production ---&gt;
 this.debuggingEnabled = false;
-this.showDebugOutput = false;
-</code></pre><h2 id="9-security-headers">
+this.showDebugOutput = false;</code></pre>
+</div>
+<h2 id="9-security-headers">
   9. Security Headers
   <a class="heading-link" href="#9-security-headers">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
 <p>Add security headers in <code>Application.cfc</code>:</p>
-<pre tabindex="0"><code class="language-cfml" data-lang="cfml">function onRequestStart(targetPage) {
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">function onRequestStart(targetPage) {
     var response = getPageContext().getResponse();
 
     response.setHeader(&#34;X-Content-Type-Options&#34;, &#34;nosniff&#34;);
@@ -515,8 +643,9 @@ this.showDebugOutput = false;
         &#34;default-src &#39;self&#39;; script-src &#39;self&#39;; style-src &#39;self&#39; &#39;unsafe-inline&#39;&#34;);
     response.setHeader(&#34;Referrer-Policy&#34;, &#34;strict-origin-when-cross-origin&#34;);
     response.setHeader(&#34;Permissions-Policy&#34;, &#34;camera=(), microphone=(), geolocation=()&#34;);
-}
-</code></pre><h2 id="10-security-audit-checklist">
+}</code></pre>
+</div>
+<h2 id="10-security-audit-checklist">
   10. Security Audit Checklist
   <a class="heading-link" href="#10-security-audit-checklist">
     <i class="fa-solid fa-link" aria-hidden="true"></i>

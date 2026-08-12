@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    
+        <title>Running CFML Apps on Kubernetes: A Hands-On Walkthrough · Charles Tang&#39;s Personal Portfolio</title>
+    
+
+    <meta name="description" content="A practical, step-by-step guide to containerizing a Lucee/ColdFusion (CFML) application and deploying it to Kubernetes — Dockerfile, Deployment, Service, Ingress, config, secrets, health probes, and scaling">
+    <meta name="keywords" content="blog,developer,personal">
+    <meta name="author" content="Charles Tang">
+    <link rel="canonical" href="https://tang9ian.github.io/posts/cfml-on-kubernetes/">
+
+    
+    <meta property="og:title" content="Running CFML Apps on Kubernetes: A Hands-On Walkthrough">
+    <meta property="og:description" content="A practical, step-by-step guide to containerizing a Lucee/ColdFusion (CFML) application and deploying it to Kubernetes — Dockerfile, Deployment, Service, Ingress, config, secrets, health probes, and scaling">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tang9ian.github.io/posts/cfml-on-kubernetes/">
+    
+    <meta property="og:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+    <meta property="og:site_name" content="Charles Tang&#39;s Personal Portfolio">
+    
+    <meta property="article:published_time" content="2026-06-19T00:00:00Z">
+    <meta property="article:author" content="Charles Tang">
+    
+
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Running CFML Apps on Kubernetes: A Hands-On Walkthrough">
+    <meta name="twitter:description" content="A practical, step-by-step guide to containerizing a Lucee/ColdFusion (CFML) application and deploying it to Kubernetes — Dockerfile, Deployment, Service, Ingress, config, secrets, health probes, and scaling">
+    
+    <meta name="twitter:image" content="https://tang9ian.github.io/images/avatar.jpg">
+    
+
+    
+    
+    
+    <link rel="alternate" hreflang="en" href="https://tang9ian.github.io/posts/cfml-on-kubernetes/">
+    
+    <link rel="alternate" hreflang="zh-cn" href="https://tang9ian.github.io/posts/cfml-on-kubernetes/">
+    
+    
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl0HPNiecjHem/PY0MiImBUDicklBhRPNsUklPYe2LiY6U68hiUy+CT1r9Hmyow0bPBnFGEISN9GhQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    
+    
+    <link rel="stylesheet" href="/css/terminal-style.a321ddfd174a48092b016cdff3b5e4bb.css">
+    
+
+    
+    
+    
+    <script src="/js/interactions.ece460395208fe7350d61c75db4d6359.js" defer></script>
+    
+    
+    
+    <script src="/js/terminal-cli.b6df75736331a95fd2df02a12a54f1c7.js" defer></script>
+    
+    
+
+    
+</head>
+
+<body>
+    
+    <div class="boot-screen" id="boot-screen"><pre class="boot-log" id="boot-log"></pre></div>
+    <script>
+        if (sessionStorage.getItem('booted') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.getElementById('boot-screen').classList.add('hidden');
+        }
+        if (sessionStorage.getItem('terminal-fullscreen') === 'true') {
+            document.body.classList.add('fullscreen');
+        }
+    </script>
+
+    
+    <div class="crt-overlay" aria-hidden="true"></div>
+
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons" aria-hidden="true">
+                <div class="terminal-button close"></div>
+                <div class="terminal-button minimize"></div>
+                <div class="terminal-button maximize" onclick="toggleFullscreen()" role="button" tabindex="0" aria-label="Toggle fullscreen" title="Fullscreen"></div>
+            </div>
+            <div class="terminal-title">charles@portfolio: Running CFML Apps on Kubernetes: A Hands-On Walkthrough</div>
+        </div>
+
+        <div class="terminal-content">
+            <nav class="navigation" aria-label="Main navigation">
+    <div class="prompt">ls -la /home/charles/portfolio/</div>
+    <ul class="navigation-list">
+        
+            <li class="navigation-item">
+                <a href="/about/">About</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/posts/">Blog</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/projects/">Projects</a>
+            </li>
+        
+            <li class="navigation-item">
+                <a href="/contact/">Contact me</a>
+            </li>
+        
+
+        
+            
+                
+                    <li class="navigation-item">
+                        <a href="/zh-cn/posts/cfml-on-kubernetes/" hreflang="zh-cn">中文</a>
+                    </li>
+                
+            
+        
+    </ul>
+</nav>
+
+
+            <main id="main-content" class="content">
+                
+<div class="command-output">
+<div class="prompt">cat posts/cfml-on-kubernetes.md</div>
+<article class="post">
+    <header class="post-header">
+        <h1>Running CFML Apps on Kubernetes: A Hands-On Walkthrough</h1>
+
+        
+            <div class="post-meta">
+                <span>
+                    <i class="fas fa-calendar" aria-hidden="true"></i>
+                    June 19, 2026
+                </span>
+
+                
+                    <span>
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        Charles Tang
+                    </span>
+                
+
+                
+                    <span>
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        6 min read
+                    </span>
+                
+            </div>
+        
+
+        
+            <div class="post-tags">
+                
+                    <span class="tag">kubernetes</span>
+                
+                    <span class="tag">cfml</span>
+                
+                    <span class="tag">lucee</span>
+                
+                    <span class="tag">docker</span>
+                
+                    <span class="tag">devops</span>
+                
+            </div>
+        
+    </header>
+
+    <div class="post-content">
+        <h1 id="running-cfml-apps-on-kubernetes-a-hands-on-walkthrough">
+  Running CFML Apps on Kubernetes: A Hands-On Walkthrough
+  <a class="heading-link" href="#running-cfml-apps-on-kubernetes-a-hands-on-walkthrough">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h1>
+<p>CFML (ColdFusion Markup Language) still powers a surprising amount of business software, and a lot of it is stuck on a single fat application server. This guide walks through the practical steps I take to containerize a CFML app — built on <a href="https://www.lucee.org/"  class="external-link" target="_blank" rel="noopener">Lucee</a>, the open-source CFML engine — and run it on Kubernetes, with the rough edges that actually bite you called out along the way.</p>
+<p>This is not a Kubernetes tutorial from zero. It assumes you can run <code>kubectl get pods</code> and have a cluster to talk to (minikube, kind, or a managed cluster all work).</p>
+<h2 id="the-mental-model">
+  The Mental Model
+  <a class="heading-link" href="#the-mental-model">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>A CFML app on Kubernetes has the same shape as any other web app, with one quirk: the <strong>engine and your code travel together</strong> inside the image.</p>
+<div class="code-block" data-lang="text">
+  <div class="code-block-bar">
+    <span class="code-block-lang">text</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code>Your .cfm/.cfc code  →  Docker image (Lucee + code)  →  Pod  →  Service  →  Ingress  →  user
+                          (build once)                  (run N copies)</code></pre>
+</div>
+<p>Everything that isn&rsquo;t code — database passwords, datasource config, session settings — gets injected at runtime through ConfigMaps and Secrets, never baked into the image. Keep that line clean and the rest follows.</p>
+<h2 id="step-1-containerize-the-app">
+  Step 1: Containerize the App
+  <a class="heading-link" href="#step-1-containerize-the-app">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>Start from the official Lucee image and copy your webroot in. A minimal <code>Dockerfile</code>:</p>
+<div class="code-block" data-lang="dockerfile">
+  <div class="code-block-bar">
+    <span class="code-block-lang">dockerfile</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="s">lucee/lucee:6.0-tomcat</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># App code lands in the Tomcat webroot</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">COPY</span> ./webroot /var/www<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># Lucee admin password + deploy-time settings come from env, not the image</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">LUCEE_ADMIN_ENABLED</span><span class="o">=</span><span class="s2">&#34;false&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="c"># Tomcat serves on 8888 in the Lucee image</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="k">EXPOSE</span><span class="w"> </span><span class="s">8888</span></span></span></code></pre></div>
+</div>
+<p>Build and smoke-test it locally before Kubernetes ever enters the picture:</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build -t myregistry/cfml-app:1.0.0 .
+</span></span><span class="line"><span class="cl">docker run --rm -p 8888:8888 myregistry/cfml-app:1.0.0
+</span></span><span class="line"><span class="cl"><span class="c1"># visit http://localhost:8888 — confirm a .cfm page renders</span>
+</span></span><span class="line"><span class="cl">docker push myregistry/cfml-app:1.0.0</span></span></code></pre></div>
+</div>
+<p><strong>Tag with a real version, never <code>latest</code>.</strong> Kubernetes caches images aggressively; <code>latest</code> makes rollouts ambiguous and rollbacks impossible.</p>
+<h2 id="step-2-the-deployment">
+  Step 2: The Deployment
+  <a class="heading-link" href="#step-2-the-deployment">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>The Deployment declares how many copies of the Pod to run and which image they use.</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">myregistry/cfml-app:1.0.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;250m&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;512Mi&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;1Gi&#34;</span></span></span></code></pre></div>
+</div>
+<p>A note on memory: Lucee runs on the JVM, and <strong>the JVM does not see your container&rsquo;s memory limit unless you tell it to</strong>. Set a heap that fits inside the limit, or the kernel OOM-kills the pod mid-request. Pass it via the JVM options env var:</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">env</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">CATALINA_OPTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;-XX:MaxRAMPercentage=75.0&#34;</span></span></span></code></pre></div>
+</div>
+<p><code>MaxRAMPercentage</code> lets the JVM size its heap relative to the container limit — far safer than a hardcoded <code>-Xmx</code>.</p>
+<h2 id="step-3-expose-it-with-a-service">
+  Step 3: Expose It With a Service
+  <a class="heading-link" href="#step-3-expose-it-with-a-service">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>The Service gives the Pods a stable internal address. Pods come and go; the Service name does not.</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span></span></span></code></pre></div>
+</div>
+<p>Inside the cluster, anything can now reach the app at <code>http://cfml-app</code>. To let the outside world in, add an Ingress:</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">networking.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Ingress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">nginx.ingress.kubernetes.io/proxy-body-size</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;50m&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">app.example.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">http</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">pathType</span><span class="p">:</span><span class="w"> </span><span class="l">Prefix</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">backend</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">service</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">port</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                  </span><span class="nt">number</span><span class="p">:</span><span class="w"> </span><span class="m">80</span></span></span></code></pre></div>
+</div>
+<p>That <code>proxy-body-size</code> annotation matters for CFML apps that handle file uploads — the default Nginx limit is 1 MB and will silently reject larger forms.</p>
+<h2 id="step-4-config-and-secrets">
+  Step 4: Config and Secrets
+  <a class="heading-link" href="#step-4-config-and-secrets">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>Never bake the database password into the image. Put non-secret config in a ConfigMap and credentials in a Secret:</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;postgres.internal&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">DB_NAME</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;appdb&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Secret</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-secrets</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">Opaque</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">stringData</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;change-me-in-real-life&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">LUCEE_ADMIN_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;also-change-me&#34;</span></span></span></code></pre></div>
+</div>
+<p>Wire them into the Deployment&rsquo;s container with <code>envFrom</code>:</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">envFrom</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">configMapRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">secretRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cfml-secrets</span></span></span></code></pre></div>
+</div>
+<p>Then read them in <code>Application.cfc</code> so the datasource is defined from the environment, not hardcoded:</p>
+<div class="code-block" data-lang="cfml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">cfml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <pre tabindex="0"><code class="language-cfml" data-lang="cfml">component {
+    this.name = &#34;myapp&#34;;
+    this.datasources[&#34;appdb&#34;] = {
+        class:    &#34;org.postgresql.Driver&#34;,
+        connectionString: &#34;jdbc:postgresql://#server.system.environment.DB_HOST#/#server.system.environment.DB_NAME#&#34;,
+        username: server.system.environment.DB_USER,
+        password: server.system.environment.DB_PASSWORD
+    };
+}</code></pre>
+</div>
+<p>The same image now runs unchanged in dev, staging, and prod — only the injected config differs. That is the whole point.</p>
+<h2 id="step-5-health-probes">
+  Step 5: Health Probes
+  <a class="heading-link" href="#step-5-health-probes">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>Kubernetes needs to know when a pod is alive and when it is ready to serve. CFML apps can take 20–60 seconds to warm up the engine, so <strong>getting probes wrong is the single most common cause of crash-looping deployments</strong>.</p>
+<p>Add a trivial <code>health.cfm</code> to your webroot that just outputs <code>OK</code>, then:</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">readinessProbe</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">httpGet</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/health.cfm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="m">20</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">livenessProbe</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">httpGet</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/health.cfm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="m">40</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="m">15</span></span></span></code></pre></div>
+</div>
+<ul>
+<li><strong>Readiness</strong> controls whether traffic is sent to the pod. Until <code>/health.cfm</code> answers, the pod stays out of the Service.</li>
+<li><strong>Liveness</strong> restarts a pod that has hung. Set <code>initialDelaySeconds</code> generously — kill it too early and Lucee never finishes booting.</li>
+</ul>
+<h2 id="step-6-apply-and-verify">
+  Step 6: Apply and Verify
+  <a class="heading-link" href="#step-6-apply-and-verify">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply -f k8s/
+</span></span><span class="line"><span class="cl">kubectl rollout status deployment/cfml-app
+</span></span><span class="line"><span class="cl">kubectl get pods -l <span class="nv">app</span><span class="o">=</span>cfml-app
+</span></span><span class="line"><span class="cl">kubectl logs -f deploy/cfml-app          <span class="c1"># watch Lucee boot</span></span></span></code></pre></div>
+</div>
+<p>If a pod is stuck, <code>kubectl describe pod &lt;name&gt;</code> shows the events — image pull failures, OOM kills, and failing probes all surface there.</p>
+<h2 id="step-7-scaling-and-rollouts">
+  Step 7: Scaling and Rollouts
+  <a class="heading-link" href="#step-7-scaling-and-rollouts">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>Scale horizontally by changing replica count, or let Kubernetes do it based on CPU:</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl scale deployment/cfml-app --replicas<span class="o">=</span><span class="m">4</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">kubectl autoscale deployment/cfml-app --cpu-percent<span class="o">=</span><span class="m">70</span> --min<span class="o">=</span><span class="m">2</span> --max<span class="o">=</span><span class="m">8</span></span></span></code></pre></div>
+</div>
+<p>One catch unique to stateful CFML apps: <strong>session affinity</strong>. If your app keeps sessions in JVM memory, a user&rsquo;s requests must return to the same pod. Either enable sticky sessions at the Ingress:</p>
+<div class="code-block" data-lang="yaml">
+  <div class="code-block-bar">
+    <span class="code-block-lang">yaml</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">nginx.ingress.kubernetes.io/affinity</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;cookie&#34;</span></span></span></code></pre></div>
+</div>
+<p>…or, better, move sessions out of the JVM entirely — store them in Redis or the database so any pod can serve any request. Stateless pods are what make scaling and rolling updates painless; sticky sessions are a workaround, not a destination.</p>
+<p>Rolling out a new version is just a new image tag:</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="copy" data-copied-label="copied">copy</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl <span class="nb">set</span> image deployment/cfml-app cfml-app<span class="o">=</span>myregistry/cfml-app:1.1.0
+</span></span><span class="line"><span class="cl">kubectl rollout undo deployment/cfml-app   <span class="c1"># instant rollback if it goes wrong</span></span></span></code></pre></div>
+</div>
+<h2 id="the-checklist">
+  The Checklist
+  <a class="heading-link" href="#the-checklist">
+    <i class="fa-solid fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>When I move a CFML app onto Kubernetes, these are the things that actually decide success:</p>
+<ol>
+<li><strong>Pin image tags</strong> — never <code>latest</code>.</li>
+<li><strong>Size the JVM heap</strong> to the container limit with <code>MaxRAMPercentage</code>.</li>
+<li><strong>Inject all config</strong> via ConfigMaps and Secrets; nothing sensitive in the image.</li>
+<li><strong>Give probes enough warm-up time</strong> — Lucee boots slowly.</li>
+<li><strong>Make pods stateless</strong> — externalize sessions, or accept sticky-session limits.</li>
+<li><strong>Set resource requests</strong> so the scheduler places pods sanely.</li>
+</ol>
+<p>Get those six right and a CFML app behaves like any other modern workload — scalable, self-healing, and boring in the best way. The legacy reputation of CFML has little to do with the language and everything to do with how it has traditionally been deployed. Kubernetes fixes the deployment.</p>
+
+    </div>
+</article>
+</div>
+
+<div class="command-output">
+<div class="prompt">ls -la ../</div>
+<div class="file-list">
+    <div class="file-item">
+        <a href="/">← Back to home</a>
+    </div>
+    
+        
+            <div class="file-item">
+                <a href="https://github.com/tang9ian/" target="_blank" rel="noopener noreferrer">Github</a>
+            </div>
+        
+            <div class="file-item">
+                <a href="https://twitter.com/tang9ian/" target="_blank" rel="noopener noreferrer">Twitter</a>
+            </div>
+        
+    
+</div>
+</div>
+
+            </main>
+
+            <div class="terminal-input-area">
+                <div class="cmd-output" id="cmd-output"></div>
+                <div class="terminal-input-line">
+                    <label for="cmd-input" class="input-prompt-label">charles@portfolio:~$</label>
+                    <input type="text" id="cmd-input" class="terminal-input" autocomplete="off" spellcheck="false" placeholder="Type 'help' for commands...">
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <span class="status-left">
+                <span class="status-session">[charles@portfolio]</span>
+                <span class="status-path">~/posts/cfml-on-kubernetes/</span>
+            </span>
+            <div class="status-right">
+                <span class="zoom-controls">
+                    <button class="zoom-btn" onclick="zoomOut()" aria-label="Zoom out">A-</button>
+                    <span class="zoom-level" onclick="zoomReset()" title="Click to reset">100%</span>
+                    <button class="zoom-btn" onclick="zoomIn()" aria-label="Zoom in">A+</button>
+                </span>
+                <span class="status-sep">|</span>
+                <span class="status-encoding">utf-8</span>
+                <span class="status-sep">|</span>
+                <span class="status-line" id="status-line">ln 1</span>
+                <span class="status-sep">|</span>
+                <span class="status-time"></span>
+            </div>
+        </div>
+    </div>
+
+    
+    <button class="floating-theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <script>
+        
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = body.getAttribute('data-theme') || 'dark';
+
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        
+        function toggleFullscreen() {
+            var isFullscreen = document.body.classList.toggle('fullscreen');
+            sessionStorage.setItem('terminal-fullscreen', isFullscreen);
+        }
+
+        
+        var ZOOM_MIN = 80, ZOOM_MAX = 150, ZOOM_STEP = 10, ZOOM_DEFAULT = 100;
+
+        function getZoom() {
+            return parseInt(localStorage.getItem('content-zoom') || ZOOM_DEFAULT);
+        }
+
+        function setZoom(level) {
+            level = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, level));
+            var tc = document.querySelector('.terminal-content');
+            var zl = document.querySelector('.zoom-level');
+            var btns = document.querySelectorAll('.zoom-btn');
+            if (tc) tc.style.fontSize = level + '%';
+            if (zl) zl.textContent = level + '%';
+            if (btns.length === 2) {
+                btns[0].disabled = (level <= ZOOM_MIN);
+                btns[1].disabled = (level >= ZOOM_MAX);
+            }
+            if (level === ZOOM_DEFAULT) localStorage.removeItem('content-zoom');
+            else localStorage.setItem('content-zoom', level);
+        }
+
+        function zoomIn() { setZoom(getZoom() + ZOOM_STEP); }
+        function zoomOut() { setZoom(getZoom() - ZOOM_STEP); }
+        function zoomReset() { setZoom(ZOOM_DEFAULT); }
+
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.body.classList.contains('fullscreen')) {
+                toggleFullscreen();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var savedTheme = localStorage.getItem('theme') || 'dark';
+            var themeIcon = document.getElementById('theme-icon');
+            document.body.setAttribute('data-theme', savedTheme);
+            themeIcon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+
+            
+            setZoom(getZoom());
+
+            
+            var statusTime = document.querySelector('.status-time');
+            if (statusTime) {
+                function updateTime() {
+                    statusTime.textContent = new Date().toLocaleTimeString('en-US', { hour12: false });
+                }
+                updateTime();
+                setInterval(updateTime, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

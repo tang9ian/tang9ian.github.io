@@ -227,5 +227,52 @@
         });
       });
     }
+
+    // === Code Block Copy Button ===
+    document.addEventListener("click", function (e) {
+      var btn = e.target.closest(".code-copy-btn");
+      if (!btn) return;
+      var block = btn.closest(".code-block");
+      var pre = block && block.querySelector("pre");
+      if (!pre) return;
+
+      // textContent, not innerText: the newlines are already in the markup and
+      // innerText would double them up for flex-displayed Chroma lines.
+      var code = pre.textContent.replace(/\n$/, "");
+      var done = function (ok) {
+        btn.textContent = ok ? btn.dataset.copiedLabel || "copied" : "error";
+        btn.classList.toggle("copied", ok);
+        setTimeout(function () {
+          btn.textContent = btn.dataset.copyLabel || "copy";
+          btn.classList.remove("copied");
+        }, 1600);
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(code).then(
+          function () {
+            done(true);
+          },
+          function () {
+            done(false);
+          },
+        );
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = code;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = false;
+        try {
+          ok = document.execCommand("copy");
+        } catch (err) {
+          ok = false;
+        }
+        ta.remove();
+        done(ok);
+      }
+    });
   });
 })();

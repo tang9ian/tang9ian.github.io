@@ -54,11 +54,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl0HPNiecjHem/PY0MiImBUDicklBhRPNsUklPYe2LiY6U68hiUy+CT1r9Hmyow0bPBnFGEISN9GhQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     
-    <link rel="stylesheet" href="/css/terminal-style.css">
+    
+    <link rel="stylesheet" href="/css/terminal-style.a321ddfd174a48092b016cdff3b5e4bb.css">
+    
 
     
-    <script src="/js/interactions.js" defer></script>
-    <script src="/js/terminal-cli.js" defer></script>
+    
+    
+    <script src="/js/interactions.ece460395208fe7350d61c75db4d6359.js" defer></script>
+    
+    
+    
+    <script src="/js/terminal-cli.b6df75736331a95fd2df02a12a54f1c7.js" defer></script>
+    
+    
 
     
 </head>
@@ -182,16 +191,27 @@
   </a>
 </h2>
 <p>在 Git 里，一处改动可以待在三个地方，几乎每个命令都是在这三者之间搬运工作成果：</p>
-<pre tabindex="0"><code>工作区              →   暂存区（Index）       →   版本库（提交）
-（你在这里改文件）      （git add）                （git commit）
-</code></pre><p>还有第四个地方——<strong>远程仓库</strong>，它是版本库在服务器上的一份副本。<code>push</code> 把提交推上去，<code>fetch</code> 把提交拉下来。把这张图记在脑子里，Git 的大部分神秘感就消失了。</p>
+<div class="code-block" data-lang="text">
+  <div class="code-block-bar">
+    <span class="code-block-lang">text</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <pre tabindex="0"><code>工作区              →   暂存区（Index）       →   版本库（提交）
+（你在这里改文件）      （git add）                （git commit）</code></pre>
+</div>
+<p>还有第四个地方——<strong>远程仓库</strong>，它是版本库在服务器上的一份副本。<code>push</code> 把提交推上去，<code>fetch</code> 把提交拉下来。把这张图记在脑子里，Git 的大部分神秘感就消失了。</p>
 <h2 id="一次性配置">
   一次性配置
   <a class="heading-link" href="#%e4%b8%80%e6%ac%a1%e6%80%a7%e9%85%8d%e7%bd%ae">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global user.name  <span class="s2">&#34;Charles Tang&#34;</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global user.name  <span class="s2">&#34;Charles Tang&#34;</span>
 </span></span><span class="line"><span class="cl">git config --global user.email <span class="s2">&#34;you@example.com&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 新仓库默认使用 main 作为分支名</span>
@@ -202,8 +222,9 @@
 </span></span><span class="line"><span class="cl">git config --global pull.rebase <span class="nb">true</span>   <span class="c1"># pull 时用 rebase 而非 merge</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 查看当前配置</span>
-</span></span><span class="line"><span class="cl">git config --list
-</span></span></code></pre></div><p>设置 <code>pull.rebase true</code> 是一个有倾向性的选择，但值得：它能让历史保持线性，而不是被一堆 &ldquo;Merge branch &lsquo;main&rsquo;&rdquo; 的噪音塞满。</p>
+</span></span><span class="line"><span class="cl">git config --list</span></span></code></pre></div>
+</div>
+<p>设置 <code>pull.rebase true</code> 是一个有倾向性的选择，但值得：它能让历史保持线性，而不是被一堆 &ldquo;Merge branch &lsquo;main&rsquo;&rdquo; 的噪音塞满。</p>
 <h2 id="每天的循环">
   每天的循环
   <a class="heading-link" href="#%e6%af%8f%e5%a4%a9%e7%9a%84%e5%be%aa%e7%8e%af">
@@ -211,7 +232,12 @@
   </a>
 </h2>
 <p>九成的日子都长这样：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git status                  <span class="c1"># 改了什么？</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git status                  <span class="c1"># 改了什么？</span>
 </span></span><span class="line"><span class="cl">git pull                    <span class="c1"># 拉取最新</span>
 </span></span><span class="line"><span class="cl">git checkout -b feat/login  <span class="c1"># 为这次工作开分支</span>
 </span></span><span class="line"><span class="cl">
@@ -219,15 +245,21 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">git add -p                  <span class="c1"># 交互式地按代码块暂存</span>
 </span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;Add login form validation&#34;</span>
-</span></span><span class="line"><span class="cl">git push -u origin feat/login
-</span></span></code></pre></div><p><code>git add -p</code> 被严重低估了。它会带你逐个代码块地过一遍改动，让你提交的恰好是你想提交的内容——而不是那行你忘了删的 <code>console.log</code>。</p>
+</span></span><span class="line"><span class="cl">git push -u origin feat/login</span></span></code></pre></div>
+</div>
+<p><code>git add -p</code> 被严重低估了。它会带你逐个代码块地过一遍改动，让你提交的恰好是你想提交的内容——而不是那行你忘了删的 <code>console.log</code>。</p>
 <h2 id="暂存与提交">
   暂存与提交
   <a class="heading-link" href="#%e6%9a%82%e5%ad%98%e4%b8%8e%e6%8f%90%e4%ba%a4">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add file.js             <span class="c1"># 暂存单个文件</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add file.js             <span class="c1"># 暂存单个文件</span>
 </span></span><span class="line"><span class="cl">git add .                   <span class="c1"># 暂存当前目录下的所有改动</span>
 </span></span><span class="line"><span class="cl">git add -p                  <span class="c1"># 交互式暂存，逐块进行</span>
 </span></span><span class="line"><span class="cl">git restore --staged file.js  <span class="c1"># 取消暂存（保留改动）</span>
@@ -235,62 +267,93 @@
 </span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;Message&#34;</span>     <span class="c1"># 提交暂存区的改动</span>
 </span></span><span class="line"><span class="cl">git commit -am <span class="s2">&#34;Message&#34;</span>    <span class="c1"># 暂存已跟踪文件 + 提交，一步到位</span>
 </span></span><span class="line"><span class="cl">git commit --amend          <span class="c1"># 重写上一次提交</span>
-</span></span><span class="line"><span class="cl">git commit --amend --no-edit  <span class="c1"># 把改动追加到上次提交，保留原消息</span>
-</span></span></code></pre></div><p><code>--amend</code> 是「糟糕，漏了个文件」时的好帮手——但<strong>只在 push 之前用</strong>。修改已发布的历史会逼着其他人一起处理这次重写。</p>
+</span></span><span class="line"><span class="cl">git commit --amend --no-edit  <span class="c1"># 把改动追加到上次提交，保留原消息</span></span></span></code></pre></div>
+</div>
+<p><code>--amend</code> 是「糟糕，漏了个文件」时的好帮手——但<strong>只在 push 之前用</strong>。修改已发布的历史会逼着其他人一起处理这次重写。</p>
 <h3 id="写一条好的提交消息">
   写一条好的提交消息
   <a class="heading-link" href="#%e5%86%99%e4%b8%80%e6%9d%a1%e5%a5%bd%e7%9a%84%e6%8f%90%e4%ba%a4%e6%b6%88%e6%81%af">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h3>
-<pre tabindex="0"><code>Add rate limiting to login endpoint
+<div class="code-block" data-lang="text">
+  <div class="code-block-bar">
+    <span class="code-block-lang">text</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <pre tabindex="0"><code>Add rate limiting to login endpoint
 
 Brute-force attempts were unthrottled. Cap at 5 tries
-per IP per minute, returning 429 after that.
-</code></pre><p>标题用祈使句（&ldquo;Add&rdquo;，不是 &ldquo;Added&rdquo;），控制在 50 个字符以内，然后空一行，再写<strong>为什么</strong>。<strong>做了什么</strong>，diff 已经说清楚了。</p>
+per IP per minute, returning 429 after that.</code></pre>
+</div>
+<p>标题用祈使句（&ldquo;Add&rdquo;，不是 &ldquo;Added&rdquo;），控制在 50 个字符以内，然后空一行，再写<strong>为什么</strong>。<strong>做了什么</strong>，diff 已经说清楚了。</p>
 <h2 id="分支">
   分支
   <a class="heading-link" href="#%e5%88%86%e6%94%af">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git branch                  <span class="c1"># 列出本地分支</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git branch                  <span class="c1"># 列出本地分支</span>
 </span></span><span class="line"><span class="cl">git branch -a               <span class="c1"># 包含远程分支</span>
 </span></span><span class="line"><span class="cl">git checkout -b feat/x      <span class="c1"># 创建并切换</span>
 </span></span><span class="line"><span class="cl">git switch feat/x           <span class="c1"># 切换（更现代、更清晰）</span>
 </span></span><span class="line"><span class="cl">git switch -c feat/x        <span class="c1"># 创建并切换（现代写法）</span>
 </span></span><span class="line"><span class="cl">git branch -d feat/x        <span class="c1"># 删除（安全——未合并会拒绝）</span>
 </span></span><span class="line"><span class="cl">git branch -D feat/x        <span class="c1"># 删除（强制）</span>
-</span></span><span class="line"><span class="cl">git branch -m old new       <span class="c1"># 重命名</span>
-</span></span></code></pre></div><p><code>switch</code> 和 <code>restore</code> 是把功能过载的 <code>checkout</code> 拆开后的现代命令。<code>switch</code> 切分支，<code>restore</code> 改文件。用它们——更不容易误操作。</p>
+</span></span><span class="line"><span class="cl">git branch -m old new       <span class="c1"># 重命名</span></span></span></code></pre></div>
+</div>
+<p><code>switch</code> 和 <code>restore</code> 是把功能过载的 <code>checkout</code> 拆开后的现代命令。<code>switch</code> 切分支，<code>restore</code> 改文件。用它们——更不容易误操作。</p>
 <h2 id="查看历史">
   查看历史
   <a class="heading-link" href="#%e6%9f%a5%e7%9c%8b%e5%8e%86%e5%8f%b2">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git log --oneline --graph --all    <span class="c1"># 我一直开着的视图</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git log --oneline --graph --all    <span class="c1"># 我一直开着的视图</span>
 </span></span><span class="line"><span class="cl">git log -p file.js                 <span class="c1"># 单个文件的历史，带 diff</span>
 </span></span><span class="line"><span class="cl">git log --since<span class="o">=</span><span class="s2">&#34;2 weeks ago&#34;</span>
 </span></span><span class="line"><span class="cl">git show &lt;commit&gt;                  <span class="c1"># 某次提交的完整细节</span>
 </span></span><span class="line"><span class="cl">git diff                           <span class="c1"># 工作区 vs 暂存区</span>
 </span></span><span class="line"><span class="cl">git diff --staged                  <span class="c1"># 暂存区 vs 上次提交</span>
 </span></span><span class="line"><span class="cl">git diff main..feat/x              <span class="c1"># 两个分支之间的差异</span>
-</span></span><span class="line"><span class="cl">git blame file.js                  <span class="c1"># 每一行最后是谁改的</span>
-</span></span></code></pre></div><p>给上面第一条命令配个别名吧——你会反复敲它：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global alias.lg <span class="s2">&#34;log --oneline --graph --all --decorate&#34;</span>
-</span></span></code></pre></div><h2 id="与远程同步">
+</span></span><span class="line"><span class="cl">git blame file.js                  <span class="c1"># 每一行最后是谁改的</span></span></span></code></pre></div>
+</div>
+<p>给上面第一条命令配个别名吧——你会反复敲它：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global alias.lg <span class="s2">&#34;log --oneline --graph --all --decorate&#34;</span></span></span></code></pre></div>
+</div>
+<h2 id="与远程同步">
   与远程同步
   <a class="heading-link" href="#%e4%b8%8e%e8%bf%9c%e7%a8%8b%e5%90%8c%e6%ad%a5">
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git fetch                   <span class="c1"># 下载远程改动，但不应用</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git fetch                   <span class="c1"># 下载远程改动，但不应用</span>
 </span></span><span class="line"><span class="cl">git pull                    <span class="c1"># fetch + 整合进当前分支</span>
 </span></span><span class="line"><span class="cl">git push                    <span class="c1"># 上传提交</span>
 </span></span><span class="line"><span class="cl">git push -u origin feat/x   <span class="c1"># 推送并设置上游（第一次）</span>
-</span></span><span class="line"><span class="cl">git push --force-with-lease <span class="c1"># rebase 之后的安全强推</span>
-</span></span></code></pre></div><p><strong>永远不要用裸的 <code>git push --force</code>。</strong> 改用 <code>--force-with-lease</code>：如果别人推了你还没看到的提交，它会拒绝推送，这样你就不会悄无声息地覆盖掉队友的工作。</p>
+</span></span><span class="line"><span class="cl">git push --force-with-lease <span class="c1"># rebase 之后的安全强推</span></span></span></code></pre></div>
+</div>
+<p><strong>永远不要用裸的 <code>git push --force</code>。</strong> 改用 <code>--force-with-lease</code>：如果别人推了你还没看到的提交，它会拒绝推送，这样你就不会悄无声息地覆盖掉队友的工作。</p>
 <h2 id="撤销操作">
   撤销操作
   <a class="heading-link" href="#%e6%92%a4%e9%94%80%e6%93%8d%e4%bd%9c">
@@ -298,7 +361,12 @@ per IP per minute, returning 429 after that.
   </a>
 </h2>
 <p>这是人人都怕的部分。其实大多数操作都是可逆的。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 丢弃某个文件未提交的改动</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 丢弃某个文件未提交的改动</span>
 </span></span><span class="line"><span class="cl">git restore file.js
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 取消暂存某个文件（保留改动）</span>
@@ -314,8 +382,9 @@ per IP per minute, returning 429 after that.
 </span></span><span class="line"><span class="cl">git reset --hard HEAD~1
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 通过新建一个反向提交来撤销（在共享历史上是安全的）</span>
-</span></span><span class="line"><span class="cl">git revert &lt;commit&gt;
-</span></span></code></pre></div><p>经验法则：<strong><code>reset</code> 重写历史，<code>revert</code> 追加历史。</strong> 在共享分支上，永远用 <code>revert</code>。只有 <code>reset --hard</code> 会真正丢掉成果——对它保持敬畏。</p>
+</span></span><span class="line"><span class="cl">git revert &lt;commit&gt;</span></span></code></pre></div>
+</div>
+<p>经验法则：<strong><code>reset</code> 重写历史，<code>revert</code> 追加历史。</strong> 在共享分支上，永远用 <code>revert</code>。只有 <code>reset --hard</code> 会真正丢掉成果——对它保持敬畏。</p>
 <h3 id="安全网reflog">
   安全网：reflog
   <a class="heading-link" href="#%e5%ae%89%e5%85%a8%e7%bd%91reflog">
@@ -323,10 +392,16 @@ per IP per minute, returning 429 after that.
   </a>
 </h3>
 <p>即便执行了 <code>reset --hard</code>，你的提交在大约 30 天内也不会真的消失。<code>reflog</code> 会列出 <code>HEAD</code> 到过的每一个位置：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git reflog
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git reflog
 </span></span><span class="line"><span class="cl"><span class="c1"># 挑出犯错之前那个位置的哈希</span>
-</span></span><span class="line"><span class="cl">git reset --hard HEAD@<span class="o">{</span>2<span class="o">}</span>
-</span></span></code></pre></div><p>这东西救我的次数多到我都不好意思承认。如果你觉得自己弄丢了一个提交，先查 reflog，别急着慌。</p>
+</span></span><span class="line"><span class="cl">git reset --hard HEAD@<span class="o">{</span>2<span class="o">}</span></span></span></code></pre></div>
+</div>
+<p>这东西救我的次数多到我都不好意思承认。如果你觉得自己弄丢了一个提交，先查 reflog，别急着慌。</p>
 <h2 id="储藏stash">
   储藏（Stash）
   <a class="heading-link" href="#%e5%82%a8%e8%97%8fstash">
@@ -334,13 +409,19 @@ per IP per minute, returning 429 after that.
   </a>
 </h2>
 <p>适用于手头工作只做了一半、却需要切换上下文的时候：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git stash                   <span class="c1"># 把改动收起来，工作区变干净</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git stash                   <span class="c1"># 把改动收起来，工作区变干净</span>
 </span></span><span class="line"><span class="cl">git stash -u                <span class="c1"># 连未跟踪文件一起收</span>
 </span></span><span class="line"><span class="cl">git stash list              <span class="c1"># 查看所有储藏</span>
 </span></span><span class="line"><span class="cl">git stash pop               <span class="c1"># 重新应用最近一条，并从栈中移除</span>
 </span></span><span class="line"><span class="cl">git stash apply             <span class="c1"># 重新应用，但保留在栈中</span>
-</span></span><span class="line"><span class="cl">git stash drop              <span class="c1"># 删除某条储藏</span>
-</span></span></code></pre></div><p>Stash 是一个临时抽屉，不是档案柜。如果某样东西在 stash 里待了超过一天，它就该是一个分支。</p>
+</span></span><span class="line"><span class="cl">git stash drop              <span class="c1"># 删除某条储藏</span></span></span></code></pre></div>
+</div>
+<p>Stash 是一个临时抽屉，不是档案柜。如果某样东西在 stash 里待了超过一天，它就该是一个分支。</p>
 <h2 id="合并-vs-变基">
   合并 vs 变基
   <a class="heading-link" href="#%e5%90%88%e5%b9%b6-vs-%e5%8f%98%e5%9f%ba">
@@ -348,14 +429,20 @@ per IP per minute, returning 429 after that.
   </a>
 </h2>
 <p>把一个分支更新到与 <code>main</code> 同步，有两种方式：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 合并——原样保留历史，多一个合并提交</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 合并——原样保留历史，多一个合并提交</span>
 </span></span><span class="line"><span class="cl">git switch feat/x
 </span></span><span class="line"><span class="cl">git merge main
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 变基——把你的提交重放到 main 之上，历史保持线性</span>
 </span></span><span class="line"><span class="cl">git switch feat/x
-</span></span><span class="line"><span class="cl">git rebase main
-</span></span></code></pre></div><p><strong>合并</strong>忠实记录了真实发生的事，代价是图谱会变得错综复杂。<strong>变基</strong>给你一条干净的直线，代价是重写了你的提交哈希。</p>
+</span></span><span class="line"><span class="cl">git rebase main</span></span></code></pre></div>
+</div>
+<p><strong>合并</strong>忠实记录了真实发生的事，代价是图谱会变得错综复杂。<strong>变基</strong>给你一条干净的直线，代价是重写了你的提交哈希。</p>
 <p>我的原则：<strong>对自己的特性分支变基</strong>，让它在评审前保持整洁；<strong>绝不对别人已经拉取过的东西变基</strong>。重写共享历史，是毁掉一个周五的标准做法。</p>
 <h3 id="评审前整理提交">
   评审前整理提交
@@ -364,13 +451,25 @@ per IP per minute, returning 429 after that.
   </a>
 </h3>
 <p>交互式变基让你能压缩、重排、改写提交：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git rebase -i HEAD~4
-</span></span></code></pre></div><p>你会进入一个编辑器，里面是你最近 4 次提交：</p>
-<pre tabindex="0"><code>pick a1b2c3d Add login form
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git rebase -i HEAD~4</span></span></code></pre></div>
+</div>
+<p>你会进入一个编辑器，里面是你最近 4 次提交：</p>
+<div class="code-block" data-lang="text">
+  <div class="code-block-bar">
+    <span class="code-block-lang">text</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <pre tabindex="0"><code>pick a1b2c3d Add login form
 squash e4f5g6h Fix typo
 squash h7i8j9k Fix another typo
-reword l0m1n2o Wire up validation
-</code></pre><p><code>squash</code> 把一个提交并入上面那个；<code>reword</code> 让你修改提交消息。最终交付一个干净的提交，而不是五个乱糟糟的。</p>
+reword l0m1n2o Wire up validation</code></pre>
+</div>
+<p><code>squash</code> 把一个提交并入上面那个；<code>reword</code> 让你修改提交消息。最终交付一个干净的提交，而不是五个乱糟糟的。</p>
 <h2 id="解决冲突">
   解决冲突
   <a class="heading-link" href="#%e8%a7%a3%e5%86%b3%e5%86%b2%e7%aa%81">
@@ -378,16 +477,28 @@ reword l0m1n2o Wire up validation
   </a>
 </h2>
 <p>冲突不是错误——是 Git 在请你做一个它替你做不了的决定：</p>
-<pre tabindex="0"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+<div class="code-block" data-lang="text">
+  <div class="code-block-bar">
+    <span class="code-block-lang">text</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <pre tabindex="0"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 const timeout = 3000;
 =======
 const timeout = 5000;
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; feat/x
-</code></pre><p>把文件改成你想要的版本，删掉 <code>&lt;&lt;&lt;</code>、<code>===</code>、<code>&gt;&gt;&gt;</code> 这些标记，然后：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add file.js             <span class="c1"># 标记这处冲突已解决</span>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feat/x</code></pre>
+</div>
+<p>把文件改成你想要的版本，删掉 <code>&lt;&lt;&lt;</code>、<code>===</code>、<code>&gt;&gt;&gt;</code> 这些标记，然后：</p>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add file.js             <span class="c1"># 标记这处冲突已解决</span>
 </span></span><span class="line"><span class="cl">git rebase --continue       <span class="c1"># 或者：git merge --continue</span>
-</span></span><span class="line"><span class="cl">git rebase --abort          <span class="c1"># 放弃，回到起点</span>
-</span></span></code></pre></div><p>拿不准的时候，<code>--abort</code> 永远是安全的。它会把一切恢复原状。</p>
+</span></span><span class="line"><span class="cl">git rebase --abort          <span class="c1"># 放弃，回到起点</span></span></span></code></pre></div>
+</div>
+<p>拿不准的时候，<code>--abort</code> 永远是安全的。它会把一切恢复原状。</p>
 <h2 id="团队特性分支工作流">
   团队特性分支工作流
   <a class="heading-link" href="#%e5%9b%a2%e9%98%9f%e7%89%b9%e6%80%a7%e5%88%86%e6%94%af%e5%b7%a5%e4%bd%9c%e6%b5%81">
@@ -395,7 +506,12 @@ const timeout = 5000;
   </a>
 </h2>
 <p>我在真实团队里遵循的流程：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 从 main 全新开始</span>
+<div class="code-block" data-lang="bash">
+  <div class="code-block-bar">
+    <span class="code-block-lang">bash</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 从 main 全新开始</span>
 </span></span><span class="line"><span class="cl">git switch main
 </span></span><span class="line"><span class="cl">git pull
 </span></span><span class="line"><span class="cl">
@@ -418,8 +534,9 @@ const timeout = 5000;
 </span></span><span class="line"><span class="cl"><span class="c1"># 7. PR 合并后清理</span>
 </span></span><span class="line"><span class="cl">git switch main
 </span></span><span class="line"><span class="cl">git pull
-</span></span><span class="line"><span class="cl">git branch -d feat/user-export
-</span></span></code></pre></div><p>短命的分支、小颗粒的提交、用变基保持同步、合并前压缩。分支活得越久，冲突越糟糕——让它们以「天」计，而不是以「周」计。</p>
+</span></span><span class="line"><span class="cl">git branch -d feat/user-export</span></span></code></pre></div>
+</div>
+<p>短命的分支、小颗粒的提交、用变基保持同步、合并前压缩。分支活得越久，冲突越糟糕——让它们以「天」计，而不是以「周」计。</p>
 <h2 id="常见的坑">
   常见的坑
   <a class="heading-link" href="#%e5%b8%b8%e8%a7%81%e7%9a%84%e5%9d%91">
@@ -437,7 +554,12 @@ const timeout = 5000;
     <i class="fa-solid fa-link" aria-hidden="true"></i>
   </a>
 </h2>
-<pre tabindex="0"><code class="language-gitignore" data-lang="gitignore"># 依赖
+<div class="code-block" data-lang="gitignore">
+  <div class="code-block-bar">
+    <span class="code-block-lang">gitignore</span>
+    <button type="button" class="code-copy-btn" data-copy-label="复制" data-copied-label="已复制">复制</button>
+  </div>
+  <pre tabindex="0"><code class="language-gitignore" data-lang="gitignore"># 依赖
 node_modules/
 
 # 构建产物
@@ -450,8 +572,9 @@ public/
 
 # 编辑器与系统垃圾文件
 .vscode/
-.DS_Store
-</code></pre><p>在<strong>第一个</strong>提交里就把它加上。事后取消跟踪（<code>git rm --cached</code>）也行，但文件仍然会留在历史里。</p>
+.DS_Store</code></pre>
+</div>
+<p>在<strong>第一个</strong>提交里就把它加上。事后取消跟踪（<code>git rm --cached</code>）也行，但文件仍然会留在历史里。</p>
 <h2 id="速查表浓缩版">
   速查表（浓缩版）
   <a class="heading-link" href="#%e9%80%9f%e6%9f%a5%e8%a1%a8%e6%b5%93%e7%bc%a9%e7%89%88">
@@ -459,86 +582,86 @@ public/
   </a>
 </h2>
 <table>
-  <thead>
-      <tr>
-          <th>任务</th>
-          <th>命令</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>查看状态</td>
-          <td><code>git status</code></td>
-      </tr>
-      <tr>
-          <td>交互式暂存</td>
-          <td><code>git add -p</code></td>
-      </tr>
-      <tr>
-          <td>提交</td>
-          <td><code>git commit -m &quot;...&quot;</code></td>
-      </tr>
-      <tr>
-          <td>修补上次提交</td>
-          <td><code>git commit --amend</code></td>
-      </tr>
-      <tr>
-          <td>新建分支</td>
-          <td><code>git switch -c feat/x</code></td>
-      </tr>
-      <tr>
-          <td>切换分支</td>
-          <td><code>git switch main</code></td>
-      </tr>
-      <tr>
-          <td>从远程更新</td>
-          <td><code>git pull</code></td>
-      </tr>
-      <tr>
-          <td>首次推送</td>
-          <td><code>git push -u origin feat/x</code></td>
-      </tr>
-      <tr>
-          <td>安全强推</td>
-          <td><code>git push --force-with-lease</code></td>
-      </tr>
-      <tr>
-          <td>漂亮的历史图</td>
-          <td><code>git log --oneline --graph --all</code></td>
-      </tr>
-      <tr>
-          <td>丢弃文件改动</td>
-          <td><code>git restore file.js</code></td>
-      </tr>
-      <tr>
-          <td>取消暂存</td>
-          <td><code>git restore --staged file.js</code></td>
-      </tr>
-      <tr>
-          <td>撤销提交、保留成果</td>
-          <td><code>git reset --soft HEAD~1</code></td>
-      </tr>
-      <tr>
-          <td>撤销共享分支上的提交</td>
-          <td><code>git revert &lt;commit&gt;</code></td>
-      </tr>
-      <tr>
-          <td>临时储藏</td>
-          <td><code>git stash</code> / <code>git stash pop</code></td>
-      </tr>
-      <tr>
-          <td>找回丢失的提交</td>
-          <td><code>git reflog</code></td>
-      </tr>
-      <tr>
-          <td>变基到 main</td>
-          <td><code>git rebase main</code></td>
-      </tr>
-      <tr>
-          <td>整理提交</td>
-          <td><code>git rebase -i HEAD~N</code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>任务</th>
+					<th>命令</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>查看状态</td>
+					<td><code>git status</code></td>
+			</tr>
+			<tr>
+					<td>交互式暂存</td>
+					<td><code>git add -p</code></td>
+			</tr>
+			<tr>
+					<td>提交</td>
+					<td><code>git commit -m &quot;...&quot;</code></td>
+			</tr>
+			<tr>
+					<td>修补上次提交</td>
+					<td><code>git commit --amend</code></td>
+			</tr>
+			<tr>
+					<td>新建分支</td>
+					<td><code>git switch -c feat/x</code></td>
+			</tr>
+			<tr>
+					<td>切换分支</td>
+					<td><code>git switch main</code></td>
+			</tr>
+			<tr>
+					<td>从远程更新</td>
+					<td><code>git pull</code></td>
+			</tr>
+			<tr>
+					<td>首次推送</td>
+					<td><code>git push -u origin feat/x</code></td>
+			</tr>
+			<tr>
+					<td>安全强推</td>
+					<td><code>git push --force-with-lease</code></td>
+			</tr>
+			<tr>
+					<td>漂亮的历史图</td>
+					<td><code>git log --oneline --graph --all</code></td>
+			</tr>
+			<tr>
+					<td>丢弃文件改动</td>
+					<td><code>git restore file.js</code></td>
+			</tr>
+			<tr>
+					<td>取消暂存</td>
+					<td><code>git restore --staged file.js</code></td>
+			</tr>
+			<tr>
+					<td>撤销提交、保留成果</td>
+					<td><code>git reset --soft HEAD~1</code></td>
+			</tr>
+			<tr>
+					<td>撤销共享分支上的提交</td>
+					<td><code>git revert &lt;commit&gt;</code></td>
+			</tr>
+			<tr>
+					<td>临时储藏</td>
+					<td><code>git stash</code> / <code>git stash pop</code></td>
+			</tr>
+			<tr>
+					<td>找回丢失的提交</td>
+					<td><code>git reflog</code></td>
+			</tr>
+			<tr>
+					<td>变基到 main</td>
+					<td><code>git rebase main</code></td>
+			</tr>
+			<tr>
+					<td>整理提交</td>
+					<td><code>git rebase -i HEAD~N</code></td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="写在最后">
   写在最后
